@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iConnect — Care, Connected. A complete guide.</title>
+<meta name="description" content="iConnect: a technology-powered care network that wraps every person aged 75+ in safety, health, connection and dignity.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,400..800&family=Hanken+Grotesk:wght@300;400;500;600;700;800&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   iConnect — Design System
+   Aesthetic: warm editorial + soft medical-tech
+   ============================================================ */
+:root{
+  --ivory:#FBF6EC;
+  --cream:#F5EDDD;
+  --cream-2:#EFE4CF;
+  --sand:#E4D6BC;
+  --sand-line:#D9C8A9;
+  --forest:#123B34;
+  --forest-deep:#0C2C27;
+  --pine:#1E5B4F;
+  --sage:#6E9585;
+  --sage-soft:#A9C2B4;
+  --coral:#E2674A;
+  --coral-deep:#C24E34;
+  --amber:#E7A63C;
+  --amber-soft:#F2CE87;
+  --ink:#241F17;
+  --ink-soft:#5E564A;
+  --ink-faint:#8B8272;
+  --white:#FFFDF8;
+  --shadow-sm:0 2px 8px rgba(36,31,23,.06);
+  --shadow-md:0 12px 30px -12px rgba(18,59,52,.28);
+  --shadow-lg:0 30px 70px -30px rgba(18,59,52,.45);
+  --radius:18px;
+  --radius-lg:28px;
+  --maxw:1180px;
+  --font-display:"Fraunces",Georgia,serif;
+  --font-body:"Hanken Grotesk",-apple-system,sans-serif;
+  --font-hand:"Caveat",cursive;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-body);
+  background:var(--ivory);
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  position:relative;
+}
+/* Paper grain overlay */
+body::before{
+  content:"";
+  position:fixed;inset:0;
+  pointer-events:none;z-index:9998;
+  opacity:.4;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+}
+
+img,svg{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+::selection{background:var(--amber);color:var(--forest-deep)}
+
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;line-height:1.05;letter-spacing:-.02em}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,48px)}
+
+/* ---------- Scroll progress ---------- */
+#progress{position:fixed;top:0;left:0;height:3px;width:0%;
+  background:linear-gradient(90deg,var(--coral),var(--amber));z-index:10000;transition:width .1s linear}
+
+/* ---------- Nav ---------- */
+nav{position:fixed;top:0;left:0;right:0;z-index:9000;
+  transition:background .4s,box-shadow .4s,padding .4s;padding:18px 0}
+nav.scrolled{background:rgba(251,246,236,.86);backdrop-filter:blur(14px);
+  box-shadow:0 1px 0 var(--sand-line);padding:12px 0}
+.nav-inner{max-width:var(--maxw);margin:0 auto;padding:0 clamp(20px,5vw,48px);
+  display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);
+  font-weight:600;font-size:1.35rem;letter-spacing:-.03em}
+.brand .dot{width:30px;height:30px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,var(--amber),var(--coral) 70%);
+  display:grid;place-items:center;box-shadow:var(--shadow-sm);position:relative}
+.brand .dot::after{content:"";position:absolute;inset:0;border-radius:50%;
+  border:2px solid var(--forest);animation:ring 3s ease-out infinite}
+@keyframes ring{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.8);opacity:0}}
+.brand span{color:var(--coral)}
+.nav-links{display:flex;gap:6px;align-items:center}
+.nav-links a{font-size:.82rem;font-weight:600;padding:8px 13px;border-radius:100px;
+  color:var(--ink-soft);transition:.25s;letter-spacing:.01em}
+.nav-links a:hover{background:var(--cream-2);color:var(--forest)}
+.nav-cta{background:var(--forest)!important;color:var(--ivory)!important}
+.nav-cta:hover{background:var(--pine)!important}
+.burger{display:none;font-size:1.5rem;color:var(--forest)}
+@media(max-width:900px){
+  .nav-links{position:fixed;inset:0 0 0 auto;width:min(78vw,320px);
+    flex-direction:column;justify-content:center;gap:14px;background:var(--cream);
+    transform:translateX(100%);transition:.4s;box-shadow:var(--shadow-lg);padding:40px}
+  .nav-links.open{transform:translateX(0)}
+  .nav-links a{font-size:1.1rem;width:100%}
+  .burger{display:block}
+}
+
+/* ---------- Reusable ---------- */
+.eyebrow{font-family:var(--font-hand);font-size:1.5rem;color:var(--coral);
+  font-weight:700;display:inline-flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:34px;height:2px;background:var(--coral);display:inline-block}
+.section{padding:clamp(70px,10vw,130px) 0;position:relative}
+.section-head{max-width:760px;margin-bottom:56px}
+.section-head h2{font-size:clamp(2.1rem,5.5vw,3.6rem);margin:16px 0 18px}
+.section-head p{font-size:clamp(1.02rem,2vw,1.22rem);color:var(--ink-soft);max-width:640px}
+.lede{font-size:clamp(1.05rem,2.2vw,1.3rem)}
+
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+[data-delay="1"]{transition-delay:.1s}[data-delay="2"]{transition-delay:.2s}
+[data-delay="3"]{transition-delay:.3s}[data-delay="4"]{transition-delay:.4s}
+[data-delay="5"]{transition-delay:.5s}[data-delay="6"]{transition-delay:.6s}
+
+.pill{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;padding:5px 12px;border-radius:100px;background:var(--cream-2);
+  color:var(--pine);border:1px solid var(--sand-line)}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;
+  padding-top:90px}
+.hero-bg{position:absolute;inset:0;z-index:0;
+  background:
+    radial-gradient(60% 55% at 78% 30%,rgba(231,166,60,.22),transparent 70%),
+    radial-gradient(55% 55% at 15% 80%,rgba(110,149,133,.20),transparent 70%),
+    var(--ivory)}
+.hero-grid{position:absolute;inset:0;z-index:0;opacity:.5;
+  background-image:linear-gradient(var(--sand-line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--sand-line) 1px,transparent 1px);
+  background-size:56px 56px;
+  mask-image:radial-gradient(70% 70% at 50% 45%,#000,transparent 100%)}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.15fr .85fr;
+  gap:48px;align-items:center}
+.hero-title{font-size:clamp(3rem,8.5vw,6.2rem);line-height:.94;letter-spacing:-.035em;margin:22px 0}
+.hero-title em{font-style:italic;color:var(--coral);font-weight:500}
+.hero-title .u{position:relative;white-space:nowrap}
+.hero-title .u::after{content:"";position:absolute;left:-2%;right:-2%;bottom:.06em;height:.18em;
+  background:var(--amber-soft);z-index:-1;transform:skewX(-12deg)}
+.hero p.lede{color:var(--ink-soft);max-width:520px;margin-bottom:32px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:.95rem;
+  padding:15px 26px;border-radius:100px;transition:.28s;letter-spacing:.01em}
+.btn-primary{background:var(--forest);color:var(--ivory);box-shadow:var(--shadow-md)}
+.btn-primary:hover{transform:translateY(-3px);background:var(--pine);box-shadow:var(--shadow-lg)}
+.btn-ghost{border:1.5px solid var(--forest);color:var(--forest)}
+.btn-ghost:hover{background:var(--forest);color:var(--ivory)}
+.hero-meta{display:flex;gap:26px;margin-top:38px;flex-wrap:wrap}
+.hero-meta div{border-left:2px solid var(--sand-line);padding-left:14px}
+.hero-meta b{font-family:var(--font-display);font-size:1.7rem;display:block;color:var(--forest);line-height:1}
+.hero-meta span{font-size:.8rem;color:var(--ink-faint);font-weight:600}
+
+/* Hero device visual */
+.device{position:relative;aspect-ratio:1;max-width:440px;margin-inline:auto;width:100%}
+.orbit{position:absolute;inset:0;border-radius:50%;border:1.5px dashed var(--sage-soft)}
+.orbit.o1{inset:8%;animation:spin 46s linear infinite}
+.orbit.o2{inset:22%;border-color:var(--amber-soft);animation:spin 30s linear infinite reverse}
+.orbit.o3{inset:36%;border-color:var(--coral);opacity:.5;animation:spin 20s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.core{position:absolute;inset:38%;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,var(--pine),var(--forest-deep));
+  display:grid;place-items:center;box-shadow:var(--shadow-lg),inset 0 0 40px rgba(0,0,0,.4);color:var(--ivory)}
+.core .pulse{position:absolute;inset:0;border-radius:50%;border:2px solid var(--amber);
+  animation:pulse 2.4s ease-out infinite}
+@keyframes pulse{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.7);opacity:0}}
+.core svg{width:48%;stroke:var(--amber)}
+.chip{position:absolute;background:var(--white);border:1px solid var(--sand-line);
+  border-radius:14px;padding:9px 13px;font-size:.74rem;font-weight:700;display:flex;
+  align-items:center;gap:8px;box-shadow:var(--shadow-md);white-space:nowrap}
+.chip i{width:9px;height:9px;border-radius:50%}
+.chip.c1{top:4%;left:50%;transform:translateX(-50%);animation:float 5s ease-in-out infinite}
+.chip.c2{top:44%;right:-6%;animation:float 5.6s ease-in-out infinite .4s}
+.chip.c3{bottom:8%;right:4%;animation:float 5.2s ease-in-out infinite .8s}
+.chip.c4{bottom:2%;left:6%;animation:float 6s ease-in-out infinite .2s}
+.chip.c5{top:38%;left:-8%;animation:float 5.4s ease-in-out infinite .6s}
+@keyframes float{0%,100%{transform:translateY(0) translateX(var(--tx,0))}50%{transform:translateY(-12px) translateX(var(--tx,0))}}
+.chip.c1{--tx:-50%}
+@media(max-width:880px){
+  .hero .wrap{grid-template-columns:1fr;gap:20px}
+  .device{max-width:320px;margin-top:20px}
+  .chip{font-size:.68rem;padding:7px 10px}
+}
+
+/* ============================================================
+   Generic cards & grids
+   ============================================================ */
+.grid{display:grid;gap:22px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:900px){.g3,.g4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.g2,.g3,.g4{grid-template-columns:1fr}}
+
+.card{background:var(--white);border:1px solid var(--sand-line);border-radius:var(--radius);
+  padding:26px;box-shadow:var(--shadow-sm);transition:.3s;position:relative;overflow:hidden}
+.card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md);border-color:var(--sage-soft)}
+.card .ic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;
+  margin-bottom:18px;background:var(--cream-2);color:var(--pine)}
+.card h3{font-size:1.28rem;margin-bottom:8px}
+.card p{color:var(--ink-soft);font-size:.95rem}
+.card .num{font-family:var(--font-display);font-size:.9rem;color:var(--coral);font-weight:700;
+  position:absolute;top:20px;right:22px}
+
+/* Problem section */
+.problem{background:var(--forest);color:var(--cream)}
+.problem .eyebrow{color:var(--amber-soft)}
+.problem .eyebrow::before{background:var(--amber-soft)}
+.problem h2{color:var(--white)}
+.problem .section-head p{color:var(--sage-soft)}
+.silo{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);
+  border-radius:var(--radius);padding:24px;transition:.3s}
+.silo:hover{background:rgba(255,255,255,.09)}
+.silo .emoji{font-size:2rem;margin-bottom:12px;display:block}
+.silo h3{color:var(--white);font-size:1.15rem;margin-bottom:6px}
+.silo p{color:var(--sage-soft);font-size:.9rem}
+.arrow-line{text-align:center;margin:40px 0 10px;font-family:var(--font-hand);
+  font-size:1.6rem;color:var(--amber-soft)}
+
+/* ============================================================
+   Ecosystem diagram (hand-drawn / excalidraw style)
+   ============================================================ */
+.eco-layout{display:grid;grid-template-columns:1.35fr .65fr;gap:34px;align-items:center}
+@media(max-width:920px){.eco-layout{grid-template-columns:1fr}}
+.eco-svg-wrap{background:
+    radial-gradient(circle at 50% 50%,var(--white),var(--cream));
+  border:2px solid var(--sand-line);border-radius:var(--radius-lg);padding:10px;
+  box-shadow:var(--shadow-md);position:relative}
+.eco-hint{font-family:var(--font-hand);font-size:1.15rem;color:var(--ink-faint);
+  position:absolute;top:14px;left:20px}
+.sketch{font-family:var(--font-hand)}
+.eco-node{cursor:pointer;transition:transform .2s}
+.eco-node:hover{transform:scale(1.05)}
+.eco-node text{font-family:var(--font-hand);font-weight:700;pointer-events:none}
+.eco-node .body{transition:.25s}
+.eco-node.active .body{stroke-width:3.5}
+.eco-link{transition:.3s}
+.eco-link.dim{opacity:.15}
+.eco-node.dim{opacity:.35}
+.eco-detail{background:var(--white);border:1px solid var(--sand-line);border-radius:var(--radius);
+  padding:28px;box-shadow:var(--shadow-sm);min-height:260px}
+.eco-detail .pill{margin-bottom:14px}
+.eco-detail h3{font-size:1.6rem;margin-bottom:12px;color:var(--forest)}
+.eco-detail p{color:var(--ink-soft);font-size:.98rem;margin-bottom:14px}
+.eco-detail ul{list-style:none;display:grid;gap:8px}
+.eco-detail li{font-size:.9rem;padding-left:22px;position:relative;color:var(--ink-soft)}
+.eco-detail li::before{content:"→";position:absolute;left:0;color:var(--coral);font-weight:700}
+
+/* ============================================================
+   Steps / How it works
+   ============================================================ */
+.steps{display:grid;gap:0;position:relative}
+.step{display:grid;grid-template-columns:90px 1fr;gap:24px;padding:26px 0;
+  border-top:1px dashed var(--sand-line);position:relative}
+.step:last-child{border-bottom:1px dashed var(--sand-line)}
+.step-n{font-family:var(--font-display);font-size:2.4rem;font-weight:600;color:var(--coral);
+  line-height:1}
+.step-n small{display:block;font-family:var(--font-hand);font-size:1rem;color:var(--ink-faint);
+  font-weight:600;margin-top:4px}
+.step h3{font-size:1.5rem;margin-bottom:8px}
+.step p{color:var(--ink-soft);max-width:640px}
+.step .tag{display:inline-block;margin-top:12px;font-family:var(--font-hand);font-size:1.2rem;
+  color:var(--pine);background:var(--cream-2);padding:2px 14px;border-radius:100px;
+  border:1px dashed var(--sage)}
+@media(max-width:560px){.step{grid-template-columns:60px 1fr;gap:14px}.step-n{font-size:1.8rem}}
+
+/* ============================================================
+   Users tabs
+   ============================================================ */
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px}
+.tab{padding:13px 22px;border-radius:100px;border:1.5px solid var(--sand-line);
+  font-weight:700;font-size:.92rem;color:var(--ink-soft);transition:.25s;background:var(--white);
+  display:flex;align-items:center;gap:9px}
+.tab:hover{border-color:var(--sage)}
+.tab.active{background:var(--forest);color:var(--ivory);border-color:var(--forest)}
+.tab .tnum{font-family:var(--font-display);opacity:.6}
+.tabpanel{display:none;animation:fade .5s}
+.tabpanel.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.userpanel{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;
+  background:var(--white);border:1px solid var(--sand-line);border-radius:var(--radius-lg);
+  padding:clamp(24px,4vw,44px);box-shadow:var(--shadow-sm)}
+@media(max-width:760px){.userpanel{grid-template-columns:1fr}}
+.userpanel h3{font-size:2rem;margin-bottom:6px;color:var(--forest)}
+.userpanel .who{font-family:var(--font-hand);font-size:1.4rem;color:var(--coral);margin-bottom:16px}
+.userpanel p{color:var(--ink-soft);margin-bottom:18px}
+.access{background:var(--cream);border-radius:var(--radius);padding:22px;border:1px dashed var(--sand-line)}
+.access .lab{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-faint);margin-bottom:8px}
+.access .big{font-family:var(--font-display);font-size:1.5rem;color:var(--forest);line-height:1.15}
+.access .big em{font-style:italic;color:var(--coral)}
+.userpanel ul{list-style:none;margin-top:16px;display:grid;gap:9px}
+.userpanel li{padding-left:26px;position:relative;font-size:.94rem;color:var(--ink-soft)}
+.userpanel li::before{content:"✓";position:absolute;left:0;color:var(--pine);font-weight:800}
+
+/* ============================================================
+   Programs grid
+   ============================================================ */
+.prog{background:var(--white);border:1px solid var(--sand-line);border-radius:var(--radius);
+  padding:22px;transition:.3s;cursor:default;position:relative;overflow:hidden}
+.prog::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--accent,var(--sage));
+  transform:scaleY(0);transform-origin:top;transition:.3s}
+.prog:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.prog:hover::before{transform:scaleY(1)}
+.prog .pemoji{font-size:1.8rem;margin-bottom:12px}
+.prog h4{font-size:1.1rem;margin-bottom:6px}
+.prog p{font-size:.86rem;color:var(--ink-soft)}
+.focus-band{margin-top:30px;background:linear-gradient(120deg,var(--forest),var(--pine));
+  color:var(--cream);border-radius:var(--radius-lg);padding:clamp(26px,4vw,42px);
+  display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center}
+@media(max-width:700px){.focus-band{grid-template-columns:1fr}}
+.focus-band h3{color:var(--white);font-size:1.7rem;margin-bottom:10px}
+.focus-band p{color:var(--sage-soft)}
+.focus-chips{display:flex;gap:12px;flex-wrap:wrap}
+.focus-chips span{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  padding:12px 18px;border-radius:14px;font-weight:600;font-size:.92rem}
+
+/* ============================================================
+   Caregiver toolkit (dashboard mockup)
+   ============================================================ */
+.toolkit{background:var(--forest);color:var(--cream)}
+.toolkit .eyebrow{color:var(--amber-soft)}.toolkit .eyebrow::before{background:var(--amber-soft)}
+.toolkit h2{color:var(--white)}.toolkit .section-head p{color:var(--sage-soft)}
+.dash{background:var(--forest-deep);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-lg);
+  overflow:hidden;box-shadow:var(--shadow-lg)}
+.dash-top{display:flex;align-items:center;gap:10px;padding:16px 22px;border-bottom:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.03)}
+.dash-top .dots{display:flex;gap:6px}.dash-top .dots i{width:11px;height:11px;border-radius:50%;background:rgba(255,255,255,.2)}
+.dash-top .dots i:nth-child(1){background:var(--coral)}.dash-top .dots i:nth-child(2){background:var(--amber)}
+.dash-top .dots i:nth-child(3){background:var(--sage)}
+.dash-top b{font-family:var(--font-display);margin-left:8px;color:var(--white)}
+.dash-top .live{margin-left:auto;font-size:.72rem;font-weight:700;color:var(--sage-soft);display:flex;align-items:center;gap:7px}
+.dash-top .live::before{content:"";width:8px;height:8px;border-radius:50%;background:#68d391;box-shadow:0 0 0 0 rgba(104,211,145,.6);animation:blip 1.8s infinite}
+@keyframes blip{0%{box-shadow:0 0 0 0 rgba(104,211,145,.6)}70%{box-shadow:0 0 0 8px rgba(104,211,145,0)}}
+.dash-body{display:grid;grid-template-columns:230px 1fr;min-height:440px}
+@media(max-width:760px){.dash-body{grid-template-columns:1fr}}
+.dash-menu{border-right:1px solid rgba(255,255,255,.08);padding:14px;display:flex;flex-direction:column;gap:4px}
+@media(max-width:760px){.dash-menu{flex-direction:row;overflow-x:auto;border-right:none;border-bottom:1px solid rgba(255,255,255,.08)}}
+.dmenu{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;
+  font-weight:600;font-size:.9rem;color:var(--sage-soft);transition:.2s;text-align:left;white-space:nowrap}
+.dmenu:hover{background:rgba(255,255,255,.05);color:var(--white)}
+.dmenu.active{background:var(--pine);color:var(--white)}
+.dmenu .de{font-size:1.15rem}
+.dash-view{padding:26px;display:none;animation:fade .45s}
+.dash-view.active{display:block}
+.dash-view h3{color:var(--white);font-size:1.5rem;margin-bottom:6px}
+.dash-view .sub{color:var(--sage-soft);font-size:.9rem;margin-bottom:22px}
+.tk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+.tk-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:14px;
+  padding:16px;transition:.25s}
+.tk-item:hover{background:rgba(255,255,255,.08);border-color:var(--amber-soft);transform:translateY(-3px)}
+.tk-item .th{display:flex;align-items:center;gap:10px;margin-bottom:8px;color:var(--white);font-weight:700;font-size:.95rem}
+.tk-item .th .e{font-size:1.2rem}
+.tk-item p{color:var(--sage-soft);font-size:.82rem}
+.tk-item .bar{height:6px;border-radius:100px;background:rgba(255,255,255,.12);margin-top:12px;overflow:hidden}
+.tk-item .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--amber),var(--coral));border-radius:100px}
+
+/* ============================================================
+   Data-follows-patient
+   ============================================================ */
+.relay{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+@media(max-width:820px){.relay{grid-template-columns:1fr}}
+.relay-vis{background:var(--white);border:2px solid var(--sand-line);border-radius:var(--radius-lg);
+  padding:30px;box-shadow:var(--shadow-md);position:relative;overflow:hidden}
+.relay-track{display:flex;align-items:center;justify-content:space-between;position:relative;z-index:2}
+.relay-track .person{text-align:center;width:88px}
+.relay-track .avatar{width:64px;height:64px;border-radius:50%;margin:0 auto 8px;display:grid;place-items:center;
+  font-size:1.7rem;background:var(--cream-2);border:2px solid var(--sand-line);transition:.3s}
+.relay-track .person.on .avatar{border-color:var(--coral);background:var(--amber-soft);transform:scale(1.1);box-shadow:var(--shadow-md)}
+.relay-track .person span{font-size:.76rem;font-weight:700;color:var(--ink-soft)}
+.relay-line{position:absolute;top:32px;left:44px;right:44px;height:3px;background:var(--sand-line);z-index:1;border-radius:2px}
+.relay-line i{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;
+  background:radial-gradient(circle,var(--forest),var(--pine));display:grid;place-items:center;
+  color:var(--amber);box-shadow:var(--shadow-md);left:0;transition:left 1.1s cubic-bezier(.5,0,.3,1)}
+.relay-file{margin-top:26px;background:var(--cream);border:1px dashed var(--sand-line);border-radius:14px;
+  padding:16px 18px;font-size:.85rem;color:var(--ink-soft);font-family:var(--font-hand);font-size:1.15rem}
+.relay-file b{color:var(--forest)}
+
+/* ============================================================
+   Scenario stepper
+   ============================================================ */
+.scenario{background:linear-gradient(180deg,var(--cream),var(--ivory))}
+.scn-card{background:var(--white);border:1px solid var(--sand-line);border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-lg);overflow:hidden}
+.scn-hero{padding:clamp(24px,4vw,40px);background:linear-gradient(135deg,var(--forest),var(--forest-deep));
+  color:var(--cream);display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center}
+.scn-hero .face{width:80px;height:80px;border-radius:50%;background:var(--amber-soft);display:grid;place-items:center;
+  font-size:2.4rem;box-shadow:var(--shadow-md);flex-shrink:0}
+.scn-hero h3{color:var(--white);font-size:1.7rem}
+.scn-hero p{color:var(--sage-soft);font-size:.95rem;margin-top:4px}
+.scn-progress{display:flex;height:6px;background:var(--cream-2)}
+.scn-progress i{flex:1;background:var(--sand-line);transition:.4s}
+.scn-progress i.done{background:var(--coral)}
+.scn-body{padding:clamp(24px,4vw,44px);min-height:420px;position:relative}
+.scn-step{display:none}
+.scn-step.active{display:block;animation:fade .5s}
+.scn-time{font-family:var(--font-hand);font-size:1.7rem;color:var(--coral);margin-bottom:6px}
+.scn-step h4{font-size:clamp(1.4rem,3.5vw,2rem);margin-bottom:14px;color:var(--forest)}
+.scn-step .story{font-size:1.05rem;color:var(--ink-soft);max-width:680px;margin-bottom:24px;line-height:1.7}
+.scn-lanes{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:760px){.scn-lanes{grid-template-columns:1fr 1fr}}
+@media(max-width:460px){.scn-lanes{grid-template-columns:1fr}}
+.lane{background:var(--cream);border:1px solid var(--sand-line);border-radius:14px;padding:16px;transition:.3s}
+.lane.hot{background:#fdeee9;border-color:var(--coral);box-shadow:0 8px 24px -12px rgba(226,103,74,.5)}
+.lane .lh{font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);
+  margin-bottom:8px;display:flex;align-items:center;gap:7px}
+.lane.hot .lh{color:var(--coral-deep)}
+.lane p{font-size:.86rem;color:var(--ink-soft)}
+.lane .le{font-size:1.15rem}
+.scn-nav{display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:20px clamp(24px,4vw,44px);border-top:1px solid var(--sand-line);background:var(--cream)}
+.scn-nav .count{font-family:var(--font-display);font-size:.95rem;color:var(--ink-soft)}
+.scn-nav .count b{color:var(--forest);font-size:1.3rem}
+.snbtn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.9rem;padding:12px 22px;
+  border-radius:100px;transition:.25s}
+.snbtn.prev{border:1.5px solid var(--sand-line);color:var(--ink-soft)}
+.snbtn.prev:hover:not(:disabled){border-color:var(--forest);color:var(--forest)}
+.snbtn.next{background:var(--coral);color:var(--white);box-shadow:var(--shadow-md)}
+.snbtn.next:hover{background:var(--coral-deep);transform:translateY(-2px)}
+.snbtn:disabled{opacity:.35;cursor:not-allowed}
+
+/* ============================================================
+   Goals
+   ============================================================ */
+.goal{display:grid;grid-template-columns:56px 1fr;gap:18px;background:var(--white);
+  border:1px solid var(--sand-line);border-radius:var(--radius);padding:24px;transition:.3s}
+.goal:hover{border-color:var(--sage);box-shadow:var(--shadow-sm);transform:translateY(-3px)}
+.goal .gn{width:56px;height:56px;border-radius:14px;display:grid;place-items:center;font-size:1.6rem;
+  background:var(--cream-2)}
+.goal h4{font-size:1.2rem;margin-bottom:5px}
+.goal p{font-size:.9rem;color:var(--ink-soft)}
+
+/* ============================================================
+   Vision / closing
+   ============================================================ */
+.vision{background:var(--forest-deep);color:var(--cream);text-align:center;position:relative;overflow:hidden}
+.vision::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(50% 60% at 50% 0%,rgba(231,166,60,.18),transparent 70%)}
+.vision .wrap{position:relative;z-index:2}
+.vision .mark{font-family:var(--font-display);font-size:4rem;color:var(--amber);line-height:0;display:block;height:30px}
+.vision blockquote{font-family:var(--font-display);font-size:clamp(1.8rem,5vw,3.2rem);line-height:1.18;
+  font-weight:400;max-width:900px;margin:20px auto 30px;letter-spacing:-.02em}
+.vision blockquote em{font-style:italic;color:var(--amber-soft)}
+.vision .sig{font-family:var(--font-hand);font-size:1.8rem;color:var(--sage-soft)}
+
+/* Footer */
+footer{background:var(--forest-deep);color:var(--sage-soft);padding:40px 0;
+  border-top:1px solid rgba(255,255,255,.08);text-align:center}
+footer .brand{justify-content:center;color:var(--cream);margin-bottom:12px}
+footer p{font-size:.82rem;max-width:520px;margin:0 auto}
+footer .disc{margin-top:16px;font-size:.72rem;color:rgba(169,194,180,.55)}
+
+/* misc icons */
+.mini-ic{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2}
+
+/* ============================================================
+   Kid-friendly interactivity
+   ============================================================ */
+/* wiggle any icon on hover */
+.pemoji,.de,.le,.gn,.silo .emoji,.step-emoji,.ge{display:inline-block}
+.prog:hover .pemoji,.dmenu:hover .de,.lane:hover .le,.goal:hover .gn,
+.silo:hover .emoji,.gloss:hover .ge,.step:hover .step-emoji{animation:wiggle .5s ease}
+@keyframes wiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-12deg) scale(1.15)}60%{transform:rotate(10deg) scale(1.08)}}
+.step-emoji{font-size:2rem;margin-right:10px;vertical-align:-5px}
+
+/* electricity flowing through the network wires */
+.eco-link{animation:flow 1.1s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-10}}
+
+/* live ECG heartbeat */
+.ecg{width:92px;height:26px;overflow:visible;flex-shrink:0;margin-left:14px}
+.ecg path{fill:none;stroke:#68d391;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:180;stroke-dashoffset:180;animation:ecg 2.4s linear infinite}
+@keyframes ecg{from{stroke-dashoffset:180}to{stroke-dashoffset:-180}}
+@media(max-width:640px){.ecg{display:none}}
+
+/* ---------- Emergency simulator ---------- */
+.sim-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:start}
+@media(max-width:820px){.sim-wrap{grid-template-columns:1fr}}
+.sim-stage{background:var(--white);border:2px solid var(--sand-line);border-radius:var(--radius-lg);
+  padding:clamp(24px,4vw,40px);box-shadow:var(--shadow-md);text-align:center;position:sticky;top:110px}
+@media(max-width:820px){.sim-stage{position:static}}
+.sim-stage.alarm{border-color:var(--coral);animation:alarmGlow .9s ease infinite alternate}
+@keyframes alarmGlow{from{box-shadow:0 0 0 0 rgba(226,103,74,.25)}to{box-shadow:0 0 0 16px rgba(226,103,74,.05)}}
+.simbtn{width:156px;height:156px;border-radius:50%;
+  background:radial-gradient(circle at 35% 28%,#F0836B,var(--coral-deep));
+  color:#fff;font-weight:800;font-size:1.05rem;letter-spacing:.05em;line-height:1.2;
+  box-shadow:0 16px 34px -10px rgba(194,78,52,.65),inset 0 -8px 14px rgba(0,0,0,.25);
+  border:6px solid var(--white);outline:4px solid var(--coral);
+  margin:14px auto 20px;display:grid;place-items:center;transition:.15s}
+.simbtn:hover:not(:disabled){transform:scale(1.06)}
+.simbtn:active:not(:disabled){transform:scale(.93)}
+.simbtn:disabled{filter:grayscale(.4);opacity:.8;cursor:wait}
+.simbtn .se{font-size:2.3rem;display:block}
+.sim-caption{font-family:var(--font-hand);font-size:1.4rem;color:var(--ink-faint)}
+.sim-timeline{display:flex;flex-direction:column;gap:12px}
+.sim-ev{display:grid;grid-template-columns:52px 46px 1fr;gap:12px;align-items:center;background:var(--white);
+  border:1.5px solid var(--sand-line);border-radius:16px;padding:14px 16px;
+  opacity:.25;transform:translateX(20px);transition:.5s cubic-bezier(.2,.7,.2,1)}
+.sim-ev.show{opacity:1;transform:none;border-color:var(--sage)}
+.sim-ev.crit.show{border-color:var(--coral);background:#fdeee9}
+.sim-ev .t{font-family:var(--font-display);font-weight:700;color:var(--coral);font-size:.92rem}
+.sim-ev .ie{font-size:1.75rem;text-align:center}
+.sim-ev b{display:block;font-size:.96rem}
+.sim-ev p{font-size:.83rem;color:var(--ink-soft)}
+.sim-done{margin-top:4px;background:var(--forest);color:var(--cream);border-radius:16px;
+  padding:16px 20px;font-weight:600;display:none;align-items:center;gap:14px;font-size:.92rem}
+.sim-done.show{display:flex;animation:fade .5s}
+.sim-done .big{font-family:var(--font-display);font-size:1.4rem;color:var(--amber-soft);white-space:nowrap}
+
+/* ---------- Glossary flip cards ---------- */
+.gloss-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px}
+.gloss{perspective:1000px;height:205px;cursor:pointer}
+.gloss-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;
+  transition:transform .65s cubic-bezier(.3,.7,.3,1)}
+.gloss.flip .gloss-inner{transform:rotateY(180deg)}
+.gloss-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  border-radius:var(--radius);display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:8px;padding:18px;text-align:center}
+.gloss-front{background:var(--white);border:1.5px solid var(--sand-line);box-shadow:var(--shadow-sm)}
+.gloss-front .ge{font-size:2.7rem}
+.gloss-front h4{font-size:1.08rem}
+.gloss-front span{font-family:var(--font-hand);font-size:1.1rem;color:var(--coral)}
+.gloss-back{background:var(--forest);color:var(--cream);transform:rotateY(180deg);
+  font-size:.92rem;line-height:1.5}
+.gloss-back b{color:var(--amber-soft)}
+
+/* ---------- Quiz ---------- */
+.quiz-card{background:var(--white);border:1px solid var(--sand-line);border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-lg);padding:clamp(26px,4vw,46px);max-width:780px}
+.q-step{display:none}
+.q-step.active{display:block;animation:fade .45s}
+.q-num{font-family:var(--font-hand);font-size:1.4rem;color:var(--coral)}
+.q-step h3{font-size:clamp(1.3rem,3vw,1.8rem);margin:8px 0 22px}
+.q-opts{display:grid;gap:12px}
+.q-opt{text-align:left;padding:16px 20px;border:2px solid var(--sand-line);border-radius:16px;
+  font-weight:600;font-size:.98rem;background:var(--cream);transition:.2s;display:flex;gap:12px;align-items:center}
+.q-opt:hover{border-color:var(--sage);transform:translateX(5px)}
+.q-opt.right{border-color:#2F855A;background:#E6F4EA}
+.q-opt.wrong{border-color:var(--coral);background:#fdeee9;animation:shake .4s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.q-feed{margin-top:16px;font-family:var(--font-hand);font-size:1.4rem;min-height:36px}
+.q-feed.good{color:#2F855A}.q-feed.bad{color:var(--coral-deep)}
+.q-next{display:none;margin-top:14px}
+.q-next.show{display:inline-flex}
+.q-result{text-align:center;display:none}
+.q-result.active{display:block;animation:fade .5s}
+.q-result .trophy{font-size:3.4rem}
+.q-result .score{font-family:var(--font-display);font-size:3.6rem;color:var(--forest);line-height:1.1}
+.q-result p{color:var(--ink-soft);margin:10px 0 24px;font-size:1.05rem}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<!-- ============ NAV ============ -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand"><span class="dot"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#123B34" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2 5 4-12 2 7h6"/></svg></span>i<span>Connect</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="#what">What it is</a>
+      <a href="#how">How it works</a>
+      <a href="#ecosystem">The network</a>
+      <a href="#users">Who uses it</a>
+      <a href="#toolkit">Caregiver tools</a>
+      <a href="#simulator">Try it 🚨</a>
+      <a href="#scenario">A real day</a>
+      <a href="#quiz">Quiz 🎮</a>
+      <a href="#goals" class="nav-cta">The mission</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="eyebrow reveal">A troop you join at 75</span>
+      <h1 class="hero-title reveal" data-delay="1">Care,<br><span class="u">connected.</span> <em>For life.</em></h1>
+      <p class="lede reveal" data-delay="2">iConnect wraps every person aged 75 and older in one always-on network — their health records, their caregivers, their community, and emergency services — all working together, powered by technology and AI.</p>
+      <div class="hero-actions reveal" data-delay="3">
+        <a href="#what" class="btn btn-primary">Explore the whole system
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#scenario" class="btn btn-ghost">See it save a life</a>
+      </div>
+      <div class="hero-meta reveal" data-delay="4">
+        <div><b>75+</b><span>THE MOMENT IT BEGINS</span></div>
+        <div><b>10–15</b><span>PATIENTS PER CAREGIVER</span></div>
+        <div><b>24/7</b><span>ALWAYS CONNECTED</span></div>
+      </div>
+    </div>
+    <div class="hero-visual reveal" data-delay="2">
+      <div class="device">
+        <div class="orbit o1"></div><div class="orbit o2"></div><div class="orbit o3"></div>
+        <div class="core"><span class="pulse"></span>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2 6 4-14 2 8h6"/></svg>
+        </div>
+        <div class="chip c1"><i style="background:var(--coral)"></i>Heart rate OK</div>
+        <div class="chip c2"><i style="background:var(--amber)"></i>Meds due 2pm</div>
+        <div class="chip c3"><i style="background:var(--sage)"></i>911 linked</div>
+        <div class="chip c4"><i style="background:var(--pine)"></i>Caregiver near</div>
+        <div class="chip c5"><i style="background:var(--forest)"></i>History synced</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ WHAT IS IT ============ -->
+<section class="section" id="what">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow reveal">The simple idea</span>
+      <h2 class="reveal" data-delay="1">So… what <em>is</em> iConnect?</h2>
+      <p class="reveal lede" data-delay="2">Getting older is hard — more health problems, more medicines, more help needed, and more loneliness. Today, all of that is handled by <b>different people using systems that don't talk to each other.</b> Nobody has the full picture.</p>
+      <p class="reveal" data-delay="3" style="margin-top:16px;font-size:1.1rem;color:var(--ink)"><b>iConnect fixes that by putting <em style="color:var(--coral);font-style:italic;font-family:var(--font-display)">everything in one place.</em></b> It's a brand, a piece of software, a wearable device, and a network of trained humans — all acting as one team around each older person.</p>
+    </div>
+    <div class="grid g4">
+      <div class="card reveal"><span class="num">01</span>
+        <div class="ic"><svg class="mini-ic" viewBox="0 0 24 24"><path d="M4 4h16v12H4z"/><path d="M4 20h16"/></svg></div>
+        <h3>A Brand</h3><p>A trusted name organizations, communities and caregivers operate under — a badge of quality care for the elderly.</p></div>
+      <div class="card reveal" data-delay="1"><span class="num">02</span>
+        <div class="ic"><svg class="mini-ic" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></div>
+        <h3>The Software + AI</h3><p>The brain. It holds every patient's history, automates the boring work, tracks meds and meals, and routes emergencies.</p></div>
+      <div class="card reveal" data-delay="2"><span class="num">03</span>
+        <div class="ic"><svg class="mini-ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div>
+        <h3>The Device</h3><p>A wearable worn 24/7 by every patient <i>and</i> every caregiver. It reads vitals, senses trouble, and stays connected.</p></div>
+      <div class="card reveal" data-delay="3"><span class="num">04</span>
+        <div class="ic"><svg class="mini-ic" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="10" r="2.5"/><path d="M3 20a6 6 0 0 1 12 0M15 20a5 5 0 0 1 6 0"/></svg></div>
+        <h3>The People</h3><p>Specialist doctors, trained nurses, and caregivers who complete intense iConnect training — the human heart of it all.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE PROBLEM ============ -->
+<section class="section problem">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow reveal">The problem it solves</span>
+      <h2 class="reveal" data-delay="1">Right now, elderly care is scattered.</h2>
+      <p class="reveal" data-delay="2">Everyone knows a little. Nobody knows everything. When it matters most, that gap becomes dangerous.</p>
+    </div>
+    <div class="grid g4">
+      <div class="silo reveal"><span class="emoji">🩺</span><h3>The doctor</h3><p>Knows the diagnosis and prescriptions — but not the daily reality at home.</p></div>
+      <div class="silo reveal" data-delay="1"><span class="emoji">🏠</span><h3>The family</h3><p>Knows the person and their habits — but not the medical details or drug interactions.</p></div>
+      <div class="silo reveal" data-delay="2"><span class="emoji">💊</span><h3>The pharmacy</h3><p>Knows the medicines — but not the allergies logged in a different system.</p></div>
+      <div class="silo reveal" data-delay="3"><span class="emoji">🚑</span><h3>The paramedic</h3><p>Arrives in an emergency knowing <i>nothing</i> — and has to guess under pressure.</p></div>
+    </div>
+    <div class="arrow-line reveal">↓ iConnect connects all of them into one living picture ↓</div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="section" id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow reveal">The story, step by step</span>
+      <h2 class="reveal" data-delay="1">How iConnect works</h2>
+      <p class="reveal" data-delay="2">Five simple moves take someone from "just turned 75" to "wrapped in a complete care network."</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="step-n">01<small>the trigger</small></div>
+        <div><h3><span class="step-emoji">🎂</span>You turn 75 → iConnect activates</h3>
+        <p>The moment a person turns 75, their existing health records (their "MyChart" health history) are pulled into iConnect and reorganized into one clean, complete profile. From this day, iConnect has the full medical picture in a single place.</p>
+        <span class="tag">Their whole history, converted</span></div></div>
+
+      <div class="step reveal"><div class="step-n">02<small>the wearable</small></div>
+        <div><h3><span class="step-emoji">⌚</span>A device for everyone — worn 24/7</h3>
+        <p>Every patient over 75 wears an iConnect device around the clock. So does every caregiver. The device continuously reads vitals, tracks daily activity, senses falls or distress, and never disconnects.</p>
+        <span class="tag">Patient + caregiver, both wearing</span></div></div>
+
+      <div class="step reveal"><div class="step-n">03<small>the safety net</small></div>
+        <div><h3><span class="step-emoji">🚨</span>Everyone important is linked in</h3>
+        <p>The device doesn't just reach the caregiver. It's wired directly to the emergency world — <b>911, the fire department, and disaster relief services.</b> If something goes wrong, the right help is alerted automatically and instantly.</p>
+        <span class="tag">Help is one heartbeat away</span></div></div>
+
+      <div class="step reveal"><div class="step-n">04<small>the humans</small></div>
+        <div><h3><span class="step-emoji">🧑‍⚕️</span>Trained specialists provide the care</h3>
+        <p>iConnect care is delivered by geriatricians (doctors for older adults), geriatric &amp; gerontological nurses, and caregivers who complete intense professional training through iConnect. Each caregiver looks after a manageable group of <b>10–15 patients.</b></p>
+        <span class="tag">Real, qualified, supported people</span></div></div>
+
+      <div class="step reveal"><div class="step-n">05<small>the key idea</small></div>
+        <div><h3><span class="step-emoji">📁</span>The care follows the <em style="font-style:italic;color:var(--coral);font-family:var(--font-display)">patient</em> — not the person</h3>
+        <p>A patient's history is <b>never locked to one caregiver or doctor.</b> It lives in the software, the AI agent, and the device. If a caregiver leaves, goes on holiday, or the patient switches doctors — nothing is lost. The next professional instantly has the whole story. Care never breaks.</p>
+        <span class="tag">Data moves freely, care stays constant</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ECOSYSTEM DIAGRAM ============ -->
+<section class="section" id="ecosystem" style="background:var(--cream)">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow reveal">The living network</span>
+      <h2 class="reveal" data-delay="1">One patient. A whole world connected.</h2>
+      <p class="reveal" data-delay="2">The patient and their device sit at the centre. Tap any circle to see exactly how it connects — and why that connection matters.</p>
+    </div>
+    <div class="eco-layout reveal" data-delay="1">
+      <div class="eco-svg-wrap">
+        <span class="eco-hint sketch">👆 tap a circle</span>
+        <svg viewBox="0 0 800 620" role="img" aria-label="iConnect ecosystem map">
+          <defs>
+            <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.014" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="4"/></filter>
+            <radialGradient id="coreG" cx="35%" cy="30%"><stop offset="0%" stop-color="#1E5B4F"/><stop offset="100%" stop-color="#0C2C27"/></radialGradient>
+          </defs>
+          <!-- links -->
+          <g stroke="#C6553B" stroke-width="2.5" fill="none" filter="url(#rough)" stroke-linecap="round" stroke-dasharray="2 8">
+            <line class="eco-link" data-for="caregiver" x1="400" y1="310" x2="400" y2="110"/>
+            <line class="eco-link" data-for="doctor" x1="400" y1="310" x2="650" y2="150"/>
+            <line class="eco-link" data-for="nurse" x1="400" y1="310" x2="710" y2="330"/>
+            <line class="eco-link" data-for="ai" x1="400" y1="310" x2="620" y2="500"/>
+            <line class="eco-link" data-for="911" x1="400" y1="310" x2="400" y2="530"/>
+            <line class="eco-link" data-for="fire" x1="400" y1="310" x2="180" y2="500"/>
+            <line class="eco-link" data-for="disaster" x1="400" y1="310" x2="95" y2="330"/>
+            <line class="eco-link" data-for="family" x1="400" y1="310" x2="150" y2="150"/>
+          </g>
+          <!-- center -->
+          <g class="eco-center">
+            <circle cx="400" cy="310" r="72" fill="url(#coreG)" filter="url(#rough)"/>
+            <circle cx="400" cy="310" r="72" fill="none" stroke="#E7A63C" stroke-width="2.5" filter="url(#rough)"/>
+            <text x="400" y="300" text-anchor="middle" fill="#FBF6EC" font-size="26">Patient</text>
+            <text x="400" y="326" text-anchor="middle" fill="#F2CE87" font-size="18">+ device</text>
+          </g>
+          <!-- nodes -->
+          <g class="eco-node" data-key="caregiver">
+            <circle class="body" cx="400" cy="80" r="52" fill="#FFFDF8" stroke="#E2674A" stroke-width="2.5" filter="url(#rough)"/>
+            <text x="400" y="76" text-anchor="middle" font-size="22" fill="#123B34">Care-</text>
+            <text x="400" y="98" text-anchor="middle" font-size="22" fill="#123B34">giver</text>
+          </g>
+          <g class="eco-node" data-key="doctor">
+            <circle class="body" cx="680" cy="130" r="50" fill="#FFFDF8" stroke="#1E5B4F" stroke-width="2.5" filter="url(#rough)"/>
+            <text x="680" y="126" text-anchor="middle" font-size="21" fill="#123B34">Geria-</text>
+            <text x="680" y="147" text-anchor="middle" font-size="21" fill="#123B34">trician</text>
+          </g>
+          <g class="eco-node" data-key="nurse">
+            <circle class="body" cx="720" cy="330" r="50" fill="#FFFDF8" stroke="#6E9585" stroke-width="2.5" filter="url(#rough)"/>
+            <text x="720" y="336" text-anchor="middle" font-size="22" fill="#123B34">Nurse</text>
+          </g>
+          <g class="eco-node" data-key="ai">
+            <circle class="body" cx="635" cy="515" r="52" fill="#123B34" stroke="#E7A63C" stroke-width="2.5" filter="url(#rough)"/>
+            <text x="635" y="510" text-anchor="middle" font-size="20" fill="#FBF6EC">AI +</text>
+            <text x="635" y="532" text-anchor="middle" font-size="20" fill="#F2CE87">software</text>
+          </g>
+          <g class="eco-node" data-key="911">
+            <circle class="body" cx="400" cy="555" r="50" fill="#FFFDF8" stroke="#C6553B" stroke-width="3" filter="url(#rough)"/>
+            <text x="400" y="562" text-anchor="middle" font-size="24" fill="#C6553B">911</text>
+          </g>
+          <g class="eco-node" data-key="fire">
+            <circle class="body" cx="165" cy="515" r="50" fill="#FFFDF8" stroke="#E2674A" stroke-width="2.5" filter="url(#rough)"/>
+            <text x="165" y="510" text-anchor="middle" font-size="20" fill="#123B34">Fire</text>
+            <text x="165" y="532" text-anchor="middle" font-size="20" fill="#123B34">dept</text>
+          </g>
+          <g class="eco-node" data-key="disaster">
+            <circle class="body" cx="80" cy="330" r="52" fill="#FFFDF8" stroke="#E7A63C" stroke-width="2.5" filter="url(#rough)"/>
+            <text x="80" y="326" text-anchor="middle" font-size="18" fill="#123B34">Disaster</text>
+            <text x="80" y="346" text-anchor="middle" font-size="18" fill="#123B34">relief</text>
+          </g>
+          <g class="eco-node" data-key="family">
+            <circle class="body" cx="130" cy="130" r="50" fill="#FFFDF8" stroke="#1E5B4F" stroke-width="2.5" filter="url(#rough)"/>
+            <text x="130" y="126" text-anchor="middle" font-size="19" fill="#123B34">Family /</text>
+            <text x="130" y="147" text-anchor="middle" font-size="19" fill="#123B34">home</text>
+          </g>
+        </svg>
+      </div>
+      <div class="eco-detail" id="ecoDetail">
+        <span class="pill">Tap a node</span>
+        <h3>The connected patient</h3>
+        <p>At the heart of iConnect is the person and their wearable device. Everything else exists to keep <b>them</b> safe, healthy and connected — and every link on this map carries their information to whoever needs it, the instant they need it.</p>
+        <ul><li>Their history lives in the system, not with any one person</li><li>Every connection updates in real time</li><li>Help is always one signal away</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ USERS ============ -->
+<section class="section" id="users">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow reveal">Three kinds of user</span>
+      <h2 class="reveal" data-delay="1">Who actually uses iConnect?</h2>
+      <p class="reveal" data-delay="2">iConnect is built to serve three different kinds of care providers — each with their own way in.</p>
+    </div>
+    <div class="tabs reveal" data-delay="1">
+      <button class="tab active" data-tab="org"><span class="tnum">1</span> 🏛️ Organizations</button>
+      <button class="tab" data-tab="pro"><span class="tnum">2</span> 🧑‍⚕️ Professional caregivers</button>
+      <button class="tab" data-tab="home"><span class="tnum">3</span> 🏠 Home caregivers</button>
+    </div>
+
+    <div class="tabpanel active" id="tab-org">
+      <div class="userpanel">
+        <div>
+          <span class="pill">Full members</span>
+          <h3>Organizations</h3>
+          <div class="who sketch">Senior communities &amp; care facilities</div>
+          <p>Organizations operate <b>under the iConnect name</b> and get the complete platform — every program, club, and service, plus the full software and device system for their residents.</p>
+          <ul>
+            <li>Run all iConnect social &amp; wellness programs</li>
+            <li>Full brand, software, and device access</li>
+            <li>Complete care coordination for every resident</li>
+          </ul>
+        </div>
+        <div class="access">
+          <div class="lab">Their level of access</div>
+          <div class="big">The <em>entire</em> iConnect world — clubs, programs, health services &amp; specialists, all in-house.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabpanel" id="tab-pro">
+      <div class="userpanel">
+        <div>
+          <span class="pill">Independent</span>
+          <h3>Professional caregivers</h3>
+          <div class="who sketch">Working on their own, outside an organization</div>
+          <p>Caregivers who want to operate separately — not under an organization's roof — still belong to iConnect. They keep their independence but get a standing invitation to the facility.</p>
+          <ul>
+            <li>Keep running their own independent practice</li>
+            <li>Full access to the iConnect software &amp; devices</li>
+            <li>Bring their patients to the iConnect facility</li>
+          </ul>
+        </div>
+        <div class="access">
+          <div class="lab">Their facility access</div>
+          <div class="big">Bring patients in <em>once a month</em> — a regular touchpoint with the full facility.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabpanel" id="tab-home">
+      <div class="userpanel">
+        <div>
+          <span class="pill">At home</span>
+          <h3>Home caregivers</h3>
+          <div class="who sketch">Family &amp; at-home carers</div>
+          <p>People caring for a loved one at home aren't left out. They can bring the person under their care to an iConnect facility as a visitor — flexibly, whenever it's needed.</p>
+          <ul>
+            <li>Care for a loved one in their own home</li>
+            <li>Visit the facility whenever the need arises</li>
+            <li>Access iConnect's specialists &amp; programs as a guest</li>
+          </ul>
+        </div>
+        <div class="access">
+          <div class="lab">Their facility access</div>
+          <div class="big">Visit <em>whenever needed</em>, and <em>by pay</em> — flexible, on-demand support.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROGRAMS ============ -->
+<section class="section" id="programs" style="background:var(--cream)">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow reveal">Life, not just care</span>
+      <h2 class="reveal" data-delay="1">What organizations offer</h2>
+      <p class="reveal" data-delay="2">iConnect isn't only about health — it's about a full, joyful life. Every organization under the iConnect name runs this menu of programs to keep older adults active, social and purposeful.</p>
+    </div>
+    <div class="grid g3">
+      <div class="prog reveal" style="--accent:var(--coral)"><div class="pemoji">🎉</div><h4>Social Club</h4><p>Connection, friendship and belonging — the antidote to isolation.</p></div>
+      <div class="prog reveal" data-delay="1" style="--accent:var(--amber)"><div class="pemoji">😄</div><h4>Laughter Therapy</h4><p>Guided laughter sessions that lift mood and overall well-being.</p></div>
+      <div class="prog reveal" data-delay="2" style="--accent:var(--sage)"><div class="pemoji">🧘</div><h4>Fitness &amp; Wellness</h4><p>Gentle, safe movement to keep the body strong and mobile.</p></div>
+      <div class="prog reveal" style="--accent:var(--pine)"><div class="pemoji">💚</div><h4>Mental Health &amp; Emotional Support</h4><p>Emotional care, counselling and a listening ear when it's needed.</p></div>
+      <div class="prog reveal" data-delay="1" style="--accent:var(--coral)"><div class="pemoji">📚</div><h4>Learning &amp; Skill Development</h4><p>Classes and new skills that keep the mind curious and sharp.</p></div>
+      <div class="prog reveal" data-delay="2" style="--accent:var(--amber)"><div class="pemoji">🎨</div><h4>Hobby &amp; Recreation Clubs</h4><p>Painting, music, gardening, games — space for personal passions.</p></div>
+      <div class="prog reveal" style="--accent:var(--sage)"><div class="pemoji">🏥</div><h4>Health Services</h4><p>Ongoing medical care, check-ups and specialist attention on site.</p></div>
+      <div class="prog reveal" data-delay="1" style="--accent:var(--pine)"><div class="pemoji">👶</div><h4>Intergenerational Programs</h4><p>Meaningful time with younger generations — joy that flows both ways.</p></div>
+      <div class="prog reveal" data-delay="2" style="--accent:var(--coral)"><div class="pemoji">🚌</div><h4>Community Outings</h4><p>Trips out into the world — museums, parks, markets and more.</p></div>
+      <div class="prog reveal" style="--accent:var(--amber)"><div class="pemoji">🤝</div><h4>Volunteer &amp; Purpose Program</h4><p>Chances to give back and keep a strong sense of purpose alive.</p></div>
+    </div>
+
+    <div class="focus-band reveal">
+      <div>
+        <span class="pill" style="background:rgba(255,255,255,.14);color:var(--amber-soft);border-color:rgba(255,255,255,.2)">Specialized focus</span>
+        <h3 style="margin-top:14px">Extra care where it's needed most</h3>
+        <p>Beyond the everyday programs, iConnect runs dedicated support for the conditions that need the most understanding and patience.</p>
+      </div>
+      <div class="focus-chips">
+        <span>🧩 Dementia-friendly activities</span>
+        <span>💙 Alzheimer's caregiver support</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAREGIVER TOOLKIT ============ -->
+<section class="section toolkit" id="toolkit">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow reveal">The caregiver's command centre</span>
+      <h2 class="reveal" data-delay="1">Everything a caregiver needs, in one dashboard</h2>
+      <p class="reveal" data-delay="2">iConnect automates the paperwork so caregivers can focus on caring. Click through the panels below to explore the full toolkit.</p>
+    </div>
+    <div class="dash reveal" data-delay="1">
+      <div class="dash-top">
+        <div class="dots"><i></i><i></i><i></i></div>
+        <b>iConnect · Caregiver Console</b>
+        <svg class="ecg" viewBox="0 0 92 26" aria-hidden="true"><path d="M0 14 h13 l4 -6 5 12 5 -17 6 21 4 -10 h11 l4 -5 5 10 4 -5 h27"/></svg>
+        <span class="live">LIVE · 12 patients</span>
+      </div>
+      <div class="dash-body">
+        <div class="dash-menu" id="dashMenu">
+          <button class="dmenu active" data-view="work"><span class="de">🗂️</span> Work &amp; Admin</button>
+          <button class="dmenu" data-view="train"><span class="de">🎓</span> Training</button>
+          <button class="dmenu" data-view="self"><span class="de">💚</span> My Well-being</button>
+          <button class="dmenu" data-view="meds"><span class="de">💊</span> Medications</button>
+          <button class="dmenu" data-view="meals"><span class="de">🍽️</span> Meals &amp; Nutrition</button>
+          <button class="dmenu" data-view="money"><span class="de">🧾</span> Money &amp; Supply</button>
+          <button class="dmenu" data-view="transport"><span class="de">🚗</span> Transport</button>
+        </div>
+
+        <div class="dash-view active" id="view-work">
+          <h3>Work &amp; Admin — automated</h3>
+          <p class="sub">The busywork organizes itself, so no patient ever slips through a crack.</p>
+          <div class="tk-grid">
+            <div class="tk-item"><div class="th"><span class="e">⚙️</span>Admin organizer</div><p>Scheduling &amp; paperwork handled automatically.</p></div>
+            <div class="tk-item"><div class="th"><span class="e">📊</span>Dashboard</div><p>Every patient's status at a single glance.</p></div>
+            <div class="tk-item"><div class="th"><span class="e">📈</span>Progress reports</div><p>Track how each patient is doing over time.<div class="bar"><i style="width:72%"></i></div></p></div>
+          </div>
+        </div>
+
+        <div class="dash-view" id="view-train">
+          <h3>Courses &amp; Training — online + in person</h3>
+          <p class="sub">A caregiver's skills stay sharp and certified. To-do list, always up to date.</p>
+          <div class="tk-grid">
+            <div class="tk-item"><div class="th"><span class="e">❤️</span>First Aid, CPR &amp; AED</div><p>Core life-saving basics.<div class="bar"><i style="width:100%"></i></div></p></div>
+            <div class="tk-item"><div class="th"><span class="e">🫀</span>Basic Life Support (BLS)</div><p>Essential emergency response.<div class="bar"><i style="width:100%"></i></div></p></div>
+            <div class="tk-item"><div class="th"><span class="e">⚡</span>Advanced Cardiac (ACLS)</div><p>Advanced cardiac life support.<div class="bar"><i style="width:60%"></i></div></p></div>
+            <div class="tk-item"><div class="th"><span class="e">🌬️</span>Breathing exercises</div><p>Techniques to calm and steady.<div class="bar"><i style="width:80%"></i></div></p></div>
+            <div class="tk-item"><div class="th"><span class="e">⛰️</span>Wilderness First Aid</div><p>Care when help is far away.<div class="bar"><i style="width:35%"></i></div></p></div>
+            <div class="tk-item"><div class="th"><span class="e">😌</span>Anxiety attack therapy</div><p>Support through panic &amp; anxiety.<div class="bar"><i style="width:50%"></i></div></p></div>
+            <div class="tk-item"><div class="th"><span class="e">🩹</span>Stop the Bleed / wound care</div><p>Bleeding control &amp; wound care.<div class="bar"><i style="width:90%"></i></div></p></div>
+          </div>
+        </div>
+
+        <div class="dash-view" id="view-self">
+          <h3>The caregiver matters too</h3>
+          <p class="sub">iConnect looks after the people who look after everyone else.</p>
+          <div class="tk-grid">
+            <div class="tk-item"><div class="th"><span class="e">🧠</span>Mental health</div><p>Support and resources to prevent burnout.</p></div>
+            <div class="tk-item"><div class="th"><span class="e">💰</span>Finances</div><p>Tools to manage and plan personal finances.</p></div>
+            <div class="tk-item"><div class="th"><span class="e">🎁</span>Pay &amp; benefits</div><p>Clear, transparent pay structure &amp; benefits.</p></div>
+          </div>
+        </div>
+
+        <div class="dash-view" id="view-meds">
+          <h3>Medication — nothing missed</h3>
+          <p class="sub">Full control over every pill, every patient, every day.</p>
+          <div class="tk-grid">
+            <div class="tk-item"><div class="th"><span class="e">📦</span>Medication inventory</div><p>Live stock levels for each patient.<div class="bar"><i style="width:64%"></i></div></p></div>
+            <div class="tk-item"><div class="th"><span class="e">⏱️</span>Medication trackers</div><p>What was taken, and when.</p></div>
+            <div class="tk-item"><div class="th"><span class="e">✅</span>Routine check-lists</div><p>Daily medication checklists, auto-generated.</p></div>
+          </div>
+        </div>
+
+        <div class="dash-view" id="view-meals">
+          <h3>Meals &amp; Nutrition</h3>
+          <p class="sub">Every plate is planned around health, taste and safety.</p>
+          <div class="tk-grid">
+            <div class="tk-item"><div class="th"><span class="e">📅</span>Meal plan trackers</div><p>Plans tracked per patient under care.</p></div>
+            <div class="tk-item"><div class="th"><span class="e">🥕</span>Ingredients inventory</div><p>Know exactly what's in the pantry.</p></div>
+            <div class="tk-item"><div class="th"><span class="e">🥗</span>Dietary plans</div><p>Tailored diets for each condition.</p></div>
+            <div class="tk-item"><div class="th"><span class="e">⚠️</span>Allergy notes</div><p>Allergies flagged &amp; impossible to miss.</p></div>
+            <div class="tk-item"><div class="th"><span class="e">👩‍🍳</span>Recipes</div><p>A library of safe, healthy recipes.</p></div>
+            <div class="tk-item"><div class="th"><span class="e">🛒</span>Groceries inventory</div><p>Grocery stock, tracked and topped up.</p></div>
+          </div>
+        </div>
+
+        <div class="dash-view" id="view-money">
+          <h3>Money &amp; Supply Chain</h3>
+          <p class="sub">Costs stay clear and food comes fresh, straight from the source.</p>
+          <div class="tk-grid">
+            <div class="tk-item"><div class="th"><span class="e">🧾</span>Invoices</div><p>Generated &amp; organized automatically.</p></div>
+            <div class="tk-item"><div class="th"><span class="e">💵</span>Cost tracking</div><p>See where every dollar goes.</p></div>
+            <div class="tk-item"><div class="th"><span class="e">🌾</span>Farmer tie-ups</div><p>Fresh produce sourced direct from farmers.</p></div>
+          </div>
+        </div>
+
+        <div class="dash-view" id="view-transport">
+          <h3>Transport — for professional caregivers</h3>
+          <p class="sub">Get to every patient faster, cheaper, and better planned.</p>
+          <div class="tk-grid">
+            <div class="tk-item"><div class="th"><span class="e">🗺️</span>Fast routes</div><p>The quickest way to each patient.</p></div>
+            <div class="tk-item"><div class="th"><span class="e">⛽</span>Gas prices</div><p>Cheapest fuel stops along the way.</p></div>
+            <div class="tk-item"><div class="th"><span class="e">⏰</span>Strategic planning time</div><p>Routes &amp; visits planned to save hours.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GLOSSARY / WORD BOOK ============ -->
+<section class="section" id="glossary">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow reveal">Big words, made small 📖</span>
+      <h2 class="reveal" data-delay="1">The word book</h2>
+      <p class="reveal" data-delay="2">Some grown-up words show up a lot in iConnect. <b>Tap any card to flip it</b> and see what the word really means — explained so a 10-year-old gets it.</p>
+    </div>
+    <div class="gloss-grid">
+      <div class="gloss reveal"><div class="gloss-inner">
+        <div class="gloss-face gloss-front"><span class="ge">🩺</span><h4>Geriatrician</h4><span>tap to flip 👆</span></div>
+        <div class="gloss-face gloss-back"><p>A <b>doctor just for older people</b> — like a kids' doctor, but for grandmas and grandpas instead.</p></div>
+      </div></div>
+      <div class="gloss reveal" data-delay="1"><div class="gloss-inner">
+        <div class="gloss-face gloss-front"><span class="ge">👩‍⚕️</span><h4>Gerontological nurse</h4><span>tap to flip 👆</span></div>
+        <div class="gloss-face gloss-back"><p>A <b>nurse with special training</b> in caring for older adults — their bodies, minds and feelings.</p></div>
+      </div></div>
+      <div class="gloss reveal" data-delay="2"><div class="gloss-inner">
+        <div class="gloss-face gloss-front"><span class="ge">💓</span><h4>Vitals</h4><span>tap to flip 👆</span></div>
+        <div class="gloss-face gloss-back"><p>Your body's <b>signals</b> — heartbeat, breathing, blood pressure. The iConnect device reads them all day and night.</p></div>
+      </div></div>
+      <div class="gloss reveal" data-delay="3"><div class="gloss-inner">
+        <div class="gloss-face gloss-front"><span class="ge">🗂️</span><h4>MyChart</h4><span>tap to flip 👆</span></div>
+        <div class="gloss-face gloss-back"><p>The <b>folder of health records</b> a person already has. At 75, iConnect copies it all in so nothing is forgotten.</p></div>
+      </div></div>
+      <div class="gloss reveal"><div class="gloss-inner">
+        <div class="gloss-face gloss-front"><span class="ge">❤️</span><h4>CPR &amp; AED</h4><span>tap to flip 👆</span></div>
+        <div class="gloss-face gloss-back"><p>Ways to <b>restart a heart</b>: pressing on the chest (CPR) and a smart shock machine (AED). Every caregiver learns both.</p></div>
+      </div></div>
+      <div class="gloss reveal" data-delay="1"><div class="gloss-inner">
+        <div class="gloss-face gloss-front"><span class="ge">🫀</span><h4>BLS &amp; ACLS</h4><span>tap to flip 👆</span></div>
+        <div class="gloss-face gloss-back"><p><b>Life-saving skill levels</b> — Basic Life Support and the Advanced version for serious heart emergencies.</p></div>
+      </div></div>
+      <div class="gloss reveal" data-delay="2"><div class="gloss-inner">
+        <div class="gloss-face gloss-front"><span class="ge">🧩</span><h4>Dementia</h4><span>tap to flip 👆</span></div>
+        <div class="gloss-face gloss-back"><p>When the brain has <b>trouble remembering</b> and thinking. iConnect designs activities that are kind and easy for it.</p></div>
+      </div></div>
+      <div class="gloss reveal" data-delay="3"><div class="gloss-inner">
+        <div class="gloss-face gloss-front"><span class="ge">💙</span><h4>Alzheimer's</h4><span>tap to flip 👆</span></div>
+        <div class="gloss-face gloss-back"><p>The <b>most common kind of dementia</b>. iConnect also supports the families and caregivers who help.</p></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DATA FOLLOWS PATIENT ============ -->
+<section class="section" id="relay">
+  <div class="wrap">
+    <div class="relay">
+      <div>
+        <span class="eyebrow reveal">The most important idea</span>
+        <h2 class="reveal" data-delay="1" style="font-size:clamp(1.9rem,4.5vw,3rem);margin:16px 0 18px">The care travels with the patient.</h2>
+        <p class="reveal lede" data-delay="2" style="color:var(--ink-soft);margin-bottom:16px">A patient is never tied to a single caregiver, nurse or doctor. Their entire history lives in the <b>software, the AI agent and their device</b> — so it can move instantly between professionals.</p>
+        <p class="reveal" data-delay="3" style="color:var(--ink-soft)">Caregiver on leave? Doctor changed? Patient moved cities? The next professional opens the record and sees <b>everything</b> — allergies, medications, conditions, history. No gaps. No repeating yourself. No dangerous guesswork.</p>
+        <button class="btn btn-primary reveal" data-delay="4" id="relayBtn" style="margin-top:26px">▶ Watch the record hand off</button>
+      </div>
+      <div class="relay-vis reveal" data-delay="2">
+        <div class="relay-track">
+          <div class="relay-line"><i id="relayFile"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/></svg></i></div>
+          <div class="person on" data-p="0"><div class="avatar">🧑‍⚕️</div><span>Caregiver A</span></div>
+          <div class="person" data-p="1"><div class="avatar">👩‍⚕️</div><span>Nurse B</span></div>
+          <div class="person" data-p="2"><div class="avatar">🩺</div><span>Doctor C</span></div>
+          <div class="person" data-p="3"><div class="avatar">🚑</div><span>Paramedic</span></div>
+        </div>
+        <div class="relay-file"><b>📁 Eleanor's record:</b> allergies · meds · history · vitals — <span id="relayWho">now with Caregiver A</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EMERGENCY SIMULATOR ============ -->
+<section class="section" id="simulator" style="background:var(--cream)">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow reveal">Try it yourself 🚨</span>
+      <h2 class="reveal" data-delay="1">Press the big red button.</h2>
+      <p class="reveal" data-delay="2">This is a <b>pretend emergency</b> — totally safe. Press the button and watch, second by second, exactly what iConnect does when a patient is in trouble.</p>
+    </div>
+    <div class="sim-wrap">
+      <div class="sim-stage reveal" id="simStage">
+        <div class="sim-caption sketch" id="simCaption">go on — press it! it's just a demo 😊</div>
+        <button class="simbtn" id="simBtn"><span><span class="se">🚨</span>PRESS<br>ME</span></button>
+        <p style="font-size:.85rem;color:var(--ink-faint)">In real life, the device presses this "button" all by itself — the moment it senses a fall or a scary heartbeat.</p>
+      </div>
+      <div class="sim-timeline reveal" data-delay="1">
+        <div class="sim-ev crit"><span class="t">0.0s</span><span class="ie">📟</span><div><b>The device feels trouble</b><p>A fall + a dangerous heartbeat, noticed instantly.</p></div></div>
+        <div class="sim-ev"><span class="t">0.5s</span><span class="ie">🤖</span><div><b>The AI double-checks</b><p>"Is this real, or a false alarm?" … It's real.</p></div></div>
+        <div class="sim-ev crit"><span class="t">1.2s</span><span class="ie">🚑</span><div><b>911 gets the alert</b><p>With the exact location and live heartbeat attached.</p></div></div>
+        <div class="sim-ev crit"><span class="t">1.4s</span><span class="ie">🧑‍⚕️</span><div><b>The caregiver's wrist buzzes</b><p>They see who, where and what — and start moving.</p></div></div>
+        <div class="sim-ev"><span class="t">2.0s</span><span class="ie">📁</span><div><b>The whole health story is shared</b><p>Allergies, medicines, conditions — sent to everyone helping.</p></div></div>
+        <div class="sim-done" id="simDone"><span class="big">⏱️ ~2 seconds.</span><span>Help is on the way — and nobody had to find a phone. Press the button to replay!</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCENARIO ============ -->
+<section class="section scenario" id="scenario">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow reveal">A full scenario, moment by moment</span>
+      <h2 class="reveal" data-delay="1">A day in the life — and the moment it matters</h2>
+      <p class="reveal" data-delay="2">Meet Eleanor. Step through her day to see every part of iConnect working together — from her morning coffee to a heart-stopping emergency, and safely out the other side.</p>
+    </div>
+
+    <div class="scn-card reveal" data-delay="1">
+      <div class="scn-hero">
+        <div class="face">👵</div>
+        <div>
+          <h3>Eleanor Hartwell, 76</h3>
+          <p>Lives alone in a quiet neighbourhood. Mild heart condition, allergic to penicillin, takes 3 daily medications. Loves her garden and her Tuesday laughter club. Her caregiver, Marcus, looks after 12 people — Eleanor is one of them.</p>
+        </div>
+      </div>
+      <div class="scn-progress" id="scnProgress"></div>
+      <div class="scn-body" id="scnBody">
+
+        <div class="scn-step active" data-step="0">
+          <div class="scn-time sketch">6:47 AM — the morning</div>
+          <h4>The day begins, quietly watched over</h4>
+          <p class="story">Eleanor wakes and makes coffee. Her iConnect device has been reading her vitals all night. Everything looks normal — but her blood pressure is a touch high, so the system gently notes it and flags it for Marcus to glance at later. Her 8 AM medication reminder softly buzzes on her wrist.</p>
+          <div class="scn-lanes">
+            <div class="lane"><div class="lh"><span class="le">👵</span>Eleanor</div><p>Wakes, makes coffee, feels fine. Gets a gentle nudge for her morning pills.</p></div>
+            <div class="lane"><div class="lh"><span class="le">📟</span>Device</div><p>Logged vitals all night. Notes slightly high BP. Fires med reminder.</p></div>
+            <div class="lane"><div class="lh"><span class="le">🧑‍⚕️</span>Marcus</div><p>Sees Eleanor's "green" status on his dashboard, with a small BP note.</p></div>
+            <div class="lane"><div class="lh"><span class="le">🤖</span>iConnect</div><p>Silently monitoring. Nothing needs escalating — yet.</p></div>
+          </div>
+        </div>
+
+        <div class="scn-step" data-step="1">
+          <div class="scn-time sketch">8:30 AM — breakfast</div>
+          <h4>A meal planned around her body</h4>
+          <p class="story">Breakfast follows Eleanor's dietary plan — heart-healthy, low sodium. The system already knows her <b>penicillin allergy</b> and her food preferences. Marcus's app tracked the ingredients, sourced fresh from a local farmer tie-up, and the grocery inventory ticked down automatically.</p>
+          <div class="scn-lanes">
+            <div class="lane"><div class="lh"><span class="le">👵</span>Eleanor</div><p>Eats a meal she enjoys — that also protects her heart.</p></div>
+            <div class="lane"><div class="lh"><span class="le">🍽️</span>Meal plan</div><p>Low-sodium menu, allergy-safe, matched to her condition.</p></div>
+            <div class="lane"><div class="lh"><span class="le">🌾</span>Supply</div><p>Fresh produce from farmer tie-up; grocery inventory auto-updates.</p></div>
+            <div class="lane"><div class="lh"><span class="le">⚠️</span>Safety</div><p>Penicillin allergy on record — flagged everywhere it matters.</p></div>
+          </div>
+        </div>
+
+        <div class="scn-step" data-step="2">
+          <div class="scn-time sketch">11:00 AM — the club</div>
+          <h4>Not just alive — living</h4>
+          <p class="story">Eleanor heads to her Tuesday Laughter Therapy and Social Club at the iConnect facility. She laughs with friends, joins a gentle fitness session, and signs up for a watercolor hobby class. This is the part that fights loneliness — and it's tracked in her progress report as part of her whole-person wellbeing.</p>
+          <div class="scn-lanes">
+            <div class="lane"><div class="lh"><span class="le">😄</span>Community</div><p>Laughter therapy, friends, a fitness session, a new hobby class.</p></div>
+            <div class="lane"><div class="lh"><span class="le">💚</span>Wellbeing</div><p>Social connection logged as part of her health picture.</p></div>
+            <div class="lane"><div class="lh"><span class="le">📈</span>Progress</div><p>Engagement noted in Eleanor's progress report.</p></div>
+            <div class="lane"><div class="lh"><span class="le">📟</span>Device</div><p>Activity &amp; heart rate steady through light exercise.</p></div>
+          </div>
+        </div>
+
+        <div class="scn-step" data-step="3">
+          <div class="scn-time sketch">3:14 PM — something's wrong</div>
+          <h4>The moment everything is tested</h4>
+          <p class="story">Back home, watering her garden, Eleanor suddenly feels a crushing pain in her chest. She stumbles. Her iConnect device instantly detects a <b>dangerous heart rhythm and a fall</b> — at the same time. This is exactly what the whole system was built for.</p>
+          <div class="scn-lanes">
+            <div class="lane hot"><div class="lh"><span class="le">👵</span>Eleanor</div><p>Chest pain, a fall in the garden. She cannot reach a phone.</p></div>
+            <div class="lane hot"><div class="lh"><span class="le">📟</span>Device</div><p>Detects abnormal heart rhythm + fall in the same instant.</p></div>
+            <div class="lane"><div class="lh"><span class="le">🤖</span>iConnect</div><p>Confirms it's real, not a false alarm. Triggers the emergency protocol.</p></div>
+            <div class="lane"><div class="lh"><span class="le">⏱️</span>Time</div><p>Zero seconds wasted. No one had to call for help.</p></div>
+          </div>
+        </div>
+
+        <div class="scn-step" data-step="4">
+          <div class="scn-time sketch">3:14 PM +10 seconds — the alarm</div>
+          <h4>Everyone who can help is alerted at once</h4>
+          <p class="story">In one automatic burst, iConnect alerts <b>911, Marcus, and the nearest emergency responders</b> — and shares Eleanor's full medical record with all of them: her heart condition, her medications, and in bright red, her <b>penicillin allergy</b>. The paramedics are moving before Eleanor could ever have dialed a number.</p>
+          <div class="scn-lanes">
+            <div class="lane hot"><div class="lh"><span class="le">🚑</span>911</div><p>Alerted automatically with her location &amp; live vitals.</p></div>
+            <div class="lane hot"><div class="lh"><span class="le">🧑‍⚕️</span>Marcus</div><p>Gets an emergency ping, races to Eleanor. He's nearby.</p></div>
+            <div class="lane hot"><div class="lh"><span class="le">📁</span>Record</div><p>Full history shared instantly — meds, heart condition, allergy.</p></div>
+            <div class="lane"><div class="lh"><span class="le">🚒</span>Backup</div><p>Fire dept &amp; disaster services on standby via the network.</p></div>
+          </div>
+        </div>
+
+        <div class="scn-step" data-step="5">
+          <div class="scn-time sketch">3:23 PM — help arrives</div>
+          <h4>They arrive already knowing everything</h4>
+          <p class="story">The paramedics reach Eleanor in nine minutes. They don't have to guess or search — they already have her whole record. They avoid the penicillin, treat her cardiac event correctly, and know her exact medications. Marcus is there too, holding her hand. Because the record was ready, the right care happened <b>immediately.</b></p>
+          <div class="scn-lanes">
+            <div class="lane"><div class="lh"><span class="le">🚑</span>Paramedics</div><p>Arrive fully briefed — no dangerous guesswork.</p></div>
+            <div class="lane hot"><div class="lh"><span class="le">⚠️</span>Allergy</div><p>Penicillin avoided. A deadly mistake never happens.</p></div>
+            <div class="lane"><div class="lh"><span class="le">🫀</span>Treatment</div><p>Correct cardiac care given right away.</p></div>
+            <div class="lane"><div class="lh"><span class="le">🧑‍⚕️</span>Marcus</div><p>At her side, calm and informed, all details in hand.</p></div>
+          </div>
+        </div>
+
+        <div class="scn-step" data-step="6">
+          <div class="scn-time sketch">The next weeks — recovery</div>
+          <h4>Care that never breaks, even as people change</h4>
+          <p class="story">In hospital and recovery, Eleanor is seen by new doctors and nurses she's never met. It doesn't matter — her iConnect record follows her to every one of them. When Marcus takes a week off, another caregiver steps in seamlessly with the full picture. Nothing is lost. Nothing is repeated. Eleanor is soon back in her garden — and back at her Tuesday club.</p>
+          <div class="scn-lanes">
+            <div class="lane"><div class="lh"><span class="le">📁</span>Record</div><p>Follows her to every new doctor and nurse automatically.</p></div>
+            <div class="lane"><div class="lh"><span class="le">🔄</span>Hand-off</div><p>Marcus's cover caregiver has the full history instantly.</p></div>
+            <div class="lane"><div class="lh"><span class="le">💚</span>Continuity</div><p>No gaps, no repeated questions, no dropped care.</p></div>
+            <div class="lane"><div class="lh"><span class="le">🌷</span>Eleanor</div><p>Recovers and returns to her garden &amp; her friends.</p></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="scn-nav">
+        <button class="snbtn prev" id="scnPrev" disabled>← Back</button>
+        <div class="count">Step <b id="scnNum">1</b> <span style="opacity:.5">/ 7</span></div>
+        <button class="snbtn next" id="scnNext">Next →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GOALS ============ -->
+<section class="section" id="goals" style="background:var(--cream)">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow reveal">What it's really trying to achieve</span>
+      <h2 class="reveal" data-delay="1">Six goals at the heart of iConnect</h2>
+      <p class="reveal" data-delay="2">The world is aging, and today's elderly-care system is fragmented, stressful and reactive. iConnect wants to make it <b>connected, calm and proactive.</b> Here's what it's really going after.</p>
+    </div>
+    <div class="grid g2">
+      <div class="goal reveal"><div class="gn">🛡️</div><div><h4>Safety</h4><p>24/7 wearables tied straight to 911, fire and disaster relief mean help arrives fast. No one falls through the cracks.</p></div></div>
+      <div class="goal reveal" data-delay="1"><div class="gn">🔗</div><div><h4>Continuity of care</h4><p>Records live in the software, not with one person — so care never breaks when caregivers or doctors change.</p></div></div>
+      <div class="goal reveal"><div class="gn">📈</div><div><h4>Better health outcomes</h4><p>Automated meds, meal plans, allergy notes and diets mean fewer mistakes and healthier patients.</p></div></div>
+      <div class="goal reveal" data-delay="1"><div class="gn">🤗</div><div><h4>Fighting loneliness</h4><p>Clubs, laughter therapy, hobbies and outings keep older adults connected — and give them purpose.</p></div></div>
+      <div class="goal reveal"><div class="gn">🧑‍⚕️</div><div><h4>Supporting caregivers</h4><p>Training, tools, financial clarity and mental-health support let caregivers do great work without burning out.</p></div></div>
+      <div class="goal reveal" data-delay="1"><div class="gn">🤖</div><div><h4>Technology as a helper</h4><p>AI handles the repetitive work — scheduling, inventory, routing — so humans can focus on real, caring moments.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUIZ ============ -->
+<section class="section" id="quiz">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow reveal">A tiny game 🎮</span>
+      <h2 class="reveal" data-delay="1">Did you get it? Take the 30-second quiz</h2>
+      <p class="reveal" data-delay="2">Four quick questions. No pressure — it's just for fun, and you can play as many times as you like.</p>
+    </div>
+    <div class="quiz-card reveal" data-delay="1">
+      <div class="q-step active">
+        <div class="q-num sketch">Question 1 of 4</div>
+        <h3>At what age does iConnect begin for a person?</h3>
+        <div class="q-opts">
+          <button class="q-opt" data-ok="0">🎈 65</button>
+          <button class="q-opt" data-ok="0">🎈 70</button>
+          <button class="q-opt" data-ok="1">🎂 75 — the moment it all starts</button>
+          <button class="q-opt" data-ok="0">🎈 80</button>
+        </div>
+        <div class="q-feed" data-good="Yes! At 75, your whole health story joins iConnect." data-bad="It's 75 — that's the magic number."></div>
+        <button class="btn btn-primary q-next">Next →</button>
+      </div>
+      <div class="q-step">
+        <div class="q-num sketch">Question 2 of 4</div>
+        <h3>Who wears the iConnect device 24/7?</h3>
+        <div class="q-opts">
+          <button class="q-opt" data-ok="0">👵 Only the patients</button>
+          <button class="q-opt" data-ok="0">🧑‍⚕️ Only the caregivers</button>
+          <button class="q-opt" data-ok="1">🤝 Both patients AND caregivers</button>
+          <button class="q-opt" data-ok="0">🩺 Only the doctors</button>
+        </div>
+        <div class="q-feed" data-good="Right! Everyone wears one, day and night." data-bad="Both! Patients and caregivers each wear one, 24/7."></div>
+        <button class="btn btn-primary q-next">Next →</button>
+      </div>
+      <div class="q-step">
+        <div class="q-num sketch">Question 3 of 4</div>
+        <h3>Eleanor's caregiver goes on vacation. What happens to her health story?</h3>
+        <div class="q-opts">
+          <button class="q-opt" data-ok="0">😱 It gets lost forever</button>
+          <button class="q-opt" data-ok="0">🔁 She has to repeat everything from scratch</button>
+          <button class="q-opt" data-ok="1">📁 The new caregiver sees everything instantly</button>
+          <button class="q-opt" data-ok="0">🚫 Nothing works until they come back</button>
+        </div>
+        <div class="q-feed" data-good="Exactly — the record follows the patient, not the person!" data-bad="The record lives in the software — the next caregiver sees it all instantly."></div>
+        <button class="btn btn-primary q-next">Next →</button>
+      </div>
+      <div class="q-step">
+        <div class="q-num sketch">Question 4 of 4</div>
+        <h3>In an emergency, who finds out automatically?</h3>
+        <div class="q-opts">
+          <button class="q-opt" data-ok="0">🙈 Nobody, unless she calls</button>
+          <button class="q-opt" data-ok="0">📣 Just a loud alarm at home</button>
+          <button class="q-opt" data-ok="1">🚑 911 + her caregiver — with her full record</button>
+          <button class="q-opt" data-ok="0">📺 The local news</button>
+        </div>
+        <div class="q-feed" data-good="Boom — that's the ~2-second alert you simulated earlier!" data-bad="911 and her caregiver are alerted with her full record — automatically."></div>
+        <button class="btn btn-primary q-next">See my score →</button>
+      </div>
+      <div class="q-result" id="qResult">
+        <div class="trophy">🏆</div>
+        <div class="score" id="qScore">0 / 4</div>
+        <p id="qMsg"></p>
+        <button class="btn btn-primary" id="qReplay">↺ Play again</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VISION ============ -->
+<section class="section vision">
+  <div class="wrap">
+    <span class="mark">“</span>
+    <blockquote class="reveal">iConnect wants growing old to feel <em>safe, dignified, connected</em> and well-cared-for — by wrapping every person over 75 in a smart, always-on network of technology and trained, supported humans.</blockquote>
+    <div class="sig reveal" data-delay="1">— the whole idea, in one breath</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand"><span class="dot"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#123B34" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2 5 4-12 2 7h6"/></svg></span>i<span style="color:var(--coral)">Connect</span></div>
+    <p>A technology-powered care network for everyone aged 75 and older — housing their needs, security and well-being through automation and AI.</p>
+    <p class="disc">This page is an explanatory concept overview of the iConnect initiative. Illustrative scenario; characters are fictional.</p>
+  </div>
+</footer>
+
+<script>
+/* ---------- Scroll progress + nav ---------- */
+const nav=document.getElementById('nav'),progress=document.getElementById('progress');
+function onScroll(){
+  const st=window.scrollY||document.documentElement.scrollTop;
+  const h=document.documentElement.scrollHeight-window.innerHeight;
+  progress.style.width=(st/h*100)+'%';
+  nav.classList.toggle('scrolled',st>40);
+}
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* ---------- Mobile menu ---------- */
+const burger=document.getElementById('burger'),navLinks=document.getElementById('navLinks');
+burger.addEventListener('click',()=>navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
+
+/* ---------- Reveal on scroll ---------- */
+const io=new IntersectionObserver((es)=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})
+},{threshold:.12,rootMargin:'0px 0px -60px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ---------- Ecosystem diagram ---------- */
+const ecoData={
+  caregiver:{tag:'Front-line care',title:'The Caregiver',p:'The everyday hero. Each caregiver looks after 10–15 patients and wears their own iConnect device 24/7 — staying connected to their patients in real time.',ul:['Wears a device 24/7, just like patients','Gets alerted the instant a patient needs help','Uses the full caregiver toolkit &amp; dashboard']},
+  doctor:{tag:'Specialist',title:'The Geriatrician',p:'A doctor who specializes in the health of older adults. They read the same shared record every other professional sees — no information is siloed.',ul:['Specialist in elderly medicine','Works from the shared patient record','Not "locked" to any single patient']},
+  nurse:{tag:'Specialist',title:'Geriatric &amp; Gerontological Nurse',p:'Trained nurses who focus on aging care. Because the record follows the patient, any qualified nurse can step in seamlessly.',ul:['Specialized nursing for older adults','Seamless hand-offs via the shared record','Part of the flexible care team']},
+  ai:{tag:'The brain',title:'AI + Software',p:'The engine of iConnect. It holds every patient’s history, automates admin, tracks meds and meals, plans routes, and decides when an emergency is real.',ul:['Stores the full patient history','Automates the caregiver’s busywork','Confirms emergencies &amp; triggers alerts']},
+  '911':{tag:'Emergency',title:'911 &amp; Emergency Services',p:'Wired directly into the device. In a crisis, 911 is alerted automatically — with location, live vitals, and the patient’s full record already attached.',ul:['Alerted automatically, no phone call needed','Receives location &amp; live vitals instantly','Gets the medical record before arrival']},
+  fire:{tag:'Emergency',title:'Fire Department',p:'Part of the emergency web. For fires, rescues or fall situations, the fire service is looped into the same automatic alert system.',ul:['Connected into the emergency network','Looped in for rescues &amp; hazards','Coordinated with 911 &amp; caregivers']},
+  disaster:{tag:'Emergency',title:'Disaster Relief',p:'When a wider disaster strikes — storms, floods, evacuations — iConnect knows where every vulnerable elderly person is and connects them to relief.',ul:['Locates vulnerable elders in a disaster','Connects them to relief services','Adds a safety layer beyond daily care']},
+  family:{tag:'Home care',title:'Family &amp; Home Caregivers',p:'Loved ones caring at home aren’t outside the system. They can bring the person into an iConnect facility as a visitor whenever needed.',ul:['Care for a loved one at home','Visit the facility whenever needed (by pay)','Tap into iConnect specialists &amp; programs']}
+};
+const detail=document.getElementById('ecoDetail');
+const nodes=document.querySelectorAll('.eco-node');
+const links=document.querySelectorAll('.eco-link');
+nodes.forEach(n=>{
+  n.addEventListener('click',()=>selectNode(n.dataset.key));
+  n.addEventListener('mouseenter',()=>highlight(n.dataset.key));
+  n.addEventListener('mouseleave',clearHi);
+});
+function highlight(key){
+  links.forEach(l=>l.classList.toggle('dim',l.dataset.for!==key));
+  nodes.forEach(n=>n.classList.toggle('dim',n.dataset.key!==key));
+}
+function clearHi(){links.forEach(l=>l.classList.remove('dim'));nodes.forEach(n=>n.classList.remove('dim'))}
+function selectNode(key){
+  const d=ecoData[key];if(!d)return;
+  nodes.forEach(n=>n.classList.toggle('active',n.dataset.key===key));
+  detail.innerHTML=`<span class="pill">${d.tag}</span><h3>${d.title}</h3><p>${d.p}</p><ul>${d.ul.map(x=>`<li>${x}</li>`).join('')}</ul>`;
+  detail.animate?detail.animate([{opacity:.3,transform:'translateY(8px)'},{opacity:1,transform:'none'}],{duration:350,easing:'ease'}):0;
+}
+
+/* ---------- User tabs ---------- */
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.tabpanel').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById('tab-'+t.dataset.tab).classList.add('active');
+  });
+});
+
+/* ---------- Dashboard menu ---------- */
+document.querySelectorAll('.dmenu').forEach(m=>{
+  m.addEventListener('click',()=>{
+    document.querySelectorAll('.dmenu').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.dash-view').forEach(x=>x.classList.remove('active'));
+    m.classList.add('active');
+    document.getElementById('view-'+m.dataset.view).classList.add('active');
+  });
+});
+
+/* ---------- Relay animation ---------- */
+const relayBtn=document.getElementById('relayBtn'),relayFile=document.getElementById('relayFile'),
+  relayWho=document.getElementById('relayWho'),persons=document.querySelectorAll('.person');
+const whoNames=['now with Caregiver A','handed to Nurse B','now with Doctor C','instantly with the Paramedic'];
+let relayRunning=false;
+relayBtn.addEventListener('click',()=>{
+  if(relayRunning)return;relayRunning=true;let i=0;
+  const track=relayFile.parentElement;const w=track.clientWidth;
+  const step=()=>{
+    persons.forEach(p=>p.classList.toggle('on',+p.dataset.p===i));
+    relayFile.style.left=(w*(i/(persons.length-1)))-19+'px';
+    relayWho.textContent=whoNames[i];
+    i++;
+    if(i<persons.length){setTimeout(step,1200)}else{setTimeout(()=>{
+      persons.forEach(p=>p.classList.toggle('on',+p.dataset.p===0));
+      relayFile.style.left='0px';relayWho.textContent=whoNames[0];relayRunning=false;
+    },1400)}
+  };
+  step();
+});
+
+/* ---------- Scenario stepper ---------- */
+const steps=document.querySelectorAll('.scn-step'),total=steps.length;
+const scnPrev=document.getElementById('scnPrev'),scnNext=document.getElementById('scnNext'),
+  scnNum=document.getElementById('scnNum'),scnProgress=document.getElementById('scnProgress'),
+  scnBody=document.getElementById('scnBody');
+let cur=0;
+for(let i=0;i<total;i++){const b=document.createElement('i');scnProgress.appendChild(b)}
+const bars=scnProgress.querySelectorAll('i');
+function renderScn(){
+  steps.forEach((s,i)=>s.classList.toggle('active',i===cur));
+  bars.forEach((b,i)=>b.classList.toggle('done',i<=cur));
+  scnNum.textContent=cur+1;
+  scnPrev.disabled=cur===0;
+  scnNext.textContent=cur===total-1?'Start over ↺':'Next →';
+}
+scnNext.addEventListener('click',()=>{
+  cur=cur===total-1?0:cur+1;renderScn();
+  if(cur===0)scnBody.scrollIntoView({behavior:'smooth',block:'center'});
+});
+scnPrev.addEventListener('click',()=>{if(cur>0){cur--;renderScn()}});
+renderScn();
+
+/* ---------- Emergency simulator ---------- */
+const simBtn=document.getElementById('simBtn'),simStage=document.getElementById('simStage'),
+  simCaption=document.getElementById('simCaption'),simDone=document.getElementById('simDone'),
+  simEvs=[...document.querySelectorAll('.sim-ev')];
+let simRun=false;
+simBtn.addEventListener('click',()=>{
+  if(simRun)return;simRun=true;simBtn.disabled=true;
+  simStage.classList.add('alarm');
+  simCaption.textContent='🚨 emergency detected! watch the right side →';
+  simEvs.forEach(e=>e.classList.remove('show'));
+  simDone.classList.remove('show');
+  const delays=[300,900,1600,2000,2600];
+  simEvs.forEach((e,i)=>setTimeout(()=>e.classList.add('show'),delays[i]));
+  setTimeout(()=>{
+    simDone.classList.add('show');
+    simStage.classList.remove('alarm');
+    simCaption.textContent='phew! everyone was told in ~2 seconds. press again? 😊';
+    simBtn.disabled=false;simRun=false;
+  },3300);
+});
+
+/* ---------- Glossary flip cards ---------- */
+document.querySelectorAll('.gloss').forEach(g=>{
+  g.addEventListener('click',()=>g.classList.toggle('flip'));
+});
+
+/* ---------- Quiz ---------- */
+const qSteps=[...document.querySelectorAll('.q-step')];
+let qScore=0;
+qSteps.forEach((step,si)=>{
+  const opts=step.querySelectorAll('.q-opt'),
+    feed=step.querySelector('.q-feed'),
+    next=step.querySelector('.q-next');
+  opts.forEach(o=>o.addEventListener('click',()=>{
+    if(step.dataset.done)return;
+    step.dataset.done='1';
+    if(o.dataset.ok==='1'){
+      o.classList.add('right');qScore++;
+      feed.textContent='🎉 '+feed.dataset.good;feed.className='q-feed good';
+    }else{
+      o.classList.add('wrong');
+      step.querySelector('[data-ok="1"]').classList.add('right');
+      feed.textContent='🙈 '+feed.dataset.bad;feed.className='q-feed bad';
+    }
+    next.classList.add('show');
+  }));
+  next.addEventListener('click',()=>{
+    step.classList.remove('active');
+    if(si+1<qSteps.length){qSteps[si+1].classList.add('active')}
+    else{
+      document.getElementById('qScore').textContent=qScore+' / 4';
+      document.getElementById('qMsg').textContent=
+        qScore===4?'Perfect! You totally get iConnect. Go teach someone else! 🏆':
+        qScore>=2?'Nice! You understand the big idea. 💪':
+        'Good try! Scroll back up, explore a bit more, and play again. 🌱';
+      document.getElementById('qResult').classList.add('active');
+    }
+  });
+});
+document.getElementById('qReplay').addEventListener('click',()=>{
+  qScore=0;
+  qSteps.forEach((s,i)=>{
+    delete s.dataset.done;
+    s.classList.toggle('active',i===0);
+    s.querySelectorAll('.q-opt').forEach(o=>o.classList.remove('right','wrong'));
+    const f=s.querySelector('.q-feed');f.textContent='';f.className='q-feed';
+    s.querySelector('.q-next').classList.remove('show');
+  });
+  document.getElementById('qResult').classList.remove('active');
+});
+
+/* auto-select first eco node for a nice default */
+selectNode('caregiver');
+</script>
+</body>
+</html>
