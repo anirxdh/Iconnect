@@ -35,7 +35,7 @@ const CHAPTERS: Chapter[] = [
     label: "The wearable",
     headline: "A companion on the wrist.",
     copy: "Worn day and night. It learns what ordinary feels like.",
-    src: "/people/mirror-morning.jpg",
+    src: "/brand/hands-held.jpg",
     alt: "",
   },
   {

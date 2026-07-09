@@ -95,6 +95,8 @@ export default function Programs() {
   const [finePointer, setFinePointer] = useState(false);
   const [active, setActive] = useState<number | null>(null);
   const [lastActive, setLastActive] = useState(0);
+  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
+  const frameReady = loadedImages.has(PROGRAMS[lastActive].image);
   // On touch screens the wash is driven by scroll instead of hover: the row
   // crossing the center band of the viewport blooms on its own.
   const [centered, setCentered] = useState<number | null>(null);
@@ -185,6 +187,8 @@ export default function Programs() {
         observer.disconnect();
         PROGRAMS.forEach((p) => {
           const img = new window.Image();
+          img.onload = () =>
+            setLoadedImages((prev) => new Set(prev).add(p.image));
           img.src = p.image;
         });
       },
@@ -333,8 +337,10 @@ export default function Programs() {
           style={{ x: frameX, y: frameY }}
           initial={{ opacity: 0, scale: 0.85 }}
           animate={{
-            opacity: active !== null ? 1 : 0,
-            scale: active !== null ? 1 : 0.85,
+            // The frame appears only once the photograph is decoded — an
+            // empty forest-green card is worse than a beat of patience.
+            opacity: active !== null && frameReady ? 1 : 0,
+            scale: active !== null && frameReady ? 1 : 0.85,
           }}
           transition={{ duration: 0.45, ease: EASE }}
         >
@@ -343,6 +349,11 @@ export default function Programs() {
               key={PROGRAMS[lastActive].image}
               src={PROGRAMS[lastActive].image}
               alt=""
+              onLoad={() =>
+                setLoadedImages((prev) =>
+                  new Set(prev).add(PROGRAMS[lastActive].image),
+                )
+              }
               className="absolute inset-0 h-full w-full object-cover"
               initial={{ opacity: 0, scale: 1.08 }}
               animate={{ opacity: 1, scale: 1 }}

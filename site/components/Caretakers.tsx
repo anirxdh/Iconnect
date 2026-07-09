@@ -97,7 +97,7 @@ export default function Caretakers() {
             style={reduced ? undefined : { y: yHands }}
           >
             <CurtainImage
-              src="/brand/hands-held.jpg"
+              src="/people/mirror-morning.jpg"
               alt="Two elderly hands clasped together, wedding rings still worn"
               className="aspect-[4/5] w-full"
               curtainClass="bg-forest"

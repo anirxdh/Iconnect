@@ -183,18 +183,22 @@ test.describe("Hero headline", () => {
 });
 
 test.describe("Hero scene", () => {
-  test("the swing photograph fills the hero on every device", async ({
+  test("the framed photograph renders at or below its native size — never soft", async ({
     page,
   }) => {
     await gotoHome(page);
     const scene = page.locator('#top img[src*="swing-tree"]');
     await expect(scene).toBeVisible();
-    // Full-bleed: the image covers the viewport-height hero.
-    const box = await scene.boundingBox();
-    expect(box, "scene has a box").not.toBeNull();
-    const viewport = page.viewportSize()!;
-    expect(box!.height).toBeGreaterThanOrEqual(viewport.height * 0.9);
-    expect(box!.width).toBeGreaterThanOrEqual(viewport.width * 0.98);
+    // The sharpness contract: a framed photo may shrink but never stretch
+    // past its own pixels (CSS px vs natural width; small DPR headroom).
+    const { rendered, natural } = await scene.evaluate((el) => {
+      const img = el as HTMLImageElement;
+      return { rendered: img.clientWidth, natural: img.naturalWidth };
+    });
+    expect(natural, "image decoded").toBeGreaterThan(0);
+    expect(rendered, "never upscaled beyond the source").toBeLessThanOrEqual(
+      natural * 1.05,
+    );
   });
 });
 
