@@ -32,7 +32,7 @@ const CARDS = [
       "left-[2%] top-[62%] w-[13rem] xl:w-[16rem] 2xl:left-[3%] 2xl:w-[18rem]",
   },
   {
-    src: "/people/aperitivo.jpg",
+    src: "/people/braiding-hair.jpg",
     from: 50,
     to: -60,
     rotate: -2.5,
@@ -120,7 +120,7 @@ export default function Manifesto() {
           </Reveal>
           <RuleReveal className="mt-6 bg-ink/15" delay={0.15} />
 
-          <h2 className="mt-14 text-[clamp(2.75rem,7vw,7.25rem)] md:mt-20 lg:pr-[17rem] xl:pr-[21rem]">
+          <h2 className="mt-14 text-[clamp(2.1rem,7vw,7.25rem)] md:mt-20 lg:pr-[17rem] xl:pr-[21rem]">
             <WordsReveal
               as="span"
               text="The world grows older."
@@ -140,22 +140,43 @@ export default function Manifesto() {
 
           <InkReveal
             text={MANIFESTO}
-            className="voice-prose mt-20 max-w-xl text-[clamp(1.05rem,1.5vw,1.4rem)] text-ink/85 md:mt-28 lg:ml-[26%]"
+            className="voice-prose mt-12 md:mt-20 max-w-xl text-[clamp(1.05rem,1.5vw,1.4rem)] text-ink/85 md:mt-28 lg:ml-[26%]"
           />
 
-          {/* On small screens the cards rest in a quiet row instead of floating */}
-          <div className="mt-20 grid grid-cols-3 gap-3 md:gap-5 lg:hidden">
-            {CARDS.map((card, i) => (
-              <Reveal key={card.src} delay={i * 0.14} y={28}>
+          {/* On small screens the photographs overlap like kept prints */}
+          <div className="mt-12 lg:hidden">
+            <div className="flex items-start gap-4">
+              <Reveal y={24} className="w-[56%]">
                 <img
-                  src={card.src}
+                  src="/people/braiding-hair.jpg"
                   alt=""
                   aria-hidden
                   loading="lazy"
-                  className="aspect-[11/14] w-full rounded-sm object-cover shadow-xl shadow-ink/10"
+                  decoding="async"
+                  className="w-full -rotate-2 rounded-sm shadow-xl shadow-ink/15"
                 />
               </Reveal>
-            ))}
+              <Reveal y={36} delay={0.15} className="mt-12 w-[44%]">
+                <img
+                  src="/people/seaside-hug.jpg"
+                  alt=""
+                  aria-hidden
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full rotate-2 rounded-sm shadow-xl shadow-ink/15"
+                />
+              </Reveal>
+            </div>
+            <Reveal y={30} delay={0.25} className="mx-auto -mt-8 w-[58%]">
+              <img
+                src="/people/three-friends.jpg"
+                alt=""
+                aria-hidden
+                loading="lazy"
+                decoding="async"
+                className="w-full rotate-[1.5deg] rounded-sm shadow-xl shadow-ink/15"
+              />
+            </Reveal>
           </div>
 
         </div>

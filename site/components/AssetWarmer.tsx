@@ -38,7 +38,6 @@ const MANIFEST = [
   "/brand/washing-herbs.jpg",
   "/brand/blueberries.jpg",
   "/brand/herbal-brew.jpg",
-  "/brand/health-avocados.jpg",
 ];
 
 // One at a time: parallel decodes stutter the hero entrance on laptops.

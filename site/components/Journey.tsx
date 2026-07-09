@@ -45,6 +45,7 @@ const CHAPTERS: Chapter[] = [
     copy: "Emergency services, fire and disaster relief are already watching. Help is alerted before anyone dials.",
     src: "/people/window-couple.jpg",
     alt: "",
+    bloom: true,
   },
   {
     numeral: "04",

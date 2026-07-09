@@ -82,7 +82,7 @@ export default function Nourishment() {
             style={{ y: reduced ? 0 : yAvocados }}
           >
             <CurtainImage
-              src="/brand/health-avocados.jpg"
+              src="/people/aperitivo.jpg"
               alt="Crates of ripe avocados at market"
               curtainClass="bg-parchment"
               className="aspect-[4/5] w-full"
@@ -204,7 +204,7 @@ export default function Nourishment() {
           </div>
           <div className="mb-4 break-inside-avoid">
             <CurtainImage
-              src="/brand/health-avocados.jpg"
+              src="/people/aperitivo.jpg"
               alt="Crates of ripe avocados at market"
               curtainClass="bg-parchment"
               className="aspect-[4/5] w-full"
