@@ -236,24 +236,52 @@ test.describe("Journey — the chapter stack", () => {
     expect([...seen].sort()).toEqual([...CHAPTER_HEADLINES].sort());
   });
 
-  test("each chapter panel is sticky and viewport-tall", async ({ page }) => {
+  test("the pinned frame crossfades through the chapters", async ({ page }) => {
     test.skip(
       test.info().project.name !== "chromium-desktop",
-      "one structural check on the flagship project is enough",
+      "the pinned frame only exists at lg and up",
     );
     await gotoHome(page);
-    const panels = await page.evaluate(() =>
-      Array.from(
-        document.querySelectorAll<HTMLElement>("#circle > div.sticky"),
-      ).map((el) => ({
-        position: getComputedStyle(el).position,
-        h: el.getBoundingClientRect().height,
-      })),
-    );
-    expect(panels.length).toBe(4);
-    for (const p of panels) {
-      expect(p.position).toBe("sticky");
-      expect(p.h).toBeGreaterThan(500);
+    await jumpToSection(page, "circle");
+
+    // The frame is sticky and holds all four photographs.
+    const frame = await page.evaluate(() => {
+      const imgs = document.querySelectorAll("#circle [data-frame-index]");
+      const sticky = document.querySelector("#circle .sticky");
+      return {
+        imgs: imgs.length,
+        position: sticky ? getComputedStyle(sticky).position : "missing",
+      };
+    });
+    expect(frame.imgs).toBe(4);
+    expect(frame.position).toBe("sticky");
+
+    // Walking the chapters swaps which photograph is visible.
+    const visibleAt = async () =>
+      page.evaluate(() => {
+        const imgs = Array.from(
+          document.querySelectorAll<HTMLElement>("#circle [data-frame-index]"),
+        );
+        const on = imgs.find((el) => getComputedStyle(el).opacity === "1");
+        return on?.dataset.frameIndex ?? "none";
+      });
+    const seen = new Set<string>();
+    const steps = 10;
+    for (let i = 0; i <= steps; i++) {
+      await page.evaluate(
+        ({ i, steps }) => {
+          const el = document.getElementById("circle");
+          if (!el) throw new Error("no #circle");
+          const top = el.getBoundingClientRect().top + window.scrollY;
+          const span = el.scrollHeight - window.innerHeight;
+          window.scrollTo(0, top + (span * i) / steps);
+        },
+        { i, steps },
+      );
+      await page.waitForTimeout(400);
+      seen.add(await visibleAt());
     }
+    seen.delete("none");
+    expect(seen.size, "frame crossfades through multiple chapters").toBeGreaterThanOrEqual(3);
   });
 });
