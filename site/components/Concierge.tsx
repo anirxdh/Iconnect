@@ -113,7 +113,7 @@ export default function Concierge() {
             transition={{ duration: 0.5, ease: EASE }}
           >
             <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brass/60 [animation-duration:2.6s]" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brass/60 [animation-duration:2.6s] [@media(hover:none)]:hidden" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-brass" />
             </span>
             <span className="text-[0.78rem] tracking-[0.18em] uppercase">

@@ -62,11 +62,11 @@ export default function Cursor() {
     <div aria-hidden className="max-md:hidden">
       <div
         ref={ring}
-        className="pointer-events-none fixed left-0 top-0 z-[250] h-9 w-9 rounded-full border border-white opacity-0 mix-blend-difference transition-opacity duration-300"
+        className="pointer-events-none fixed left-0 top-0 z-[250] hidden h-9 w-9 rounded-full border border-white opacity-0 mix-blend-difference transition-opacity duration-300 [@media(hover:hover)_and_(pointer:fine)]:block"
       />
       <div
         ref={dot}
-        className="pointer-events-none fixed left-0 top-0 z-[250] h-[5px] w-[5px] rounded-full bg-white opacity-0 mix-blend-difference"
+        className="pointer-events-none fixed left-0 top-0 z-[250] hidden h-[5px] w-[5px] rounded-full bg-white opacity-0 mix-blend-difference [@media(hover:hover)_and_(pointer:fine)]:block"
       />
     </div>
   );
