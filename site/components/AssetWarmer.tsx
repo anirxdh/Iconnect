@@ -33,7 +33,6 @@ const MANIFEST = [
   "/people/vespa-ride.jpg",
   "/brand/apothecary.jpg",
   "/people/checkers-bench.jpg",
-  "/people/horses-valley.jpg",
   "/people/florist-couple.jpg",
   "/brand/papaya-table.jpg",
   "/brand/washing-herbs.jpg",

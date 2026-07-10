@@ -18,7 +18,6 @@ const WALL: { src: string; alt: string; bloom?: boolean }[] = [
   { src: "/people/florist-couple.jpg", alt: "A man kneels to greet a woman holding a bouquet of flowers" },
   { src: "/people/three-friends.jpg", alt: "Three old friends standing together holding flowers and walking sticks" },
   { src: "/people/pigeon-window.jpg", alt: "A woman watches a dove take flight outside her window" },
-  { src: "/people/horses-valley.jpg", alt: "Horses grazing in a green valley under mountain fog" },
   { src: "/people/doorway-couple.jpg", alt: "An elderly couple sitting close together in a doorway, deep in talk" },
   { src: "/people/nose-to-nose.jpg", alt: "A couple laughing forehead to forehead" },
   { src: "/people/garden-dance.jpg", alt: "A man twirls his wife dancing in the garden" },
