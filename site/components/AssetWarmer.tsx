@@ -11,14 +11,15 @@ import { useEffect } from "react";
  * Sets data-assets-warm on <html> when done — observable by tests.
  */
 
-// Every image the page uses, in order of appearance. swing-tree.jpg is
+// Every image the page uses, in order of appearance. hero-garden.jpg is
 // omitted: the hero preloads it with fetchPriority=high from the layout.
 const MANIFEST = [
+  "/people/swing-tree.jpg",
   "/people/three-friends.jpg",
   "/people/seaside-hug.jpg",
   "/people/aperitivo.jpg",
   "/people/portrait-hands.jpg",
-  "/people/mirror-morning.jpg",
+  "/people/cane-kiss.jpg",
   "/people/window-couple.jpg",
   "/people/braiding-hair.jpg",
   "/people/portrait-beret.jpg",
@@ -38,6 +39,14 @@ const MANIFEST = [
   "/brand/washing-herbs.jpg",
   "/brand/blueberries.jpg",
   "/brand/herbal-brew.jpg",
+  "/people/nose-to-nose.jpg",
+  "/people/garden-dance.jpg",
+  "/people/night-walk.jpg",
+  "/people/temple-kiss.jpg",
+  "/people/street-arm-in-arm.jpg",
+  "/people/foreheads.jpg",
+  "/people/mirror-morning.jpg",
+  "/people/lakeside-bench.jpg",
 ];
 
 // One at a time: parallel decodes stutter the hero entrance on laptops.

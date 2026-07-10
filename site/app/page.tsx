@@ -1,6 +1,5 @@
 import Preloader from "@/components/Preloader";
 import AssetWarmer from "@/components/AssetWarmer";
-import GrowingVine from "@/components/GrowingVine";
 import Cursor from "@/components/Cursor";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
@@ -9,6 +8,7 @@ import Journey from "@/components/Journey";
 import Caretakers from "@/components/Caretakers";
 import Programs from "@/components/Programs";
 import Nourishment from "@/components/Nourishment";
+import Gallery from "@/components/Gallery";
 import Safety from "@/components/Safety";
 import Toolkit from "@/components/Toolkit";
 import AccessTiers from "@/components/AccessTiers";
@@ -21,7 +21,6 @@ export default function Home() {
     <main>
       <Preloader />
       <AssetWarmer />
-      <GrowingVine />
       <Cursor />
       <Nav />
       <Hero />
@@ -30,6 +29,7 @@ export default function Home() {
       <Caretakers />
       <Programs />
       <Nourishment />
+      <Gallery />
       <Safety />
       <Toolkit />
       <AccessTiers />

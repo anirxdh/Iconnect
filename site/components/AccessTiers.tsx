@@ -47,13 +47,6 @@ function TierCard({ tier, delay }: { tier: Tier; delay: number }) {
   return (
     <Reveal delay={delay} className="h-full">
       <article className="group flex h-full min-h-[26rem] flex-col rounded-sm border border-ink/15 bg-bone p-8 transition-colors duration-500 ease-garden hover:border-moss/30 hover:bg-mist md:p-10">
-        <span
-          aria-hidden
-          data-decorative
-          className="voice-display block text-[4.5rem] leading-none text-parchment transition-colors duration-500 ease-garden group-hover:text-brass"
-        >
-          {tier.numeral}
-        </span>
 
         <h3 className="voice-upright mt-6 text-[1.6rem] text-ink">
           {tier.title}
@@ -100,13 +93,13 @@ export default function AccessTiers() {
   const reduced = useReducedMotion();
 
   return (
-    <section id="begin" className="bg-bone py-28 md:py-40">
+    <section id="begin" className="bg-bone py-16 md:py-24">
       <div className="mx-auto max-w-[90rem] px-6 md:px-12">
         {/* Section opening — kicker, drawn rule, headline */}
         <div className="flex items-center gap-6">
           <Reveal y={16} duration={0.9}>
             <p className="voice-kicker whitespace-nowrap text-moss">
-              08 · Ways In
+              Ways In
             </p>
           </Reveal>
           <RuleReveal className="flex-1 bg-ink/15" delay={0.2} />

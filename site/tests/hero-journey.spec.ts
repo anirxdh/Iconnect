@@ -183,146 +183,77 @@ test.describe("Hero headline", () => {
 });
 
 test.describe("Hero scene", () => {
-  test("the framed photograph renders at or below its native size — never soft", async ({
+  test("the garden fills the hero and the source is genuinely high-res", async ({
     page,
   }) => {
     await gotoHome(page);
-    const scene = page.locator('#top img[src*="swing-tree"]');
+    const scene = page.locator('#top img[src*="hero-garden"]');
     await expect(scene).toBeVisible();
-    // The sharpness contract: a framed photo may shrink but never stretch
-    // past its own pixels (CSS px vs natural width; small DPR headroom).
-    const { rendered, natural } = await scene.evaluate((el) => {
+    const { natural, w, h } = await scene.evaluate((el) => {
       const img = el as HTMLImageElement;
-      return { rendered: img.clientWidth, natural: img.naturalWidth };
+      const r = img.getBoundingClientRect();
+      return { natural: img.naturalWidth, w: r.width, h: r.height };
     });
-    expect(natural, "image decoded").toBeGreaterThan(0);
-    expect(rendered, "never upscaled beyond the source").toBeLessThanOrEqual(
-      natural * 1.05,
-    );
+    const viewport = page.viewportSize()!;
+    // Full-bleed cover…
+    expect(w).toBeGreaterThanOrEqual(viewport.width * 0.98);
+    expect(h).toBeGreaterThanOrEqual(viewport.height * 0.9);
+    // …and never soft: the source carries more pixels than any screen here.
+    expect(natural, "high-res source").toBeGreaterThanOrEqual(3000);
   });
 });
 
-test.describe("Journey — the pinned horizontal circle", () => {
-  test("track glides monotonically leftward and shows all four chapters", async ({
+test.describe("Journey — the chapter stack", () => {
+  test("chapters stack vertically and every headline takes the screen", async ({
     page,
   }) => {
-    test.skip(
-      !["chromium-desktop", "chromium-reduced"].includes(
-        test.info().project.name,
-      ),
-      "the pinned horizontal stage only exists at lg and up",
-    );
-
     await gotoHome(page);
     await jumpToSection(page, "circle");
-    await page.waitForTimeout(BUDGET.settle);
 
-    // The stage is the h-[420vh] grandparent of the w-max track.
-    const range = await page.evaluate(() => {
-      const track = document.querySelector<HTMLElement>("#circle div.w-max");
-      if (!track) throw new Error("no journey track");
-      const stage = track.parentElement!.parentElement!;
-      const top = stage.getBoundingClientRect().top + window.scrollY;
-      return { start: top, end: top + stage.offsetHeight - window.innerHeight };
-    });
-    expect(range.end).toBeGreaterThan(range.start);
-
-    const STOPS = 9; // ~8 increments across the 420vh outer section
-    const xs: number[] = [];
+    // Walk the section from top to bottom; every chapter headline must
+    // hold the viewport at some stop, with no horizontal movement.
     const seen = new Set<string>();
-
-    for (let i = 0; i < STOPS; i++) {
-      const y = range.start + ((range.end - range.start) * i) / (STOPS - 1);
-      await page.evaluate((v) => window.scrollTo(0, v), y);
-      // Let scroll-linked springs glide toward the new target.
-      await page.waitForTimeout(450);
-
-      const tx = await page.evaluate(() => {
-        const track = document.querySelector<HTMLElement>("#circle div.w-max");
-        if (!track) throw new Error("no journey track");
-        const t = getComputedStyle(track).transform;
-        return t === "none" ? 0 : new DOMMatrix(t).m41;
-      });
-      xs.push(tx);
-
-      for (const headline of await chapterHeadlinesInView(page)) {
-        seen.add(headline);
-      }
+    const steps = 14;
+    for (let i = 0; i <= steps; i++) {
+      await page.evaluate(
+        ({ i, steps }) => {
+          const el = document.getElementById("circle");
+          if (!el) throw new Error("no #circle");
+          const top = el.getBoundingClientRect().top + window.scrollY;
+          const span = el.scrollHeight - window.innerHeight;
+          window.scrollTo(0, top + (span * i) / steps);
+        },
+        { i, steps },
+      );
+      await page.waitForTimeout(220);
+      for (const h of await chapterHeadlinesInView(page)) seen.add(h);
+      const { scrollW, innerW } = await page.evaluate(() => ({
+        scrollW: document.documentElement.scrollWidth,
+        innerW: window.innerWidth,
+      }));
+      expect(scrollW, "no sideways movement").toBeLessThanOrEqual(innerW + 1);
     }
-
-    // Starts parked at the first chapter…
-    expect(Math.abs(xs[0]), `track x at stop 0 (xs=${xs.join(", ")})`)
-      .toBeLessThan(40);
-
-    // …and only ever moves left (small tolerance for spring jitter).
-    for (let i = 1; i < xs.length; i++) {
-      expect(
-        xs[i],
-        `track x regressed rightward at stop ${i} (xs=${xs.join(", ")})`,
-      ).toBeLessThanOrEqual(xs[i - 1] + 2);
-    }
-
-    // Overall traversal is substantial — the whole track glides past.
-    expect(
-      xs[0] - xs[xs.length - 1],
-      `total leftward travel (xs=${xs.join(", ")})`,
-    ).toBeGreaterThan(1_000);
-
-    for (const headline of CHAPTER_HEADLINES) {
-      expect(
-        seen.has(headline),
-        `chapter headline "${headline}" never entered the viewport`,
-      ).toBe(true);
-    }
+    expect([...seen].sort()).toEqual([...CHAPTER_HEADLINES].sort());
   });
 
-  test("chapters stack vertically on mobile with no pinned stage", async ({
-    page,
-  }) => {
+  test("each chapter panel is sticky and viewport-tall", async ({ page }) => {
     test.skip(
-      test.info().project.name !== "mobile-webkit",
-      "the vertical stack is the below-lg presentation",
+      test.info().project.name !== "chromium-desktop",
+      "one structural check on the flagship project is enough",
     );
-
     await gotoHome(page);
-
-    // The lg-only pinned stage (with its sideways hint) is hidden.
-    await expect(page.getByText("The story moves sideways")).toBeHidden();
-
-    // Four chapter cards render in the flow.
-    await expect(page.locator("#circle article")).toHaveCount(4);
-
-    // Walk the section top to bottom; every headline must pass through view.
-    const range = await page.evaluate(() => {
-      const el = document.getElementById("circle");
-      if (!el) throw new Error("no #circle section");
-      const top = el.getBoundingClientRect().top + window.scrollY;
-      const max = document.body.scrollHeight - window.innerHeight;
-      return {
-        start: Math.max(0, Math.min(top, max)),
-        end: Math.min(top + el.offsetHeight - window.innerHeight, max),
-        step: window.innerHeight * 0.8,
-      };
-    });
-
-    const seen = new Set<string>();
-    const stops: number[] = [];
-    for (let y = range.start; y < range.end; y += range.step) stops.push(y);
-    stops.push(range.end);
-
-    for (const y of stops) {
-      await page.evaluate((v) => window.scrollTo(0, v), y);
-      await page.waitForTimeout(250);
-      for (const headline of await chapterHeadlinesInView(page)) {
-        seen.add(headline);
-      }
-    }
-
-    for (const headline of CHAPTER_HEADLINES) {
-      expect(
-        seen.has(headline),
-        `chapter headline "${headline}" never appeared while walking the stack`,
-      ).toBe(true);
+    const panels = await page.evaluate(() =>
+      Array.from(
+        document.querySelectorAll<HTMLElement>("#circle > div.sticky"),
+      ).map((el) => ({
+        position: getComputedStyle(el).position,
+        h: el.getBoundingClientRect().height,
+      })),
+    );
+    expect(panels.length).toBe(4);
+    for (const p of panels) {
+      expect(p.position).toBe("sticky");
+      expect(p.h).toBeGreaterThan(500);
     }
   });
 });

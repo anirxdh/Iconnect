@@ -105,7 +105,7 @@ export default function Safety() {
 
       <div className="relative z-10 mx-auto max-w-[90rem] px-6 py-28 md:px-12 md:py-40">
         <Reveal>
-          <p className="voice-kicker text-sage">06 · The Watch</p>
+          <p className="voice-kicker text-sage">The Watch</p>
         </Reveal>
         <RuleReveal className="mt-6 bg-bone/20" delay={0.1} />
 

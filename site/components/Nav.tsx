@@ -26,10 +26,17 @@ export default function Nav() {
   return (
     <>
       <motion.header
-        // Blend-difference is desktop-only: a fixed blend layer forces WebKit to
-        // recomposite the whole page every scroll frame, which reads as the
-        // entire site shimmering on iPhones. Mobile gets a solid bone bar.
-        className="fixed inset-x-0 top-0 z-[100] max-lg:border-b max-lg:border-ink/10 max-lg:bg-bone/95 lg:mix-blend-difference"
+        // No blend modes: a fixed blend layer forces WebKit to recomposite
+        // the whole page every scroll frame (iOS shimmer), and difference
+        // washes out over midtone imagery. Instead the nav is scroll-aware:
+        // transparent bone text over the hero, a solid bone bar after it.
+        className={`fixed inset-x-0 top-0 z-[100] transition-colors duration-500 ${
+          open
+            ? "bg-transparent"
+            : scrolled
+              ? "border-b border-ink/10 bg-bone/95"
+              : "bg-transparent"
+        }`}
         initial={{ y: -60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1, delay: 2.1, ease: EASE }}
@@ -41,7 +48,9 @@ export default function Nav() {
         >
           <a
             href="#top"
-            className="voice-display text-[1.55rem] leading-none text-ink lg:text-white"
+            className={`voice-display text-[1.55rem] leading-none transition-colors duration-500 ${
+              !open && scrolled ? "text-ink" : "text-bone"
+            }`}
           >
             iConnect
           </a>
@@ -51,7 +60,9 @@ export default function Nav() {
               <li key={l.href}>
                 <a
                   href={l.href}
-                  className="link-sweep text-[0.82rem] tracking-[0.08em] text-white/90"
+                  className={`link-sweep text-[0.82rem] tracking-[0.08em] transition-colors duration-500 ${
+                    scrolled ? "text-ink/85" : "text-bone/90"
+                  }`}
                 >
                   {l.label}
                 </a>
@@ -62,7 +73,11 @@ export default function Nav() {
           <div className="flex items-center gap-6">
             <a
               href="#begin"
-              className="hidden rounded-full border border-ink/50 px-5 py-2 text-[0.78rem] tracking-[0.14em] uppercase text-ink transition-colors duration-500 md:block lg:border-white/70 lg:text-white lg:hover:bg-white lg:hover:text-black"
+              className={`hidden rounded-full border px-5 py-2 text-[0.78rem] tracking-[0.14em] uppercase transition-colors duration-500 md:block ${
+                scrolled
+                  ? "border-ink/50 text-ink hover:bg-ink hover:text-bone"
+                  : "border-bone/70 text-bone hover:bg-bone hover:text-forest"
+              }`}
             >
               Begin at 75
             </a>
@@ -74,12 +89,12 @@ export default function Nav() {
               className="flex h-11 w-11 -m-0.5 flex-col items-center justify-center gap-[7px] lg:hidden"
             >
               <span
-                className={`h-px w-7 bg-ink transition-transform duration-500 ${
+                className={`h-px w-7 transition-all duration-500 ${!open && scrolled ? "bg-ink" : "bg-bone"} ${
                   open ? "translate-y-[4px] rotate-45" : ""
                 }`}
               />
               <span
-                className={`h-px w-7 bg-ink transition-transform duration-500 ${
+                className={`h-px w-7 transition-all duration-500 ${!open && scrolled ? "bg-ink" : "bg-bone"} ${
                   open ? "-translate-y-[4px] -rotate-45" : ""
                 }`}
               />

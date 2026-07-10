@@ -45,7 +45,7 @@ export default function Caretakers() {
       <div className="mx-auto max-w-[90rem] px-6 py-28 md:px-12 md:py-40">
         {/* ——— Kicker · rule · headline ——— */}
         <Reveal y={18}>
-          <p className="voice-kicker text-sage">03 · The Caretakers</p>
+          <p className="voice-kicker text-sage">The Caretakers</p>
         </Reveal>
         <RuleReveal className="mt-6 bg-bone/20" delay={0.15} />
 
@@ -97,7 +97,7 @@ export default function Caretakers() {
             style={reduced ? undefined : { y: yHands }}
           >
             <CurtainImage
-              src="/people/mirror-morning.jpg"
+              src="/people/cane-kiss.jpg"
               alt="Two elderly hands clasped together, wedding rings still worn"
               className="aspect-[4/5] w-full"
               curtainClass="bg-forest"

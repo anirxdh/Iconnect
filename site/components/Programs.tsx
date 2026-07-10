@@ -199,13 +199,13 @@ export default function Programs() {
   }, [frameEnabled]);
 
   return (
-    <section ref={sectionRef} id="programs" className="relative bg-bone py-28 md:py-40">
+    <section ref={sectionRef} id="programs" className="relative bg-bone py-16 md:py-24">
       <div className="mx-auto max-w-[90rem] px-6 md:px-12">
         {/* ——— Section opening ——— */}
         <div className="flex items-center gap-5 md:gap-8">
           <Reveal y={12} duration={0.8}>
             <p className="voice-kicker whitespace-nowrap text-moss">
-              04 · The Programs
+              The Programs
             </p>
           </Reveal>
           <RuleReveal className="flex-1 bg-ink/15" delay={0.15} />
@@ -253,7 +253,7 @@ export default function Programs() {
                 />
                 <Reveal y={26} duration={0.95}>
                   <div
-                    className={`relative z-10 grid grid-cols-[3.25rem_2.5rem_1fr] items-center gap-x-3 py-5 transition-transform duration-500 md:grid-cols-[4.5rem_1.1fr_0.9fr] md:items-baseline md:gap-x-8 md:py-9 ease-garden group-hover:translate-x-4 ${
+                    className={`relative z-10 grid grid-cols-[3.25rem_1fr] items-center gap-x-4 py-5 transition-transform duration-500 md:grid-cols-1 md:py-7 ease-garden group-hover:translate-x-4 ${
                       lit ? "translate-x-2" : ""
                     }`}
                   >
@@ -272,23 +272,11 @@ export default function Programs() {
                       />
                     </span>
                     <span
-                      className={`text-[0.75rem] font-medium tracking-[0.25em] transition-colors duration-500 ease-garden group-hover:text-bone ${
-                        lit ? "text-bone" : "text-ink/70"
-                      }`}
-                    >
-                      {program.number}
-                    </span>
-                    <span
                       className={`voice-upright text-[clamp(1.35rem,3.4vw,2.8rem)] transition-colors duration-500 ease-garden group-hover:text-bone ${
                         lit ? "text-bone" : "text-ink"
                       }`}
                     >
                       {program.name}
-                    </span>
-                    <span
-                      className="hidden text-[0.9rem] leading-relaxed text-ink/70 transition-colors duration-500 md:block ease-garden group-hover:text-bone/75"
-                    >
-                      {program.description}
                     </span>
                   </div>
                 </Reveal>
@@ -298,7 +286,7 @@ export default function Programs() {
         </ul>
 
         {/* ——— Specialized focus ——— */}
-        <Reveal className="mt-16 md:mt-24" y={30}>
+        <Reveal className="mt-10 md:mt-14" y={30}>
           <div className="rounded-sm border border-moss/30 bg-mist p-8 md:p-12">
             <p className="voice-kicker text-moss">Specialized focus</p>
             <WordsReveal

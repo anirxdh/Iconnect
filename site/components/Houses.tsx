@@ -70,12 +70,12 @@ function HouseNode({ house, index }: { house: House; index: number }) {
  */
 export default function Houses() {
   return (
-    <section id="houses" className="bg-bone py-28 md:py-40">
+    <section id="houses" className="bg-bone py-16 md:py-24">
       <div className="mx-auto max-w-[90rem] px-6 md:px-12">
         <div className="flex items-center gap-5 md:gap-8">
           <Reveal y={12} duration={0.8}>
             <p className="voice-kicker whitespace-nowrap text-moss">
-              09 · The Houses
+              The Houses
             </p>
           </Reveal>
           <RuleReveal className="flex-1 bg-ink/15" delay={0.15} />
@@ -95,7 +95,7 @@ export default function Houses() {
         </div>
 
         {/* ——— The map ——— */}
-        <Reveal className="mt-16 md:mt-24" y={40} duration={1.3}>
+        <Reveal className="mt-10 md:mt-14" y={40} duration={1.3}>
           <div className="relative mx-auto max-w-5xl">
             <svg
               viewBox={US_MAP_VIEWBOX}
@@ -117,7 +117,7 @@ export default function Houses() {
         </Reveal>
 
         {/* ——— The ledger ——— */}
-        <div className="mx-auto mt-14 max-w-5xl md:mt-20">
+        <div className="mx-auto mt-10 max-w-5xl md:mt-12">
           <RuleReveal className="bg-ink/10" />
           <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
             {HOUSES.map((h, i) => (

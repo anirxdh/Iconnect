@@ -202,7 +202,7 @@ test.describe("Resilience — the chaos suite", () => {
     await awaitScrollUnlock(page);
 
     // The hero canvas re-mounted and scrolling works in both directions.
-    await expect(page.locator('#top img[src*="swing-tree"]')).toBeAttached();
+    await expect(page.locator('#top img[src*="hero-garden"]')).toBeAttached();
     await page.evaluate(() => window.scrollTo(0, 0));
     await expect.poll(() => scrollY(page)).toBeLessThanOrEqual(1);
     await page.evaluate(() => window.scrollTo(0, 1_500));
@@ -286,7 +286,7 @@ test.describe("Resilience — the chaos suite", () => {
 
     await page.goBack();
     await awaitScrollUnlock(page);
-    await expect(page.locator('#top img[src*="swing-tree"]')).toBeAttached();
+    await expect(page.locator('#top img[src*="hero-garden"]')).toBeAttached();
 
     await page.goForward();
     await expect(

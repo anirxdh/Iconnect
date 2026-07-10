@@ -42,7 +42,7 @@ export default function LegalShell({
         </p>
 
         <article
-          className="legal-prose mt-14 md:mt-20"
+          className="legal-prose mt-10 md:mt-12"
         >
           {children}
         </article>

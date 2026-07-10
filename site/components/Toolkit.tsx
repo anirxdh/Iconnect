@@ -159,11 +159,11 @@ export default function Toolkit() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="caregivers" className="bg-bone py-28 md:py-40">
+    <section id="caregivers" className="bg-bone py-16 md:py-24">
       <div className="mx-auto max-w-[90rem] px-6 md:px-12">
         {/* Section opening — kicker, rule, headline */}
         <Reveal>
-          <p className="voice-kicker text-moss">07 · For Caretakers</p>
+          <p className="voice-kicker text-moss">For Caretakers</p>
         </Reveal>
         <RuleReveal className="mt-6 bg-ink/15" delay={0.15} />
 

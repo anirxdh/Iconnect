@@ -19,7 +19,7 @@ const CARDS = [
     src: "/people/three-friends.jpg",
     from: 90,
     to: -110,
-    rotate: -4,
+    rotate: 0,
     position:
       "right-[2%] top-[10%] w-[14rem] xl:w-[17rem] 2xl:right-[3%] 2xl:w-[19rem]",
   },
@@ -27,7 +27,7 @@ const CARDS = [
     src: "/people/seaside-hug.jpg",
     from: 150,
     to: -170,
-    rotate: 3,
+    rotate: 0,
     position:
       "left-[2%] top-[62%] w-[13rem] xl:w-[16rem] 2xl:left-[3%] 2xl:w-[18rem]",
   },
@@ -35,7 +35,7 @@ const CARDS = [
     src: "/people/braiding-hair.jpg",
     from: 50,
     to: -60,
-    rotate: -2.5,
+    rotate: 0,
     position: "bottom-[8%] right-[8%] w-[11rem] xl:w-[13rem] 2xl:w-[15rem]",
   },
 ] as const;
@@ -116,7 +116,7 @@ export default function Manifesto() {
 
         <div className="relative z-10">
           <Reveal>
-            <p className="voice-kicker text-moss">01 · The Vision</p>
+            <p className="voice-kicker text-moss">The Vision</p>
           </Reveal>
           <RuleReveal className="mt-6 bg-ink/15" delay={0.15} />
 
@@ -153,7 +153,7 @@ export default function Manifesto() {
                   aria-hidden
                   loading="lazy"
                   decoding="async"
-                  className="w-full -rotate-2 rounded-sm shadow-xl shadow-ink/15"
+                  className="w-full rounded-sm shadow-xl shadow-ink/15"
                 />
               </Reveal>
               <Reveal y={36} delay={0.15} className="mt-12 w-[44%]">
@@ -163,18 +163,18 @@ export default function Manifesto() {
                   aria-hidden
                   loading="lazy"
                   decoding="async"
-                  className="w-full rotate-2 rounded-sm shadow-xl shadow-ink/15"
+                  className="w-full rounded-sm shadow-xl shadow-ink/15"
                 />
               </Reveal>
             </div>
-            <Reveal y={30} delay={0.25} className="mx-auto -mt-8 w-[58%]">
+            <Reveal y={30} delay={0.25} className="mx-auto mt-4 w-[58%]">
               <img
                 src="/people/three-friends.jpg"
                 alt=""
                 aria-hidden
                 loading="lazy"
                 decoding="async"
-                className="w-full rotate-[1.5deg] rounded-sm shadow-xl shadow-ink/15"
+                className="w-full rounded-sm shadow-xl shadow-ink/15"
               />
             </Reveal>
           </div>

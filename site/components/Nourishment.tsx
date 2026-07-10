@@ -55,7 +55,7 @@ export default function Nourishment() {
       <div className="mx-auto max-w-[90rem] px-6 py-28 md:px-12 md:py-40">
         {/* ————— Opening ————— */}
         <Reveal>
-          <p className="voice-kicker text-moss">05 · Nourishment</p>
+          <p className="voice-kicker text-moss">Nourishment</p>
         </Reveal>
         <RuleReveal className="mt-6 bg-ink/15" delay={0.15} />
 
@@ -147,7 +147,7 @@ export default function Nourishment() {
 
           {/* Floating caption — echo of the campaign */}
           <motion.div
-            className="absolute bottom-[42%] left-[57%] z-30 -rotate-3"
+            className="absolute bottom-[42%] left-[57%] z-30"
             style={{ y: reduced ? 0 : yCaption }}
           >
             <Reveal delay={0.55} y={22}>
@@ -179,7 +179,7 @@ export default function Nourishment() {
           </div>
           <div className="mb-4 break-inside-avoid py-6">
             <Reveal delay={0.2} y={18}>
-              <p className="voice-display -rotate-3 text-[clamp(1.4rem,2.6vw,2.2rem)] leading-tight text-clay">
+              <p className="voice-display text-[clamp(1.4rem,2.6vw,2.2rem)] leading-tight text-clay">
                 eat how you want to feel
               </p>
             </Reveal>

@@ -56,7 +56,7 @@ async function fontsReady(page: Page) {
 }
 
 test.describe("Programs index", () => {
-  test("renders exactly ten rows numbered 01-10 with the exact program names", async ({
+  test("renders exactly ten rows with the exact program names and no numbering", async ({
     page,
   }) => {
     await gotoHome(page);
@@ -68,8 +68,9 @@ test.describe("Programs index", () => {
     for (let i = 0; i < PROGRAM_NAMES.length; i++) {
       const row = rows.nth(i);
       await expect(row).toHaveAttribute("data-program-index", String(i));
-      await expect(row).toContainText(String(i + 1).padStart(2, "0"));
       await expect(row).toContainText(PROGRAM_NAMES[i]);
+      // The client asked for no index numbers anywhere.
+      await expect(row).not.toContainText(String(i + 1).padStart(2, "0"));
     }
   });
 

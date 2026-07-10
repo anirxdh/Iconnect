@@ -47,10 +47,10 @@ export default function Closing() {
       {/* ——— The invitation ——— */}
       <div
         ref={sceneRef}
-        className="relative flex min-h-[92svh] items-center justify-center overflow-hidden py-28 md:py-40"
+        className="relative flex min-h-[74svh] items-center justify-center overflow-hidden py-16 md:py-24"
       >
         <motion.img
-          src="/people/swing-tree.jpg"
+          src="/people/lakeside-bench.jpg"
           alt=""
           aria-hidden
           loading="lazy"
