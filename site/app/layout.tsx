@@ -22,12 +22,12 @@ const instrument = Instrument_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://iconnect-anirxdh.vercel.app"),
-  title: "iConnect: A circle of care for life after 75",
+  metadataBase: new URL("https://rua-care.vercel.app"),
+  title: "Rua: A circle of care for life after 75",
   description:
-    "iConnect wraps every person over 75 in a smart, always-on network of technology and trained, devoted humans. Growing old, beautifully tended.",
+    "Rua wraps every person over 75 in a smart, always-on network of technology and trained, devoted humans. Growing old, beautifully tended.",
   openGraph: {
-    title: "iConnect: A circle of care for life after 75",
+    title: "Rua: A circle of care for life after 75",
     description:
       "One record. One wearable. One circle of trained caretakers, connected to everything that matters.",
     type: "website",
@@ -48,10 +48,10 @@ export const metadata: Metadata = {
 const ORG_JSONLD = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "iConnect Care Systems",
+  name: "Rua Care Systems",
   description:
     "A care network for life after 75: one health record, a 24/7 wearable, trained caretakers, and houses full of programs, all connected to emergency services.",
-  email: "hello@iconnect.care",
+  email: "ishanagu0601@gmail.com",
   telephone: "+1-763-233-1350",
   address: {
     "@type": "PostalAddress",

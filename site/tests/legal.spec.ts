@@ -5,7 +5,7 @@ import { BUDGET, gotoHome, expectNoHorizontalOverflow } from "./utils";
 /**
  * The three legal pages (/privacy, /terms, /accessibility) share the
  * LegalShell frame: one h1, a "Last updated" line, a contact block that
- * links privacy@iconnect.care and +1 (763) 233-1350, a cross-nav to the
+ * links ishanagu0601@gmail.com and +1 (763) 233-1350, a cross-nav to the
  * other legal pages, and a "Return to the garden" link home.
  */
 
@@ -67,8 +67,8 @@ test.describe("legal page frames on desktop and mobile", () => {
       });
       await expect(contact).toBeVisible();
       await expect(
-        contact.locator('a[href="mailto:privacy@iconnect.care"]'),
-      ).toHaveText("privacy@iconnect.care");
+        contact.locator('a[href="mailto:ishanagu0601@gmail.com"]'),
+      ).toHaveText("ishanagu0601@gmail.com");
       await expect(contact.locator('a[href="tel:+17632331350"]')).toHaveText(
         "+1 (763) 233-1350",
       );

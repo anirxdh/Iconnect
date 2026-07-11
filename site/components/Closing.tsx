@@ -83,7 +83,7 @@ export default function Closing() {
           <Reveal delay={0.7}>
             <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
               <a
-                href="mailto:hello@iconnect.care"
+                href="mailto:ishanagu0601@gmail.com"
                 className="voice-kicker rounded-full bg-bone px-9 py-4 text-forest transition-colors duration-500 hover:bg-brass hover:text-forest"
               >
                 Begin the conversation
@@ -105,7 +105,7 @@ export default function Closing() {
           <div className="grid grid-cols-2 gap-10 md:grid-cols-4">
             {/* Wordmark */}
             <div className="col-span-2 md:col-span-1">
-              <p className="voice-display text-3xl text-bone">iConnect</p>
+              <p className="voice-display text-3xl text-bone">Rua</p>
               <p className="mt-4 text-sm text-sage">
                 Growing old, beautifully tended.
               </p>
@@ -134,10 +134,10 @@ export default function Closing() {
               <ul className="mt-6 space-y-3 text-sm text-bone/70">
                 <li>
                   <a
-                    href="mailto:hello@iconnect.care"
+                    href="mailto:ishanagu0601@gmail.com"
                     className="link-sweep inline-block py-1.5 -my-1.5"
                   >
-                    hello@iconnect.care
+                    ishanagu0601@gmail.com
                   </a>
                 </li>
                 <li>
@@ -173,7 +173,7 @@ export default function Closing() {
           </div>
 
           <div className="mt-14 flex flex-col gap-2 border-t border-bone/10 pt-10 text-xs text-bone/60 sm:flex-row sm:justify-between">
-            <p>© 2026 iConnect Care Systems</p>
+            <p>© 2026 Rua Care Systems</p>
             <p>No cookies · No trackers · No exceptions</p>
             <p>Planted at seventy-five · Tended for life</p>
           </div>

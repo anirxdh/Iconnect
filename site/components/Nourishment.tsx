@@ -60,7 +60,7 @@ export default function Nourishment() {
               alt="Papayas and lemons arranged on a dark green door, a butterfly resting among them"
               loading="lazy"
               decoding="async"
-              className="w-full rounded-sm"
+              className="aspect-[5/7] w-full rounded-sm object-cover"
             />
           </Reveal>
 

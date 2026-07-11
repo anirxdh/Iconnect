@@ -74,12 +74,12 @@ export default function Concierge() {
               </li>
               <li className="border-b border-bone/10">
                 <a
-                  href="mailto:hello@iconnect.care"
+                  href="mailto:ishanagu0601@gmail.com"
                   className="group flex items-baseline justify-between px-7 py-5 transition-colors duration-300 hover:bg-pine"
                 >
                   <span>
                     <span className="voice-kicker block text-[0.6rem] text-sage">Write</span>
-                    <span className="mt-1 block text-[1.02rem]">hello@iconnect.care</span>
+                    <span className="mt-1 block text-[1.02rem]">ishanagu0601@gmail.com</span>
                   </span>
                   <span aria-hidden className="text-bone/60 transition-transform duration-300 group-hover:translate-x-1">→</span>
                 </a>

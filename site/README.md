@@ -1,6 +1,6 @@
-# iConnect — “The Tended Garden”
+# Rua — “The Tended Garden”
 
-Luxury single-page brand site for iConnect, the care network for life after 75.
+Luxury single-page brand site for Rua, the care network for life after 75.
 
 ## Run
 

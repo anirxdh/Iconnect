@@ -21,7 +21,7 @@ export default function LegalShell({
       <header className="border-b border-ink/10">
         <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-7 md:px-8">
           <Link href="/" className="voice-display text-[1.45rem] leading-none">
-            iConnect
+            Rua
           </Link>
           <Link
             href="/"
@@ -50,8 +50,8 @@ export default function LegalShell({
         <div className="mt-20 border-t border-ink/10 pt-8">
           <p className="text-[0.85rem] leading-relaxed text-ink/70">
             Questions about this document? Write to{" "}
-            <a href="mailto:privacy@iconnect.care" className="underline decoration-ink/30 underline-offset-4 hover:decoration-ink">
-              privacy@iconnect.care
+            <a href="mailto:ishanagu0601@gmail.com" className="underline decoration-ink/30 underline-offset-4 hover:decoration-ink">
+              ishanagu0601@gmail.com
             </a>{" "}
             or call{" "}
             <a href="tel:+17632331350" className="underline decoration-ink/30 underline-offset-4 hover:decoration-ink">

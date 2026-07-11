@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import LegalShell from "@/components/LegalShell";
 
 export const metadata: Metadata = {
-  title: "Privacy Notice · iConnect",
+  title: "Privacy Notice · Rua",
   description:
-    "How iConnect collects, protects, and honors the personal and health information entrusted to us.",
+    "How Rua collects, protects, and honors the personal and health information entrusted to us.",
 };
 
 export default function PrivacyPage() {
@@ -16,15 +16,15 @@ export default function PrivacyPage() {
     >
       <h2>Our promise, before the provisions</h2>
       <p>
-        iConnect exists to care for people in the most personal chapter of
+        Rua exists to care for people in the most personal chapter of
         their lives. Nothing we hold is more sensitive than the health
         information of the people in our circle, and we treat it accordingly:
         collected only for care, seen only by those who need it to care, and
         never sold. Not to anyone, for any reason, ever.
       </p>
       <p>
-        This notice explains what iConnect Care Systems, Inc.
-        (&ldquo;iConnect,&rdquo; &ldquo;we,&rdquo; &ldquo;us&rdquo;) collects,
+        This notice explains what Rua Care Systems, Inc.
+        (&ldquo;Rua,&rdquo; &ldquo;we,&rdquo; &ldquo;us&rdquo;) collects,
         why, and the rights you hold. It applies to our website, our care
         platform, our wearable devices, and our houses.
       </p>
@@ -90,7 +90,7 @@ export default function PrivacyPage() {
 
       <h2>Health information and HIPAA</h2>
       <p>
-        Where iConnect provides or coordinates care, protected health
+        Where Rua provides or coordinates care, protected health
         information (PHI) is handled in accordance with the Health Insurance
         Portability and Accountability Act (HIPAA) and applicable state law.
         Partner physicians, nurses, and care organizations access records
@@ -153,7 +153,7 @@ export default function PrivacyPage() {
       </ul>
       <p>
         Write to{" "}
-        <a href="mailto:privacy@iconnect.care">privacy@iconnect.care</a> and
+        <a href="mailto:ishanagu0601@gmail.com">ishanagu0601@gmail.com</a> and
         our privacy officer will respond within five business days. You may
         also lodge a complaint with the U.S. Department of Health and Human
         Services Office for Civil Rights; we will never retaliate for it.

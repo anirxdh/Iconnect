@@ -16,7 +16,7 @@ type House = {
 // Nothing has opened its doors yet: every house is taking root. The one
 // brass, breathing node is home — headquarters in the Bay Area.
 const HOUSES: House[] = [
-  { city: "San Francisco", state: "California", x: 62, y: 252, status: "Headquarters", note: "Home of iConnect. The first house rises here." },
+  { city: "San Francisco", state: "California", x: 62, y: 252, status: "Headquarters", note: "Home of Rua. The first house rises here." },
   { city: "Portland", state: "Oregon", x: 85, y: 95, status: "Taking root", note: "Taking root among the gardens." },
   { city: "Seattle", state: "Washington", x: 105, y: 52, status: "Taking root", note: "Taking root by the sound." },
   { city: "Denver", state: "Colorado", x: 330, y: 235, status: "Taking root", note: "Taking root a mile up." },
@@ -65,7 +65,7 @@ function HouseNode({ house, index }: { house: House; index: number }) {
 }
 
 /**
- * 09 — The Houses. A fine-line map of where iConnect grows,
+ * 09 — The Houses. A fine-line map of where Rua grows,
  * each house a brass seed. In-bloom houses breathe.
  */
 export default function Houses() {
@@ -101,7 +101,7 @@ export default function Houses() {
               viewBox={US_MAP_VIEWBOX}
               className="w-full"
               role="img"
-              aria-label="Map of the United States marking iConnect headquarters in San Francisco and houses taking root in Portland, Seattle, Denver, Minneapolis, Chicago, Austin and Boston"
+              aria-label="Map of the United States marking Rua headquarters in San Francisco and houses taking root in Portland, Seattle, Denver, Minneapolis, Chicago, Austin and Boston"
             >
               <g
                 className="fill-transparent stroke-ink/[0.16]"

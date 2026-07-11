@@ -52,7 +52,7 @@ export default function Nav() {
               !open && scrolled ? "text-ink" : "text-bone"
             }`}
           >
-            iConnect
+            Rua
           </a>
 
           <ul className="hidden items-center gap-9 lg:flex">

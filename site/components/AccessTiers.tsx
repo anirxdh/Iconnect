@@ -14,7 +14,7 @@ const TIERS: Tier[] = [
   {
     numeral: "I",
     title: "Organizations",
-    line: "Senior living communities and care facilities operating under the iConnect name.",
+    line: "Senior living communities and care facilities operating under the Rua name.",
     points: [
       "Full access to every program, club and service.",
       "The complete caretaker toolkit.",
@@ -26,7 +26,7 @@ const TIERS: Tier[] = [
     title: "Independent Caretakers",
     line: "Professionals who walk their own path, their patients beside them.",
     points: [
-      "Bring your patients to an iConnect house once a month.",
+      "Bring your patients to an Rua house once a month.",
       "Every patient's record, already there when you arrive.",
       "Training and certification kept current.",
     ],
@@ -36,7 +36,7 @@ const TIERS: Tier[] = [
     title: "Home Caregivers",
     line: "Family hands, caring at home.",
     points: [
-      "Visit any iConnect house whenever needed, for a fee.",
+      "Visit any Rua house whenever needed, for a fee.",
       "The same programs, the same welcome.",
       "Guidance for the hardest days.",
     ],
@@ -73,7 +73,7 @@ function TierCard({ tier, delay }: { tier: Tier; delay: number }) {
         </ul>
 
         <a
-          href="mailto:hello@iconnect.care"
+          href="mailto:ishanagu0601@gmail.com"
           className="link-sweep voice-kicker mt-auto inline-flex w-fit items-center gap-2 pt-10 text-ink"
         >
           Enquire
@@ -131,7 +131,7 @@ export default function AccessTiers() {
           </motion.span>
           <Reveal y={20} delay={0.15}>
             <p className="voice-kicker text-center leading-loose text-ink/70">
-              iConnect activates at seventy-five. The circle is waiting.
+              Rua activates at seventy-five. The circle is waiting.
             </p>
           </Reveal>
         </div>

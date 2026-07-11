@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import LegalShell from "@/components/LegalShell";
 
 export const metadata: Metadata = {
-  title: "Accessibility · iConnect",
+  title: "Accessibility · Rua",
   description:
-    "iConnect's accessibility commitment for this website and our houses.",
+    "Rua's accessibility commitment for this website and our houses.",
 };
 
 export default function AccessibilityPage() {
@@ -16,7 +16,7 @@ export default function AccessibilityPage() {
     >
       <h2>Our commitment</h2>
       <p>
-        iConnect serves people aged seventy-five and older. If our front
+        Rua serves people aged seventy-five and older. If our front
         door is hard to open, whether physical or digital, we have failed at
         the first step of care. We design this website to meet or exceed the Web
         Content Accessibility Guidelines (WCAG) 2.2, Level AA, and our houses
@@ -69,7 +69,7 @@ export default function AccessibilityPage() {
       <h2>Tell us where we fall short</h2>
       <p>
         If any part of this site or our houses is difficult for you, write to{" "}
-        <a href="mailto:access@iconnect.care">access@iconnect.care</a> or
+        <a href="mailto:ishanagu0601@gmail.com">ishanagu0601@gmail.com</a> or
         call <a href="tel:+17632331350">+1 (763) 233-1350</a>. A person, not
         a ticket queue, will respond within two business days, and we will
         work with you until the barrier is gone.

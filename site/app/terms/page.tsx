@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import LegalShell from "@/components/LegalShell";
 
 export const metadata: Metadata = {
-  title: "Terms of Service · iConnect",
+  title: "Terms of Service · Rua",
   description:
-    "The terms that govern iConnect's care network, houses, wearable devices, and website.",
+    "The terms that govern Rua's care network, houses, wearable devices, and website.",
 };
 
 export default function TermsPage() {
@@ -16,22 +16,22 @@ export default function TermsPage() {
     >
       <h2>The agreement</h2>
       <p>
-        These terms are an agreement between you and iConnect Care Systems,
-        Inc. (&ldquo;iConnect&rdquo;). They govern the use of our website, our
+        These terms are an agreement between you and Rua Care Systems,
+        Inc. (&ldquo;Rua&rdquo;). They govern the use of our website, our
         care platform and wearable devices, and our houses. By enrolling,
         visiting, or using our services, you accept them. Where a separate
         enrollment or licensing agreement exists for individuals, caretakers,
         or organizations, that agreement controls if the two differ.
       </p>
 
-      <h2>What iConnect is, and is not</h2>
+      <h2>What Rua is, and is not</h2>
       <p>
-        iConnect coordinates care. We unify health records, connect wearable
+        Rua coordinates care. We unify health records, connect wearable
         devices to emergency services, train and support caretakers, and run
         houses with programs for people aged seventy-five and older.
       </p>
       <p>
-        <strong>iConnect is not a substitute for emergency services or for
+        <strong>Rua is not a substitute for emergency services or for
         medical judgment.</strong> Our devices alert responders automatically,
         but if you are able to call 911, always call 911. Clinical decisions
         belong to you and your physicians; our platform informs those
@@ -59,24 +59,24 @@ export default function TermsPage() {
       <ul>
         <li>
           <strong>Organizations.</strong> Senior-living communities and care
-          facilities may operate under the iConnect name by license,
+          facilities may operate under the Rua name by license,
           receiving full access to our programs, platform, and network,
           subject to our standards of care and audit.
         </li>
         <li>
           <strong>Independent caretakers.</strong> Certified professionals
-          may bring their patients to an iConnect house once each month, and
+          may bring their patients to an Rua house once each month, and
           use the caretaker toolkit under an individual license.
         </li>
         <li>
           <strong>Home caregivers.</strong> Families caring at home may visit
-          any iConnect house as guests, whenever needed, for a posted fee.
+          any Rua house as guests, whenever needed, for a posted fee.
         </li>
       </ul>
 
       <h2>Caretaker standards</h2>
       <p>
-        Professional caretakers in our network complete and maintain iConnect
+        Professional caretakers in our network complete and maintain Rua
         training and certification, including first aid, CPR/AED, basic and
         advanced life support, wound care, and anxiety-attack therapy. They
         serve no more than fifteen patients at a time. Certification may be
@@ -87,7 +87,7 @@ export default function TermsPage() {
       <h2>Devices</h2>
       <ul>
         <li>
-          Wearable devices remain iConnect property unless purchased
+          Wearable devices remain Rua property unless purchased
           outright; care for them reasonably and return them when enrollment
           ends.
         </li>
@@ -120,8 +120,8 @@ export default function TermsPage() {
 
       <h2>Intellectual property</h2>
       <p>
-        The iConnect name, wordmark, imagery, and the contents of this site
-        and platform belong to iConnect or its licensors. Licenses granted to
+        The Rua name, wordmark, imagery, and the contents of this site
+        and platform belong to Rua or its licensors. Licenses granted to
         organizations and caretakers extend only as far as their agreements
         state.
       </p>

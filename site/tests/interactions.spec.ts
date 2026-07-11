@@ -135,7 +135,7 @@ test.describe("Concierge", () => {
     await expect(dialog).toBeVisible();
     await expect(dialog.locator('a[href="tel:+17632331350"]')).toBeVisible();
     await expect(
-      dialog.locator('a[href="mailto:hello@iconnect.care"]'),
+      dialog.locator('a[href="mailto:ishanagu0601@gmail.com"]'),
     ).toBeVisible();
 
     // Escape dismisses the panel.
@@ -170,7 +170,7 @@ test.describe("The Houses — map and ledger", () => {
     await expect(map).toBeVisible();
     await expect(map).toHaveAttribute(
       "aria-label",
-      "Map of the United States marking iConnect headquarters in San Francisco and houses taking root in Portland, Seattle, Denver, Minneapolis, Chicago, Austin and Boston",
+      "Map of the United States marking Rua headquarters in San Francisco and houses taking root in Portland, Seattle, Denver, Minneapolis, Chicago, Austin and Boston",
     );
   });
 

@@ -53,7 +53,7 @@ export default function Preloader() {
             className="flex flex-col items-center"
           >
             <span className="voice-display text-bone text-[clamp(2.6rem,6vw,4.6rem)]">
-              iConnect
+              Rua
             </span>
             <motion.div
               className="mt-6 h-14 w-px bg-sage/60 origin-top"

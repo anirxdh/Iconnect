@@ -96,7 +96,7 @@ test.describe("Resilience — the chaos suite", () => {
     await expectSectionNearTop(page, "begin");
 
     // The page must still respond: the wordmark takes us home.
-    await header.getByRole("link", { name: "iConnect", exact: true }).click();
+    await header.getByRole("link", { name: "Rua", exact: true }).click();
     await expect
       .poll(() => scrollY(page), { timeout: 8_000 })
       .toBeLessThanOrEqual(2);
@@ -302,7 +302,7 @@ test.describe("Resilience — the chaos suite", () => {
     await expectSectionNearTop(page, "circle");
     await header.getByRole("link", { name: "Programs", exact: true }).click();
     await expectSectionNearTop(page, "programs");
-    await header.getByRole("link", { name: "iConnect", exact: true }).click();
+    await header.getByRole("link", { name: "Rua", exact: true }).click();
     await expect
       .poll(() => scrollY(page), { timeout: 8_000 })
       .toBeLessThanOrEqual(2);

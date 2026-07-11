@@ -151,7 +151,7 @@ export default function Caretakers() {
           <InkReveal
             className="leading-relaxed text-bone/70 md:col-span-4 md:col-start-7 md:mt-20"
             delay={0.15}
-            text="Trained through iConnect in first aid, cardiac life support, and wound care. Ten to fifteen patients each. Never more."
+            text="Trained through Rua in first aid, cardiac life support, and wound care. Ten to fifteen patients each. Never more."
           />
         </div>
 

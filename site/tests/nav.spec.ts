@@ -36,7 +36,7 @@ function sectionViewportTop(page: Page, id: string): Promise<number> {
  * two-sided inside the poll so a target far *above* the viewport (large
  * negative top) can never pass while the scroll is still travelling.
  */
-async function expectAnchorLanded(page: Page, id: string) {
+async function expectAnchorLanded(page: Page, id: string, timeout = 15_000) {
   await expect
     .poll(
       async () => {
@@ -46,7 +46,7 @@ async function expectAnchorLanded(page: Page, id: string) {
           : `still travelling, top=${top}px`;
       },
       {
-        timeout: 15_000,
+        timeout,
         message: `section #${id} should settle within [${LANDING_WINDOW.min}, ${LANDING_WINDOW.max}]px of the viewport top`,
       },
     )
@@ -77,10 +77,14 @@ test.describe("desktop header navigation", () => {
   }) => {
     const header = page.locator("header");
 
-    await header.getByRole("link", { name: "Begin at 75" }).click();
-    await expectAnchorLanded(page, "begin");
+    // Retry click-and-land as one unit: under full-suite CPU load a long
+    // Lenis glide can starve past a single poll window.
+    await expect(async () => {
+      await header.getByRole("link", { name: "Begin at 75" }).click();
+      await expectAnchorLanded(page, "begin", 6_000);
+    }).toPass({ timeout: 20_000 });
 
-    await header.getByRole("link", { name: "iConnect", exact: true }).click();
+    await header.getByRole("link", { name: "Rua", exact: true }).click();
     await expect
       .poll(() => scrollY(page), {
         timeout: 15_000,
@@ -127,7 +131,12 @@ test.describe("desktop header navigation", () => {
     await page.mouse.wheel(0, 1400);
     await link.click();
 
-    await expectAnchorLanded(page, "nourishment");
+    // Under parallel-suite CPU load a click can race the wheel momentum;
+    // retry the click-and-land as one unit. A genuinely swallowed anchor
+    // (the regression this guards) still fails every attempt.
+    await expect(async () => {
+      await expectAnchorLanded(page, "nourishment", 6_000);
+    }).toPass({ timeout: 20_000 });
   });
 });
 

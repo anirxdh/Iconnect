@@ -18,7 +18,7 @@ const CHAPTER_HEADLINES = [
  * (the Nav wordmark lives in a <header>, the Marquee is not fixed).
  */
 function preloaderOverlay(page: Page) {
-  return page.locator('div[aria-hidden="true"].fixed', { hasText: "iConnect" });
+  return page.locator('div[aria-hidden="true"].fixed', { hasText: "Rua" });
 }
 
 /** documentElement scroll lock state (set/cleared by the preloader). */
@@ -69,7 +69,7 @@ test.describe("Hero preloader", () => {
 
     // The curtain is up: wordmark and the climbing three-digit counter.
     await expect(overlay).toBeVisible();
-    await expect(overlay.getByText("iConnect", { exact: true })).toBeVisible();
+    await expect(overlay.getByText("Rua", { exact: true })).toBeVisible();
     const counter = overlay.locator(".tabular-nums");
     await expect(counter).toBeVisible();
     await expect(counter).toHaveText(/^\d{3}$/);

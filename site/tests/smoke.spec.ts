@@ -11,12 +11,12 @@ import { BUDGET, gotoHome, walkThePage } from "./utils";
  * load are enforced automatically by the errors fixture.
  */
 
-const HOME_TITLE = "iConnect: A circle of care for life after 75";
+const HOME_TITLE = "Rua: A circle of care for life after 75";
 
 const LEGAL_ROUTES = [
-  { path: "/privacy", title: "Privacy Notice · iConnect" },
-  { path: "/terms", title: "Terms of Service · iConnect" },
-  { path: "/accessibility", title: "Accessibility · iConnect" },
+  { path: "/privacy", title: "Privacy Notice · Rua" },
+  { path: "/terms", title: "Terms of Service · Rua" },
+  { path: "/accessibility", title: "Accessibility · Rua" },
 ] as const;
 
 test.describe("every route responds with its exact title", () => {
