@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { trackEvent } from "@/lib/track";
 
 /**
  * Shared frame for the legal & policy pages. Same editorial voice as the
@@ -50,11 +53,19 @@ export default function LegalShell({
         <div className="mt-20 border-t border-ink/10 pt-8">
           <p className="text-[0.85rem] leading-relaxed text-ink/70">
             Questions about this document? Write to{" "}
-            <a href="mailto:ishanagu0601@gmail.com" className="underline decoration-ink/30 underline-offset-4 hover:decoration-ink">
+            <a
+              href="mailto:ishanagu0601@gmail.com"
+              className="underline decoration-ink/30 underline-offset-4 hover:decoration-ink"
+              onClick={() => trackEvent("contact", { channel: "email", source: "legal" })}
+            >
               ishanagu0601@gmail.com
             </a>{" "}
             or call{" "}
-            <a href="tel:+17632331350" className="underline decoration-ink/30 underline-offset-4 hover:decoration-ink">
+            <a
+              href="tel:+17632331350"
+              className="underline decoration-ink/30 underline-offset-4 hover:decoration-ink"
+              onClick={() => trackEvent("contact", { channel: "call", source: "legal" })}
+            >
               +1 (763) 233-1350
             </a>
             .

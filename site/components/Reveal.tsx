@@ -2,6 +2,7 @@
 
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "motion/react";
+import { trackEvent } from "@/lib/track";
 
 export const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -91,7 +92,7 @@ export function WordsReveal({
             // must live OUTSIDE it — trailing spaces inside get trimmed.
             <span key={i}>
               {whisper ? (
-                <Whisper note={whisper.note} tone={whisper.tone}>
+                <Whisper note={whisper.note} tone={whisper.tone} id={word}>
                   {slot}
                 </Whisper>
               ) : (
@@ -140,16 +141,27 @@ export function InkReveal({
 export function Whisper({
   note,
   tone = "dark",
+  id,
   children,
 }: {
   note: string;
   tone?: "dark" | "light";
+  /** Coarse tracking label (the plain word). Falls back to a slice of the note. */
+  id?: string;
   children: ReactNode;
 }) {
+  const trackedRef = useRef(false);
   return (
     <span
       data-whisper
       className="relative inline-block border-b-2 border-dotted border-brass/55 pb-[0.05em]"
+      onMouseEnter={() => {
+        if (trackedRef.current) return;
+        const word = id ?? note?.slice(0, 24);
+        if (!word) return;
+        trackedRef.current = true;
+        trackEvent("whisper", { word: word.toLowerCase() });
+      }}
     >
       {children}
       {/* display:none while closed (zero layout footprint on any screen);

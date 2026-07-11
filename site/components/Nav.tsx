@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { EASE } from "./Reveal";
+import { trackEvent } from "@/lib/track";
 
 const LINKS = [
   { label: "The Vision", href: "#vision" },
@@ -73,6 +74,7 @@ export default function Nav() {
           <div className="flex items-center gap-6">
             <a
               href="#begin"
+              onClick={() => trackEvent("cta", { target: "begin-at-75", source: "nav" })}
               className={`hidden rounded-full border px-5 py-2 text-[0.78rem] tracking-[0.14em] uppercase transition-colors duration-500 md:block ${
                 scrolled
                   ? "border-ink/50 text-ink hover:bg-ink hover:text-bone"
@@ -85,7 +87,10 @@ export default function Nav() {
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
               aria-controls="mobile-menu"
-              onClick={() => setOpen(!open)}
+              onClick={() => {
+                if (!open) trackEvent("menu", { action: "open" });
+                setOpen(!open);
+              }}
               className="flex h-11 w-11 -m-0.5 flex-col items-center justify-center gap-[7px] lg:hidden"
             >
               <span
@@ -134,7 +139,10 @@ export default function Nav() {
         </ul>
         <motion.a
           href="#begin"
-          onClick={() => setOpen(false)}
+          onClick={() => {
+            trackEvent("cta", { target: "begin-at-75", source: "menu" });
+            setOpen(false);
+          }}
           className="voice-kicker mt-12 inline-block w-fit rounded-full border border-sage px-7 py-4 text-sage"
           initial={false}
           animate={open ? { opacity: 1 } : { opacity: 0 }}

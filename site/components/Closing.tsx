@@ -9,6 +9,7 @@ import {
   useTransform,
 } from "motion/react";
 import { Reveal, RuleReveal, WordsReveal } from "./Reveal";
+import { trackEvent } from "@/lib/track";
 
 const EXPLORE_LINKS = [
   { label: "The Vision", href: "#vision" },
@@ -84,12 +85,25 @@ export default function Closing() {
             <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
               <a
                 href="mailto:ishanagu0601@gmail.com"
+                onClick={() => {
+                  trackEvent("cta", {
+                    target: "begin-conversation",
+                    source: "closing",
+                  });
+                  trackEvent("contact", { channel: "email", source: "closing" });
+                }}
                 className="voice-kicker rounded-full bg-bone px-9 py-4 text-forest transition-colors duration-500 hover:bg-brass hover:text-forest"
               >
                 Begin the conversation
               </a>
               <a
                 href="#programs"
+                onClick={() =>
+                  trackEvent("cta", {
+                    target: "visit-a-house",
+                    source: "closing",
+                  })
+                }
                 className="voice-kicker rounded-full border border-bone/50 px-9 py-4 text-bone transition-colors duration-500 hover:border-bone hover:bg-bone/10"
               >
                 Visit a house
@@ -135,6 +149,12 @@ export default function Closing() {
                 <li>
                   <a
                     href="mailto:ishanagu0601@gmail.com"
+                    onClick={() =>
+                      trackEvent("contact", {
+                        channel: "email",
+                        source: "footer",
+                      })
+                    }
                     className="link-sweep inline-block py-1.5 -my-1.5"
                   >
                     ishanagu0601@gmail.com
@@ -143,6 +163,12 @@ export default function Closing() {
                 <li>
                   <a
                     href="tel:+17632331350"
+                    onClick={() =>
+                      trackEvent("contact", {
+                        channel: "call",
+                        source: "footer",
+                      })
+                    }
                     className="link-sweep inline-block py-1.5 -my-1.5"
                   >
                     +1 (763) 233-1350

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { EASE } from "./Reveal";
+import { trackEvent } from "@/lib/track";
 
 /**
  * The concierge. Deliberately not a chatbot: no scripts, no data intake,
@@ -63,6 +64,7 @@ export default function Concierge() {
               <li className="border-b border-bone/10">
                 <a
                   href="tel:+17632331350"
+                  onClick={() => trackEvent("contact", { channel: "call", source: "concierge" })}
                   className="group flex items-baseline justify-between px-7 py-5 transition-colors duration-300 hover:bg-pine"
                 >
                   <span>
@@ -75,6 +77,7 @@ export default function Concierge() {
               <li className="border-b border-bone/10">
                 <a
                   href="mailto:ishanagu0601@gmail.com"
+                  onClick={() => trackEvent("contact", { channel: "email", source: "concierge" })}
                   className="group flex items-baseline justify-between px-7 py-5 transition-colors duration-300 hover:bg-pine"
                 >
                   <span>
@@ -103,7 +106,10 @@ export default function Concierge() {
       <AnimatePresence>
         {visible && (
           <motion.button
-            onClick={() => setOpen(!open)}
+            onClick={() => {
+              if (!open) trackEvent("concierge", { action: "open" });
+              setOpen(!open);
+            }}
             aria-expanded={open}
             aria-label={open ? "Close concierge" : "Open concierge"}
             className="group flex h-14 items-center gap-3 rounded-full border border-bone/20 bg-forest pl-6 pr-5 text-bone shadow-xl shadow-ink/30 transition-colors duration-400 hover:border-brass/60"
