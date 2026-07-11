@@ -19,8 +19,8 @@ const EXPLORE_LINKS = [
 ];
 
 const FINE_PRINT_LINKS = [
-  { label: "Privacy Notice", href: "/privacy" },
-  { label: "Terms of Service", href: "/terms" },
+  { label: "Privacy", href: "/privacy" },
+  { label: "The Fine Print", href: "/terms" },
   { label: "Accessibility", href: "/accessibility" },
 ];
 
@@ -173,7 +173,7 @@ export default function Closing() {
           </div>
 
           <div className="mt-14 flex flex-col gap-2 border-t border-bone/10 pt-10 text-xs text-bone/60 sm:flex-row sm:justify-between">
-            <p>© 2026 Rua Care Systems</p>
+            <p>© 2026 Rua · A community taking root</p>
             <p>No cookies · No profiling · No exceptions</p>
             <p>Planted at seventy-five · Tended for life</p>
           </div>

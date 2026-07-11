@@ -81,8 +81,8 @@ test.describe("automated axe scans", () => {
   });
 
   for (const { path, h1 } of [
-    { path: "/privacy", h1: "Privacy Notice" },
-    { path: "/terms", h1: "Terms of Service" },
+    { path: "/privacy", h1: "Privacy" },
+    { path: "/terms", h1: "The Fine Print" },
     { path: "/accessibility", h1: "Accessibility" },
   ]) {
     test(`legal page ${path} has no critical or serious axe violations`, async ({ page }) => {

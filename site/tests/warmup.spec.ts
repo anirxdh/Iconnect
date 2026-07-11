@@ -52,14 +52,14 @@ test.describe("background asset warming", () => {
     // subsequent navigation must not need a fresh document request.
     const link = page
       .locator("footer")
-      .getByRole("link", { name: "Privacy Notice" });
+      .getByRole("link", { name: "Privacy", exact: true });
     await link.scrollIntoViewIfNeeded();
     await page.waitForTimeout(1_500); // prefetch window
 
     await link.click();
     await expect(page).toHaveURL("/privacy");
     await expect(
-      page.getByRole("heading", { level: 1, name: "Privacy Notice" }),
+      page.getByRole("heading", { level: 1, name: "Privacy" }),
     ).toBeVisible();
   });
 });

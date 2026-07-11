@@ -14,8 +14,8 @@ import { BUDGET, gotoHome, walkThePage } from "./utils";
 const HOME_TITLE = "Rua: A circle of care for life after 75";
 
 const LEGAL_ROUTES = [
-  { path: "/privacy", title: "Privacy Notice · Rua" },
-  { path: "/terms", title: "Terms of Service · Rua" },
+  { path: "/privacy", title: "Privacy · Rua" },
+  { path: "/terms", title: "The Fine Print · Rua" },
   { path: "/accessibility", title: "Accessibility · Rua" },
 ] as const;
 

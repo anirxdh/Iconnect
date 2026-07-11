@@ -10,12 +10,12 @@ import { BUDGET, gotoHome, expectNoHorizontalOverflow } from "./utils";
  */
 
 const LEGAL_PAGES = [
-  { path: "/privacy", title: "Privacy Notice" },
-  { path: "/terms", title: "Terms of Service" },
+  { path: "/privacy", title: "Privacy" },
+  { path: "/terms", title: "The Fine Print" },
   { path: "/accessibility", title: "Accessibility" },
 ] as const;
 
-const LAST_UPDATED = "Last updated: July 8, 2026";
+const LAST_UPDATED = /Last updated: July \d+, 2026/;
 
 /** The single <nav> on a legal page — the Privacy/Terms/Accessibility cross-nav. */
 function crossNav(page: Page) {
@@ -93,11 +93,11 @@ test.describe("legal page frames on desktop and mobile", () => {
     page,
   }) => {
     await page.goto("/privacy");
-    await expect(h1(page)).toHaveText("Privacy Notice");
+    await expect(h1(page)).toHaveText("Privacy");
 
     await crossNav(page).getByRole("link", { name: "Terms", exact: true }).click();
     await expect(page).toHaveURL("/terms");
-    await expect(h1(page)).toHaveText("Terms of Service");
+    await expect(h1(page)).toHaveText("The Fine Print");
 
     await crossNav(page)
       .getByRole("link", { name: "Accessibility", exact: true })
@@ -109,19 +109,17 @@ test.describe("legal page frames on desktop and mobile", () => {
       .getByRole("link", { name: "Privacy", exact: true })
       .click();
     await expect(page).toHaveURL("/privacy");
-    await expect(h1(page)).toHaveText("Privacy Notice");
+    await expect(h1(page)).toHaveText("Privacy");
   });
 });
 
 test.describe("terms of service copy", () => {
-  test("the medical disclaimer tells readers to always call 911", async ({
+  test("the fine print still tells readers to always call 911", async ({
     page,
   }) => {
     await page.goto("/terms");
     await expect(
-      page.getByText(
-        "Our devices alert responders automatically, but if you are able to call 911, always call 911.",
-      ),
+      page.getByText("In an emergency, always call 911.", { exact: false }),
     ).toBeVisible();
   });
 });
@@ -131,7 +129,7 @@ test.describe("round-trips between the garden and the fine print", () => {
     page,
   }) => {
     await page.goto("/privacy");
-    await expect(h1(page)).toHaveText("Privacy Notice");
+    await expect(h1(page)).toHaveText("Privacy");
 
     await page.getByRole("link", { name: "Return to the garden" }).click();
     await expect(page).toHaveURL("/");
@@ -140,7 +138,7 @@ test.describe("round-trips between the garden and the fine print", () => {
     await expect(page.locator("#top h1")).toContainText("Growing");
   });
 
-  test('the home footer "Privacy Notice" link lands on /privacy', async ({
+  test('the home footer "Privacy" link lands on /privacy', async ({
     page,
   }) => {
     await gotoHome(page);
@@ -151,11 +149,11 @@ test.describe("round-trips between the garden and the fine print", () => {
     );
     const link = page
       .locator("footer")
-      .getByRole("link", { name: "Privacy Notice" });
+      .getByRole("link", { name: "Privacy", exact: true });
     await link.click();
 
     await expect(page).toHaveURL("/privacy");
-    await expect(h1(page)).toHaveText("Privacy Notice");
+    await expect(h1(page)).toHaveText("Privacy");
   });
 
   test("browser history survives home → privacy → back → forward", async ({
@@ -172,7 +170,7 @@ test.describe("round-trips between the garden and the fine print", () => {
     await expect(page.locator("#top h1")).toBeAttached();
 
     await page.goto("/privacy");
-    await expect(h1(page)).toHaveText("Privacy Notice");
+    await expect(h1(page)).toHaveText("Privacy");
 
     await page.goBack();
     await expect(page).toHaveURL("/");
@@ -183,6 +181,6 @@ test.describe("round-trips between the garden and the fine print", () => {
     // slowly; poll the URL rather than racing a single navigation event.
     await page.goForward();
     await expect(page).toHaveURL("/privacy", { timeout: 15_000 });
-    await expect(h1(page)).toHaveText("Privacy Notice", { timeout: 15_000 });
+    await expect(h1(page)).toHaveText("Privacy", { timeout: 15_000 });
   });
 });

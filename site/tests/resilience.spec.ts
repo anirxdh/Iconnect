@@ -281,7 +281,7 @@ test.describe("Resilience — the chaos suite", () => {
 
     await page.goto("/privacy");
     await expect(
-      page.getByRole("heading", { name: "Privacy Notice" }),
+      page.getByRole("heading", { name: "Privacy", exact: true }),
     ).toBeVisible();
 
     await page.goBack();
@@ -290,7 +290,7 @@ test.describe("Resilience — the chaos suite", () => {
 
     await page.goForward();
     await expect(
-      page.getByRole("heading", { name: "Privacy Notice" }),
+      page.getByRole("heading", { name: "Privacy", exact: true }),
     ).toBeVisible();
 
     await page.goBack();

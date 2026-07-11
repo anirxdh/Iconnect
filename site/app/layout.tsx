@@ -49,9 +49,9 @@ export const metadata: Metadata = {
 const ORG_JSONLD = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Rua Care Systems",
+  name: "Rua",
   description:
-    "A care network for life after 75: one health record, a 24/7 wearable, trained caretakers, and houses full of programs, all connected to emergency services.",
+    "A community project reimagining care for life after seventy-five: one health record, a 24/7 wearable, trained caretakers, and houses full of programs.",
   email: "ishanagu0601@gmail.com",
   telephone: "+1-763-233-1350",
   address: {
