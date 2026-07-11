@@ -3,6 +3,7 @@ import { Fraunces, Instrument_Sans } from "next/font/google";
 import { preload } from "react-dom";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
+import AnalyticsKit from "@/components/AnalyticsKit";
 
 // display "block": the fonts are self-hosted and preloaded, so they arrive
 // within the block window — one clean paint, no fallback-then-swap flash
@@ -77,6 +78,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_JSONLD) }}
         />
         <SmoothScroll>{children}</SmoothScroll>
+        {process.env.VERCEL ? <AnalyticsKit /> : null}
       </body>
     </html>
   );

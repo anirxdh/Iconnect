@@ -64,9 +64,11 @@ export default function PrivacyPage() {
       <h3>This website</h3>
       <ul>
         <li>
-          <strong>Nothing.</strong> This site sets no cookies, runs no
-          analytics, and embeds no trackers. If you write or call us, we keep
-          the correspondence. That is all.
+          <strong>Almost nothing.</strong> This site sets no cookies and
+          builds no visitor profiles. We count visits anonymously (pages
+          viewed, country, device type) using cookieless measurement that
+          cannot identify you or follow you across the web. If you write or
+          call us, we keep the correspondence. That is all.
         </li>
       </ul>
 

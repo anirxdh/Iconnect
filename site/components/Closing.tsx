@@ -174,7 +174,7 @@ export default function Closing() {
 
           <div className="mt-14 flex flex-col gap-2 border-t border-bone/10 pt-10 text-xs text-bone/60 sm:flex-row sm:justify-between">
             <p>© 2026 Rua Care Systems</p>
-            <p>No cookies · No trackers · No exceptions</p>
+            <p>No cookies · No profiling · No exceptions</p>
             <p>Planted at seventy-five · Tended for life</p>
           </div>
         </div>
