@@ -92,7 +92,7 @@ test.describe("home document foundations", () => {
     await expect(ogImage).toHaveCount(1);
     const ogContent = await ogImage.getAttribute("content");
     expect(ogContent, "og:image content").toBeTruthy();
-    expect(ogContent).toContain("/scene/hero-garden.jpg");
+    expect(ogContent).toContain("/people/swing-tree.jpg");
 
     await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute(
       "content",

@@ -89,7 +89,7 @@ export default function Houses() {
           />
           <InkReveal
             text="Eight houses taking root, from our Bay Area home outward."
-            className="max-w-sm text-[0.95rem] leading-relaxed text-ink/70 md:col-span-4 md:justify-self-end md:pb-2"
+            className="max-w-sm text-[0.95rem] leading-relaxed text-ink/85 md:col-span-4 md:justify-self-end md:pb-2"
             delay={0.3}
           />
         </div>
@@ -129,16 +129,16 @@ export default function Houses() {
                       className={`voice-kicker text-[0.6rem] ${
                         h.status === "Headquarters"
                           ? "text-brass-deep"
-                          : "text-ink/70"
+                          : "text-ink/85"
                       }`}
                     >
                       {h.status}
                     </span>
                   </div>
-                  <p className="mt-1 text-[0.82rem] tracking-[0.06em] text-ink/70">
+                  <p className="mt-1 text-[0.82rem] tracking-[0.06em] text-ink/85">
                     {h.state}
                   </p>
-                  <p className="mt-3 text-[0.9rem] leading-relaxed text-ink/70">
+                  <p className="mt-3 text-[0.9rem] leading-relaxed text-ink/85">
                     {h.note}
                   </p>
                 </Reveal>

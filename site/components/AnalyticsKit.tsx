@@ -9,6 +9,7 @@ const SECTIONS = [
   "top",
   "vision",
   "circle",
+  "companion",
   "programs",
   "nourishment",
   "gallery",

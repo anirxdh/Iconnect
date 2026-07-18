@@ -45,7 +45,9 @@ export async function jumpToSection(page: Page, id: string, offset = 0) {
       const el = document.getElementById(id);
       if (!el) throw new Error(`no section #${id}`);
       const top = el.getBoundingClientRect().top + window.scrollY + offset;
-      window.scrollTo(0, top);
+      // behavior:"instant" bypasses the touch-device CSS smooth scrolling —
+      // helpers must land deterministically, not animate.
+      window.scrollTo({ top, behavior: "instant" });
     },
     { id, offset },
   );
@@ -83,7 +85,7 @@ export async function walkThePage(
   });
   const sequence = backUp ? [...stops, ...[...stops].reverse()] : stops;
   for (const y of sequence) {
-    await page.evaluate((v) => window.scrollTo(0, v), y);
+    await page.evaluate((v) => window.scrollTo({ top: v, behavior: "instant" }), y);
     await page.waitForTimeout(stepDelay);
     await expectNoHorizontalOverflow(page);
   }

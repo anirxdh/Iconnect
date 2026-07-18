@@ -52,7 +52,7 @@ function TierCard({ tier, delay }: { tier: Tier; delay: number }) {
           {tier.title}
         </h3>
 
-        <p className="mt-3 font-display italic leading-relaxed text-ink/70">
+        <p className="mt-3 font-display italic leading-relaxed text-ink/85">
           {tier.line}
         </p>
 
@@ -62,7 +62,7 @@ function TierCard({ tier, delay }: { tier: Tier; delay: number }) {
           {tier.points.map((point) => (
             <li
               key={point}
-              className="flex items-start gap-3 text-[0.92rem] leading-relaxed text-ink/70"
+              className="flex items-start gap-3 text-[0.92rem] leading-relaxed text-ink/85"
             >
               <span aria-hidden className="mt-[0.3em] text-[0.65rem] text-moss">
                 ✦
@@ -130,7 +130,7 @@ export default function AccessTiers() {
             ✦
           </motion.span>
           <Reveal y={20} delay={0.15}>
-            <p className="voice-kicker text-center leading-loose text-ink/70">
+            <p className="voice-kicker text-center leading-loose text-ink/85">
               Rua activates at seventy-five. The circle is waiting.
             </p>
           </Reveal>

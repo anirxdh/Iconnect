@@ -142,7 +142,7 @@ function AccordionGroup({
                   >
                     ✦
                   </span>
-                  <span className="text-[0.95rem] leading-relaxed text-ink/70">
+                  <span className="text-[0.95rem] leading-relaxed text-ink/85">
                     {item}
                   </span>
                 </li>
@@ -184,7 +184,7 @@ export default function Toolkit() {
               curtainClass="bg-bone"
             />
             <Reveal delay={0.4} y={16}>
-              <p className="voice-kicker mt-6 text-ink/70">
+              <p className="voice-kicker mt-6 text-ink/85">
                 Everything in its place
               </p>
             </Reveal>
@@ -208,7 +208,7 @@ export default function Toolkit() {
             </Reveal>
 
             <Reveal delay={0.2} y={16}>
-              <p className="mt-10 max-w-md text-sm leading-relaxed text-ink/70">
+              <p className="mt-10 max-w-md text-sm leading-relaxed text-ink/85">
                 Every list in one place, kept current by the software. A well-tended cabinet opens one drawer at a
                 time.
               </p>

@@ -34,10 +34,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/scene/hero-garden.jpg",
-        width: 3840,
-        height: 2559,
-        alt: "Morning light through old park trees",
+        url: "/people/swing-tree.jpg",
+        width: 1084,
+        height: 1362,
+        alt: "An elderly man pushing his wife on a swing beneath an old tree",
       },
     ],
   },
@@ -69,7 +69,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   // The hero scene is fetched from JS (canvas), invisible to the preload
   // scanner — hint it so LCP doesn't wait for hydration.
-  preload("/scene/hero-garden.jpg", { as: "image", fetchPriority: "high" });
+  preload("/people/swing-tree.jpg", { as: "image", fetchPriority: "high" });
   return (
     <html lang="en" className={`${fraunces.variable} ${instrument.variable}`}>
       <body className="grain">

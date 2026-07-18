@@ -28,7 +28,7 @@ export default function LegalShell({
           </Link>
           <Link
             href="/"
-            className="link-sweep text-[0.78rem] tracking-[0.14em] uppercase text-ink/70"
+            className="link-sweep text-[0.78rem] tracking-[0.14em] uppercase text-ink/85"
           >
             Return to the garden
           </Link>
@@ -40,7 +40,7 @@ export default function LegalShell({
         <h1 className="voice-upright mt-6 text-[clamp(2.4rem,6vw,4.5rem)]">
           {title}
         </h1>
-        <p className="mt-5 text-[0.85rem] tracking-[0.08em] text-ink/70">
+        <p className="mt-5 text-[0.85rem] tracking-[0.08em] text-ink/85">
           Last updated: {updated}
         </p>
 
@@ -51,7 +51,7 @@ export default function LegalShell({
         </article>
 
         <div className="mt-20 border-t border-ink/10 pt-8">
-          <p className="text-[0.85rem] leading-relaxed text-ink/70">
+          <p className="text-[0.85rem] leading-relaxed text-ink/85">
             Questions about this document? Write to{" "}
             <a
               href="mailto:ishanagu0601@gmail.com"
@@ -70,7 +70,7 @@ export default function LegalShell({
             </a>
             .
           </p>
-          <nav className="mt-6 flex flex-wrap gap-x-8 gap-y-2 text-[0.8rem] tracking-[0.1em] uppercase text-ink/70">
+          <nav className="mt-6 flex flex-wrap gap-x-8 gap-y-2 text-[0.8rem] tracking-[0.1em] uppercase text-ink/85">
             <Link className="link-sweep" href="/privacy">Privacy</Link>
             <Link className="link-sweep" href="/terms">Terms</Link>
             <Link className="link-sweep" href="/accessibility">Accessibility</Link>

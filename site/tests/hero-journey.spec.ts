@@ -183,23 +183,71 @@ test.describe("Hero headline", () => {
 });
 
 test.describe("Hero scene", () => {
-  test("the garden fills the hero and the source is genuinely high-res", async ({
+  test("the photograph presents at or below native size — never soft", async ({
     page,
   }) => {
     await gotoHome(page);
-    const scene = page.locator('#top img[src*="hero-garden"]');
+    const scene = page.locator('#top img[src*="swing-tree"]');
     await expect(scene).toBeVisible();
-    const { natural, w, h } = await scene.evaluate((el) => {
+    const { rendered, natural } = await scene.evaluate((el) => {
       const img = el as HTMLImageElement;
-      const r = img.getBoundingClientRect();
-      return { natural: img.naturalWidth, w: r.width, h: r.height };
+      return { rendered: img.clientWidth, natural: img.naturalWidth };
     });
-    const viewport = page.viewportSize()!;
-    // Full-bleed cover…
-    expect(w).toBeGreaterThanOrEqual(viewport.width * 0.98);
-    expect(h).toBeGreaterThanOrEqual(viewport.height * 0.9);
-    // …and never soft: the source carries more pixels than any screen here.
-    expect(natural, "high-res source").toBeGreaterThanOrEqual(3000);
+    expect(natural, "image decoded").toBeGreaterThan(0);
+    expect(rendered, "never upscaled beyond the source").toBeLessThanOrEqual(
+      natural * 1.05,
+    );
+  });
+});
+
+test.describe("The Companion — pinned phone", () => {
+  test("scrolling the section turns the screens", async ({ page }) => {
+    test.skip(
+      test.info().project.name === "chromium-reduced",
+      "reduced motion shows the three-up static layout instead",
+    );
+    await gotoHome(page);
+    await jumpToSection(page, "companion");
+    const section = page.locator("#companion");
+    await expect(section.getByText("Good morning,")).toBeAttached();
+    // Deep-scrolling the tall outer reveals the circle screen.
+    await page.evaluate(() => {
+      const el = document.getElementById("companion")!;
+      const top = el.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo(0, top + el.scrollHeight * 0.8);
+    });
+    await expect
+      .poll(
+        () =>
+          page.evaluate(() => {
+            const el = Array.from(
+              document.querySelectorAll("#companion p"),
+            ).find((n) => n.textContent?.includes("Maya is on"));
+            if (!el) return 0;
+            let node: HTMLElement | null = el as HTMLElement;
+            let opacity = 1;
+            while (node && node.id !== "companion") {
+              opacity *= parseFloat(getComputedStyle(node).opacity || "1");
+              node = node.parentElement;
+            }
+            return opacity;
+          }),
+        { timeout: 10_000 },
+      )
+      .toBeGreaterThan(0.85);
+  });
+
+  test("reduced motion gets all three screens, still", async ({ page }) => {
+    test.skip(
+      test.info().project.name !== "chromium-reduced",
+      "static three-up is the reduced-motion layout",
+    );
+    await gotoHome(page);
+    await jumpToSection(page, "companion");
+    const section = page.locator("#companion");
+    await expect(section.getByText("Good morning,")).toBeVisible();
+    await expect(section.getByText("All taken,")).toBeVisible();
+    await expect(section.getByText("Maya is on")).toBeVisible();
   });
 });
 

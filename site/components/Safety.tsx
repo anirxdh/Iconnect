@@ -277,7 +277,7 @@ export default function Safety() {
             <Reveal key={row.k} delay={i * 0.12}>
               <div className="border-t border-bone/15 pt-5">
                 <p className="voice-kicker text-sage">{row.k}</p>
-                <p className="mt-3 text-[0.95rem] leading-relaxed text-bone/60">
+                <p className="mt-3 text-[0.95rem] leading-relaxed text-bone/85">
                   {row.v}
                 </p>
               </div>

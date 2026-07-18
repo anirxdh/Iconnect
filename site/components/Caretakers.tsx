@@ -63,7 +63,7 @@ export default function Caretakers() {
             </span>
           </h2>
           <InkReveal
-            className="max-w-md leading-relaxed text-bone/70 md:col-span-4 md:pb-3"
+            className="max-w-md leading-relaxed text-bone/85 md:col-span-4 md:pb-3"
             delay={0.4}
             text="The soul of this network is not the software. It is the people who arrive at the door, and stay."
           />
@@ -145,11 +145,11 @@ export default function Caretakers() {
         {/* ——— Who arrives at the door ——— */}
         <div className="mt-24 grid gap-12 md:mt-36 md:grid-cols-12 md:gap-8">
           <InkReveal
-            className="leading-relaxed text-bone/70 md:col-span-4 md:col-start-2"
+            className="leading-relaxed text-bone/85 md:col-span-4 md:col-start-2"
             text="Geriatricians and gerontological nurses. People who chose older adults as their life's work."
           />
           <InkReveal
-            className="leading-relaxed text-bone/70 md:col-span-4 md:col-start-7 md:mt-20"
+            className="leading-relaxed text-bone/85 md:col-span-4 md:col-start-7 md:mt-20"
             delay={0.15}
             text="Trained through Rua in first aid, cardiac life support, and wound care. Ten to fifteen patients each. Never more."
           />

@@ -61,6 +61,8 @@ export default function Nourishment() {
               loading="lazy"
               decoding="async"
               className="aspect-[5/7] w-full rounded-sm object-cover"
+            width={576}
+              height={744}
             />
           </Reveal>
 
@@ -79,7 +81,7 @@ export default function Nourishment() {
             </h2>
             <InkReveal
               text="Every allergy remembered. Every farmer known by name."
-              className="mt-6 max-w-[36ch] text-[0.98rem] leading-relaxed text-bone/75"
+              className="mt-6 max-w-[36ch] text-[0.98rem] leading-relaxed text-bone/85"
               delay={0.25}
             />
           </div>
@@ -99,7 +101,7 @@ export default function Nourishment() {
                 />
               </div>
               <p className="voice-kicker mt-4 text-sage">{p.label}</p>
-              <p className="mt-2 text-[0.9rem] leading-relaxed text-bone/70">
+              <p className="mt-2 text-[0.9rem] leading-relaxed text-bone/85">
                 {p.line}
               </p>
             </Reveal>

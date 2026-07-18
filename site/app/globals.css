@@ -1,19 +1,27 @@
 @import "tailwindcss";
 
 @theme {
-  /* ————— Rua · “The Tended Garden” palette ————— */
-  --color-bone: #efeae0; /* warm parchment — primary light bg */
-  --color-mist: #f5f2ea; /* lifted light for cards */
-  --color-parchment: #e5ddcc; /* deeper warm neutral */
-  --color-forest: #0f1b12; /* near-black green — primary dark bg */
-  --color-pine: #1b2c1f; /* dark section alternate */
-  --color-moss: #3e5c41; /* brand green */
-  --color-fern: #5c7a54; /* mid green */
-  --color-sage: #93a385; /* soft green for muted text on dark */
-  --color-brass: #b98a45; /* apothecary amber accent (dark grounds) */
-  --color-brass-deep: #7d5c1f; /* amber tuned for light grounds — ≥5:1 on bone */
-  --color-clay: #a4674a; /* papaya/terracotta accent */
-  --color-ink: #171c15; /* text on light */
+  /* ————— Rua · brand palette (client swatches, priority order) —————
+     P  pearl    #c9c5be — primary ground (token: bone)
+     1  espresso #5c5152 — dark sections (tokens: pine, forest=deepened shade)
+     2  oxblood  #641619 — the accent (tokens: moss on light, brass-deep)
+     3  stone    #bbaf9f — warm greige panels (token: parchment)
+     4  cream    #efe9da — soft light surfaces (token: cream, mist=lifted)
+     Token NAMES kept from the garden era so every component reskins from
+     this single block; the VALUES are the new brand. */
+  --color-bone: #c9c5be; /* P — pearl, the primary ground */
+  --color-mist: #d8d4cd; /* lifted pearl for cards */
+  --color-parchment: #bbaf9f; /* 3 — stone greige */
+  --color-cream: #efe9da; /* 4 — cream */
+  --color-forest: #453c3d; /* deepened espresso — primary dark ground */
+  --color-pine: #5c5152; /* 1 — espresso */
+  --color-moss: #641619; /* 2 — oxblood, accent on light grounds */
+  --color-fern: #8a7b7c; /* mid taupe */
+  --color-sage: #cfc8bd; /* warm silver — muted text on dark */
+  --color-brass: #cf8f92; /* rose oxblood — accent on dark grounds, ≥3:1 large text */
+  --color-brass-deep: #641619; /* oxblood on light — ≥8:1 on pearl */
+  --color-clay: #8e4a44; /* terracotta support */
+  --color-ink: #362f30; /* espresso ink — text on light */
 
   --font-display: var(--font-fraunces);
   --font-sans: var(--font-instrument);
@@ -56,6 +64,14 @@
 html {
   scrollbar-width: thin;
   scrollbar-color: var(--color-moss) var(--color-forest);
+}
+
+/* Native smooth anchors on touch — recomputes targets mid-scroll, unlike
+   a JS tween. Motion-sensitive users keep instant jumps. */
+@media (pointer: coarse) and (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 html.lenis,

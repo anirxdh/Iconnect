@@ -65,7 +65,7 @@ export default function Programs() {
                     <h3 className="voice-upright text-[clamp(1.02rem,1.4vw,1.35rem)] leading-snug text-bone">
                       {program.name}
                     </h3>
-                    <p className="mt-1 hidden text-[0.78rem] leading-relaxed text-bone/75 md:block">
+                    <p className="mt-1 hidden text-[0.78rem] leading-relaxed text-bone/85 md:block">
                       {program.description}
                     </p>
                   </div>
@@ -87,18 +87,18 @@ export default function Programs() {
             />
             <div className="mt-8 grid gap-8 md:mt-10 md:grid-cols-2 md:gap-12">
               <div className="border-t border-moss/25 pt-5">
-                <p className="voice-kicker text-ink/70">Dementia care</p>
+                <p className="voice-kicker text-ink/85">Dementia care</p>
                 <InkReveal
                   text="Dementia-friendly activities. Gentle, familiar, and unhurried."
-                  className="mt-3 max-w-md text-[0.95rem] leading-relaxed text-ink/70"
+                  className="mt-3 max-w-md text-[0.95rem] leading-relaxed text-ink/85"
                   delay={0.15}
                 />
               </div>
               <div className="border-t border-moss/25 pt-5">
-                <p className="voice-kicker text-ink/70">For caregivers</p>
+                <p className="voice-kicker text-ink/85">For caregivers</p>
                 <InkReveal
                   text="Standing support for families carrying Alzheimer's."
-                  className="mt-3 max-w-md text-[0.95rem] leading-relaxed text-ink/70"
+                  className="mt-3 max-w-md text-[0.95rem] leading-relaxed text-ink/85"
                   delay={0.25}
                 />
               </div>

@@ -6,6 +6,10 @@ import Lenis from "lenis";
 export default function SmoothScroll({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // Touch devices scroll natively; Lenis only adds anchor animations that
+    // compute their target once and land short when layout settles mid-
+    // flight. CSS scroll-behavior handles anchors there instead.
+    if (window.matchMedia("(pointer: coarse)").matches) return;
 
     const lenis = new Lenis({
       duration: 1.15,

@@ -6,6 +6,7 @@ import Hero from "@/components/Hero";
 import Manifesto from "@/components/Manifesto";
 import Journey from "@/components/Journey";
 import Caretakers from "@/components/Caretakers";
+import PhoneShowcase from "@/components/PhoneShowcase";
 import Programs from "@/components/Programs";
 import Nourishment from "@/components/Nourishment";
 import Gallery from "@/components/Gallery";
@@ -26,6 +27,7 @@ export default function Home() {
       <Hero />
       <Manifesto />
       <Journey />
+      <PhoneShowcase />
       <Caretakers />
       <Programs />
       <Nourishment />

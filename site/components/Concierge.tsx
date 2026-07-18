@@ -54,7 +54,7 @@ export default function Concierge() {
               <p className="voice-display mt-3 text-[1.55rem] leading-snug">
                 A person, not a program.
               </p>
-              <p className="mt-3 text-[0.88rem] leading-relaxed text-bone/65">
+              <p className="mt-3 text-[0.88rem] leading-relaxed text-bone/85">
                 A human answers, usually within the hour and always
                 within the day.
               </p>
@@ -71,7 +71,7 @@ export default function Concierge() {
                     <span className="voice-kicker block text-[0.6rem] text-sage">Call</span>
                     <span className="mt-1 block text-[1.02rem]">+1 (763) 233-1350</span>
                   </span>
-                  <span aria-hidden className="text-bone/60 transition-transform duration-300 group-hover:translate-x-1">→</span>
+                  <span aria-hidden className="text-bone/85 transition-transform duration-300 group-hover:translate-x-1">→</span>
                 </a>
               </li>
               <li className="border-b border-bone/10">
@@ -84,13 +84,13 @@ export default function Concierge() {
                     <span className="voice-kicker block text-[0.6rem] text-sage">Write</span>
                     <span className="mt-1 block text-[1.02rem]">ishanagu0601@gmail.com</span>
                   </span>
-                  <span aria-hidden className="text-bone/60 transition-transform duration-300 group-hover:translate-x-1">→</span>
+                  <span aria-hidden className="text-bone/85 transition-transform duration-300 group-hover:translate-x-1">→</span>
                 </a>
               </li>
               <li>
                 <div className="px-7 py-5">
                   <span className="voice-kicker block text-[0.6rem] text-sage">Visit</span>
-                  <span className="mt-1 block text-[0.95rem] text-bone/80">
+                  <span className="mt-1 block text-[0.95rem] text-bone/85">
                     One Garden Way, San Francisco CA
                   </span>
                   <span className="mt-1 block text-[0.82rem] text-bone/50">

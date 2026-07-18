@@ -24,6 +24,20 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Veil links: navigating while the veil turns inert makes WebKit drop
+  // focus mid-gesture and cancel the smooth scroll. Close first, then
+  // scroll once the veil has let go.
+  const veilNavigate = (hash: string) => (e: React.MouseEvent) => {
+    e.preventDefault();
+    setOpen(false);
+    requestAnimationFrame(() =>
+      requestAnimationFrame(() => {
+        document.querySelector(hash)?.scrollIntoView({ behavior: "smooth" });
+        history.replaceState(null, "", hash);
+      }),
+    );
+  };
+
   return (
     <>
       <motion.header
@@ -126,7 +140,7 @@ export default function Nav() {
             <li key={l.href} className="overflow-hidden">
               <motion.a
                 href={l.href}
-                onClick={() => setOpen(false)}
+                onClick={veilNavigate(l.href)}
                 className="voice-display block text-[clamp(2.4rem,9vw,4rem)] text-bone"
                 initial={false}
                 animate={open ? { y: 0, opacity: 1 } : { y: 60, opacity: 0 }}
@@ -139,9 +153,9 @@ export default function Nav() {
         </ul>
         <motion.a
           href="#begin"
-          onClick={() => {
+          onClick={(e) => {
             trackEvent("cta", { target: "begin-at-75", source: "menu" });
-            setOpen(false);
+            veilNavigate("#begin")(e);
           }}
           className="voice-kicker mt-12 inline-block w-fit rounded-full border border-sage px-7 py-4 text-sage"
           initial={false}

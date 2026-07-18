@@ -132,7 +132,9 @@ export default function Journey() {
                   alt={chapter.alt}
                   loading="lazy"
                   decoding="async"
-                  className="w-full rounded-sm"
+                  // aspect reserves the box before the lazy file arrives, so
+                  // anchor scrolls above never land short of their target
+                  className="aspect-[4/5] w-full rounded-sm object-cover"
                 />
               </Reveal>
               <Reveal y={14} duration={0.8}>
@@ -145,7 +147,7 @@ export default function Journey() {
                 delay={0.12}
               />
               <Reveal delay={0.3} y={14}>
-                <p className="mt-5 max-w-[40ch] text-[0.98rem] leading-relaxed text-bone/80">
+                <p className="mt-5 max-w-[40ch] text-[0.98rem] leading-relaxed text-bone/85">
                   {chapter.copy}
                 </p>
               </Reveal>

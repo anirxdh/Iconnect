@@ -133,7 +133,7 @@ export default function Closing() {
                   <li key={link.href}>
                     <a
                       href={link.href}
-                      className="link-sweep inline-block py-1.5 -my-1.5 text-sm text-bone/70"
+                      className="link-sweep inline-block py-1.5 -my-1.5 text-sm text-bone/85"
                     >
                       {link.label}
                     </a>
@@ -145,7 +145,7 @@ export default function Closing() {
             {/* Reach us */}
             <div>
               <p className="voice-kicker text-sage">Reach us</p>
-              <ul className="mt-6 space-y-3 text-sm text-bone/70">
+              <ul className="mt-6 space-y-3 text-sm text-bone/85">
                 <li>
                   <a
                     href="mailto:ishanagu0601@gmail.com"
@@ -188,7 +188,7 @@ export default function Closing() {
                         nears the viewport — navigation lands instantly */}
                     <Link
                       href={link.href}
-                      className="link-sweep inline-block py-1.5 -my-1.5 text-sm text-bone/70"
+                      className="link-sweep inline-block py-1.5 -my-1.5 text-sm text-bone/85"
                     >
                       {link.label}
                     </Link>
@@ -198,7 +198,7 @@ export default function Closing() {
             </div>
           </div>
 
-          <div className="mt-14 flex flex-col gap-2 border-t border-bone/10 pt-10 text-xs text-bone/60 sm:flex-row sm:justify-between">
+          <div className="mt-14 flex flex-col gap-2 border-t border-bone/10 pt-10 text-xs text-bone/85 sm:flex-row sm:justify-between">
             <p>© 2026 Rua · A community taking root</p>
             <p>No cookies · No profiling · No exceptions</p>
             <p>Planted at seventy-five · Tended for life</p>
