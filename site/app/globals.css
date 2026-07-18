@@ -25,6 +25,7 @@
 
   --font-display: var(--font-fraunces);
   --font-sans: var(--font-instrument);
+  --font-hand: var(--font-caveat);
 
   --ease-garden: cubic-bezier(0.22, 1, 0.36, 1);
 

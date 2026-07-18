@@ -200,54 +200,49 @@ test.describe("Hero scene", () => {
   });
 });
 
-test.describe("The Companion — pinned phone", () => {
-  test("scrolling the section turns the screens", async ({ page }) => {
-    test.skip(
-      test.info().project.name === "chromium-reduced",
-      "reduced motion shows the three-up static layout instead",
-    );
-    await gotoHome(page);
-    await jumpToSection(page, "companion");
-    const section = page.locator("#companion");
-    await expect(section.getByText("Good morning,")).toBeAttached();
-    // Deep-scrolling the tall outer reveals the circle screen.
-    await page.evaluate(() => {
-      const el = document.getElementById("companion")!;
-      const top = el.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo(0, top + el.scrollHeight * 0.8);
-    });
-    await expect
-      .poll(
-        () =>
-          page.evaluate(() => {
-            const el = Array.from(
-              document.querySelectorAll("#companion p"),
-            ).find((n) => n.textContent?.includes("Maya is on"));
-            if (!el) return 0;
-            let node: HTMLElement | null = el as HTMLElement;
-            let opacity = 1;
-            while (node && node.id !== "companion") {
-              opacity *= parseFloat(getComputedStyle(node).opacity || "1");
-              node = node.parentElement;
-            }
-            return opacity;
-          }),
-        { timeout: 10_000 },
-      )
-      .toBeGreaterThan(0.85);
-  });
-
-  test("reduced motion gets all three screens, still", async ({ page }) => {
-    test.skip(
-      test.info().project.name !== "chromium-reduced",
-      "static three-up is the reduced-motion layout",
-    );
+test.describe("The Companion — the trio", () => {
+  test("all three finished screens share one view", async ({ page }) => {
     await gotoHome(page);
     await jumpToSection(page, "companion");
     const section = page.locator("#companion");
     await expect(section.getByText("Good morning,")).toBeVisible();
     await expect(section.getByText("All taken,")).toBeVisible();
     await expect(section.getByText("Maya is on")).toBeVisible();
+    await expect(section.getByText("the app we are growing")).toBeVisible();
+  });
+
+  test("the section flows — nothing inside it pins to the viewport", async ({
+    page,
+  }) => {
+    await gotoHome(page);
+    const stickyCount = await page.evaluate(() =>
+      Array.from(document.querySelectorAll("#companion *")).filter(
+        (el) => getComputedStyle(el).position === "sticky",
+      ).length,
+    );
+    expect(stickyCount, "no scroll-pinned elements").toBe(0);
+  });
+
+  test("phones get a snap carousel; desktop shows all three at once", async ({
+    page,
+  }) => {
+    await gotoHome(page);
+    await jumpToSection(page, "companion");
+    const isMobile = ["mobile-webkit"].includes(test.info().project.name);
+    const { scrollable, snap } = await page.evaluate(() => {
+      const el = document.querySelector("#companion [data-carousel]")!;
+      const cs = getComputedStyle(el);
+      return {
+        scrollable: el.scrollWidth > el.clientWidth + 10,
+        snap: cs.scrollSnapType.includes("x"),
+      };
+    });
+    if (isMobile) {
+      expect(scrollable, "carousel scrolls horizontally on phones").toBe(true);
+      expect(snap, "carousel snaps").toBe(true);
+    } else {
+      expect(scrollable, "no horizontal scrolling on wide screens").toBe(false);
+    }
   });
 });
 

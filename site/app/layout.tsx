@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Instrument_Sans } from "next/font/google";
+import { Caveat, Fraunces, Instrument_Sans } from "next/font/google";
 import { preload } from "react-dom";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
@@ -19,6 +19,13 @@ const fraunces = Fraunces({
 const instrument = Instrument_Sans({
   subsets: ["latin"],
   variable: "--font-instrument",
+  display: "block",
+});
+
+// The sketch voice for the Companion section's Excalidraw-style prototype.
+const caveat = Caveat({
+  subsets: ["latin"],
+  variable: "--font-caveat",
   display: "block",
 });
 
@@ -71,7 +78,7 @@ export default function RootLayout({
   // scanner — hint it so LCP doesn't wait for hydration.
   preload("/people/swing-tree.jpg", { as: "image", fetchPriority: "high" });
   return (
-    <html lang="en" className={`${fraunces.variable} ${instrument.variable}`}>
+    <html lang="en" className={`${fraunces.variable} ${instrument.variable} ${caveat.variable}`}>
       <body className="grain">
         <script
           type="application/ld+json"
