@@ -34,31 +34,57 @@ const SCREENS = [
   },
 ] as const;
 
+function CircleChips({ active }: { active: string }) {
+  return (
+    <div className="flex items-center gap-1.5">
+      {["EA", "RA", "RM"].map((who) => (
+        <span
+          key={who}
+          className={`flex h-6 w-6 items-center justify-center rounded-full text-[0.5rem] font-semibold ${
+            who === active
+              ? "bg-[#141414] text-white"
+              : "border border-[#e5e2dc] text-[#6b6b6b]"
+          }`}
+        >
+          {who}
+        </span>
+      ))}
+    </div>
+  );
+}
+
 function MorningScreen() {
   return (
-    <div className="flex h-full flex-col bg-cream px-5 pt-10 pb-6">
-      <p className="voice-kicker text-[0.5rem] text-ink/85">Tuesday · July 14</p>
-      <p className="voice-upright mt-2 text-[1.35rem] leading-tight text-ink">
+    <div className="flex h-full flex-col bg-white px-5 pt-9 pb-5 font-sans">
+      <div className="flex items-center justify-between">
+        <p className="text-[0.56rem] font-semibold tracking-[0.18em] text-[#6b6b6b] uppercase">
+          Tuesday · July 14
+        </p>
+        <CircleChips active="EA" />
+      </div>
+      <p className="mt-2.5 text-[1.3rem] font-semibold leading-tight tracking-tight text-[#141414]">
         Good morning,
         <br />
         Eleanor.
       </p>
-      <div className="mt-5 space-y-2.5">
-        <div className="rounded-lg bg-bone p-3.5">
-          <p className="voice-kicker text-[0.48rem] text-brass-deep">8:00 · Garden walk</p>
-          <p className="mt-1 text-[0.72rem] text-ink/85">With Maya, around the pond</p>
-        </div>
-        <div className="rounded-lg bg-bone p-3.5">
-          <p className="voice-kicker text-[0.48rem] text-ink/85">11:30 · Dr. Osei</p>
-          <p className="mt-1 text-[0.72rem] text-ink/85">She already has your chart</p>
-        </div>
-        <div className="rounded-lg bg-bone p-3.5">
-          <p className="voice-kicker text-[0.48rem] text-ink/85">4:00 · Checkers club</p>
-          <p className="mt-1 text-[0.72rem] text-ink/85">Sam is bringing the board</p>
-        </div>
+      <div className="mt-4 divide-y divide-[#eeece7] border-y border-[#eeece7]">
+        {[
+          ["8:00", "Garden walk", "With Maya, around the pond"],
+          ["11:30", "Dr. Osei", "She already has your chart"],
+          ["4:00", "Checkers club", "Sam is bringing the board"],
+        ].map(([time, name, sub]) => (
+          <div key={name as string} className="flex items-baseline gap-3 py-3">
+            <p className="w-9 shrink-0 text-[0.68rem] font-semibold text-moss">{time}</p>
+            <div>
+              <p className="text-[0.78rem] font-semibold text-[#141414]">{name}</p>
+              <p className="mt-0.5 text-[0.68rem] text-[#6b6b6b]">{sub}</p>
+            </div>
+          </div>
+        ))}
       </div>
-      <div className="mt-auto rounded-lg bg-pine p-3.5">
-        <p className="text-[0.7rem] text-sage">The circle is watching over today.</p>
+      <div className="mt-auto flex items-center gap-2">
+        <span className="h-1.5 w-1.5 rounded-full bg-moss" />
+        <p className="text-[0.66rem] text-[#6b6b6b]">The circle is watching over today.</p>
       </div>
     </div>
   );
@@ -66,63 +92,88 @@ function MorningScreen() {
 
 function MedicationScreen() {
   return (
-    <div className="flex h-full flex-col bg-cream px-5 pt-10 pb-6">
-      <p className="voice-kicker text-[0.5rem] text-ink/85">Medication</p>
-      <p className="voice-upright mt-2 text-[1.35rem] leading-tight text-ink">
+    <div className="flex h-full flex-col bg-white px-5 pt-9 pb-5 font-sans">
+      <p className="text-[0.56rem] font-semibold tracking-[0.18em] text-[#6b6b6b] uppercase">
+        Medication
+      </p>
+      <p className="mt-2.5 text-[1.3rem] font-semibold leading-tight tracking-tight text-[#141414]">
         All taken,
         <br />
         on time.
       </p>
-      <div className="mt-6 flex items-center justify-center">
-        <div className="relative flex h-28 w-28 items-center justify-center rounded-full border-[6px] border-moss/90">
-          <span className="voice-upright text-[1.6rem] text-ink">3/3</span>
+      <div className="mt-4 flex items-center gap-4">
+        <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-[3px] border-moss">
+          <span className="text-[0.95rem] font-semibold text-[#141414]">3/3</span>
+        </div>
+        <div>
+          <p className="text-[0.72rem] font-semibold text-[#141414]">Adherence 98%</p>
+          <p className="mt-0.5 text-[0.64rem] text-[#6b6b6b]">Last 30 days · confirmed on the wrist</p>
         </div>
       </div>
-      <div className="mt-6 space-y-2.5">
+      <div className="mt-4 divide-y divide-[#eeece7] border-y border-[#eeece7]">
         {[
-          ["Metformin", "8:02 am"],
-          ["Lisinopril", "8:02 am"],
+          ["Metformin 500 mg", "8:02 am"],
+          ["Lisinopril 10 mg", "8:02 am"],
           ["Vitamin D", "12:31 pm"],
         ].map(([name, time]) => (
-          <div key={name} className="flex items-center justify-between rounded-lg bg-bone p-3.5">
-            <p className="text-[0.75rem] text-ink/85">{name}</p>
-            <p className="voice-kicker text-[0.46rem] text-brass-deep">✓ {time}</p>
+          <div key={name} className="flex items-center justify-between py-3">
+            <p className="text-[0.75rem] font-medium text-[#141414]">{name}</p>
+            <p className="text-[0.64rem] font-semibold text-moss">✓ {time}</p>
           </div>
         ))}
       </div>
+      <p className="mt-auto text-[0.66rem] text-[#6b6b6b]">
+        A missed dose is noticed within minutes.
+      </p>
     </div>
   );
 }
 
 function CircleScreen() {
   return (
-    <div className="flex h-full flex-col bg-pine px-5 pt-10 pb-6">
-      <p className="voice-kicker text-[0.5rem] text-sage">The circle</p>
-      <p className="voice-display mt-2 text-[1.35rem] leading-tight text-cream">
+    <div className="flex h-full flex-col bg-white px-5 pt-9 pb-5 font-sans">
+      <div className="flex items-center justify-between">
+        <p className="text-[0.56rem] font-semibold tracking-[0.18em] text-[#6b6b6b] uppercase">
+          The circle
+        </p>
+        <CircleChips active="EA" />
+      </div>
+      <p className="mt-2.5 text-[1.3rem] font-semibold leading-tight tracking-tight text-[#141414]">
         Maya is on
         <br />
         her way.
       </p>
-      <div className="mt-6 space-y-2.5">
-        <div className="rounded-lg bg-forest p-3.5">
-          <p className="voice-kicker text-[0.48rem] text-sage">Caretaker · 8 min</p>
-          <p className="mt-1 text-[0.72rem] text-bone/85">Morning visit, as every day</p>
+      <div className="mt-4 divide-y divide-[#eeece7] border-y border-[#eeece7]">
+        <div className="flex items-center gap-3 py-3">
+          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#141414] text-[0.55rem] font-semibold text-white">M</span>
+          <div className="min-w-0">
+            <p className="text-[0.75rem] font-semibold text-[#141414]">
+              Maya · caretaker
+            </p>
+            <p className="mt-0.5 text-[0.66rem] text-[#6b6b6b]">Morning visit, as every day</p>
+          </div>
+          <span className="ml-auto rounded-full bg-moss px-2 py-0.5 text-[0.5rem] font-semibold tracking-[0.08em] text-white uppercase">
+            8 min
+          </span>
         </div>
-        <div className="rounded-lg bg-forest p-3.5">
-          <p className="voice-kicker text-[0.48rem] text-sage">Daughter · seen 9:14</p>
-          <p className="mt-1 text-[0.72rem] text-bone/85">“Sleep was calm. All well.”</p>
+        <div className="flex items-center gap-3 py-3">
+          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#e5e2dc] text-[0.55rem] font-semibold text-[#6b6b6b]">MA</span>
+          <div className="min-w-0">
+            <p className="text-[0.75rem] font-semibold text-[#141414]">Maria · daughter</p>
+            <p className="mt-0.5 truncate text-[0.66rem] text-[#6b6b6b]">“Sleep was calm. All well.”</p>
+          </div>
         </div>
-        <div className="rounded-lg bg-forest p-3.5">
-          <p className="voice-kicker text-[0.48rem] text-sage">Emergency services</p>
-          <p className="mt-1 text-[0.72rem] text-bone/85">Connected · nothing to report</p>
+        <div className="flex items-center gap-3 py-3">
+          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#e5e2dc] text-[0.55rem] font-semibold text-[#6b6b6b]">911</span>
+          <div className="min-w-0">
+            <p className="text-[0.75rem] font-semibold text-[#141414]">Emergency services</p>
+            <p className="mt-0.5 text-[0.66rem] text-[#6b6b6b]">Connected · nothing to report</p>
+          </div>
         </div>
       </div>
       <div className="mt-auto flex items-center gap-2">
-        <span className="relative flex h-2 w-2">
-          <span className="absolute h-full w-full animate-ping rounded-full bg-brass/50 [animation-duration:2.4s]" />
-          <span className="relative h-2 w-2 rounded-full bg-brass" />
-        </span>
-        <p className="text-[0.68rem] text-sage">Watching, quietly</p>
+        <span className="h-1.5 w-1.5 rounded-full bg-moss" />
+        <p className="text-[0.66rem] text-[#6b6b6b]">Watching, quietly</p>
       </div>
     </div>
   );
@@ -167,7 +218,7 @@ function PhoneFrame({ progress }: { progress: MotionValue<number> }) {
   return (
     <div className="relative mx-auto aspect-[9/19] w-[15.5rem] rounded-[2.6rem] bg-forest p-[0.55rem] shadow-2xl shadow-ink/40 md:w-[17rem]">
       <span aria-hidden className="absolute left-1/2 top-[0.9rem] z-20 h-[0.42rem] w-16 -translate-x-1/2 rounded-full bg-forest" />
-      <div className="relative h-full w-full overflow-hidden rounded-[2.1rem] bg-cream">
+      <div className="relative h-full w-full overflow-hidden rounded-[2.1rem] bg-white">
         {SCREEN_COMPONENTS.map((Screen, i) => (
           <ScreenLayer key={i} index={i} progress={progress}>
             <Screen />
